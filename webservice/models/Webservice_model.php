@@ -77,7 +77,7 @@ function get_pilihan_jawaban($data){
 
 // GET PAKET BERDASARKAN ID TO
 public function get_paket_by_toid($id) {
-	$query = "SELECT p.token, p.id_paket,nm_paket,deskripsi,p.status,jumlah_soal,durasi,random,p.`penggunaID` FROM `tb_paket` p
+	$query = "SELECT p.token, p.id_paket,nm_paket,deskripsi,p.status,jumlah_soal,durasi,random FROM `tb_paket` p
 	JOIN `tb_mm-tryoutpaket` mm
 	ON p.`id_paket` = mm.`id_paket`
 	JOIN `tb_tryout` t ON t.`id_tryout` = mm.`id_tryout`
