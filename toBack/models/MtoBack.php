@@ -203,10 +203,10 @@ class Mtoback extends CI_Model {
 
 	// get pengawas yg belum diberi akses to
 	public function get_pengawas_blm_to($id) {
-        $query = "SELECT p.`id`, p.`nama`, p.`alamat` FROM tb_pengawas p
+        $query = "SELECT p.`id`, p.`namaSekolah`, p.`alamat` FROM tb_sekolah p
         WHERE p.id NOT IN
         (
-        SELECT pp.`id` FROM tb_pengawas pp
+        SELECT pp.`id` FROM tb_sekolah pp
         JOIN `tb_hakakses-pengawas` hp ON
         hp.`id_pengawas` = pp.`id`
         WHERE hp.`id_tryout` = $id) AND p.`status`=1
@@ -217,8 +217,8 @@ class Mtoback extends CI_Model {
 
 	public function pengawas_by_totID ($id_to)
 	{
-		$this->db->select('p.id,p.nama,p.alamat,hp.id as hakaksesID');
-		$this->db->from('tb_pengawas p');
+		$this->db->select('p.id,p.namaSekolah,p.alamat,hp.id as hakaksesID');
+		$this->db->from('tb_sekolah p');
 		$this->db->join('tb_hakakses-pengawas hp','hp.id_pengawas=p.id');
 		$this->db->where('hp.id_tryout',$id_to);
 		$this->db->where('p.status',1);

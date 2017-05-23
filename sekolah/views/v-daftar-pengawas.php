@@ -8,7 +8,7 @@
 			<div class="col-md-12">
 				<div class="panel panel-teal">
 					<div class="panel-heading">
-						<h3 class="panel-title">Daftar Pengawas</h3>
+						<h3 class="panel-title">Daftar Sekolah</h3>
 						<!-- Start menu tambah soal -->
 						<div class="panel-toolbar text-right">
 						<a class="btn btn-inverse btn-outline" href="<?= base_url(); ?>index.php/pengawas/formPengawas" title="Tambah Data" ><i class="ico-plus"></i></a>
@@ -20,7 +20,7 @@
 							<tr>
 								<th >No</th>
 								<th>Nama Pengguna</th>
-								<th>Nama Pengawas</th>
+								<th>Nama Sekolah</th>
 								<th>Alamat</th>
 								<th>Kontak</th>
 								<th>Email</th>
@@ -48,7 +48,7 @@
     $(document).ready(function() {
         tb_pengawas = $('#tb_pengawas').DataTable({ 
            "ajax": {
-                    "url": base_url+"index.php/pengawas/ajax_listPengawas/",
+                    "url": base_url+"index.php/sekolah/ajax_listPengawas/",
                     "type": "POST"
                     },
             "processing": true,

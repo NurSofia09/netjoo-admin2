@@ -55,7 +55,6 @@
         <div>
          <ul class="nav nav-tabs">
           <li class="active"><a href="#paket" data-toggle="tab">Paket</a></li>
-          <li><a href="#siswa" data-toggle="tab">Siswa</a></li>
           <li><a href="#pengawas" data-toggle="tab">Pengawas</a></li>
         </ul>
       </div>
@@ -96,76 +95,7 @@
  </div>
  <!-- End Tab pane Paket -->
  <!-- Start Tab pane Siswa -->
- <div class="tab-pane" id="siswa">
 
-   <div class="col-md-12" >
-    <!-- div setting record -->
-    <div class="col-md-2 mb2 mt10 pl0">
-      <div  class="form-group">
-        <select  class="form-control" name="records_per_page">
-          <option value="10">10</option>
-          <option value="25">25</option>
-          <option value="50">50</option>
-          <option value="100">100</option>
-        </select>
-      </div>
-    </div>
-    <!-- /div setting record -->
-    <!-- div pencarian  -->
-    <div class="col-md-10 mb10 mt10 pr0">
-      <div class="input-group">
-       <span class="input-group-addon btn" id="cari_siswa"><i class="ico-search"></i></span>
-       <input class="form-control" type="text" name="cari_siswa" placeholder="Cari Data">
-     </div>
-   </div>
-   <!-- div pencarian -->
- </div>
-
- <!-- START TABEL SISWA --><br>
- <br>
- <table class="table table-bordered" style="font-size: 13px" id="siswaBlmTo" width="100%">
-   <thead>
-    <tr>
-     <th  width="12px"><input type="checkbox" name="checkall_siswa"></th>
-     <th>No</th>
-     <th>Nama Pengguna</th>
-     <th>Nama Siswa</th>
-     <th>Cabang</th>
-     <th>Tingkat</th>
-   </tr>
- </thead>
- <tbody id="tbsiswa">
-
- </tbody>
- <tfoot>
-   <th colspan="2"><i class="ico-search2 text-center"></i></th>
-   <!-- <th><input class="form-control" type="text" placeholder="No" /></th> -->
-   <th><input class="form-control" name="nama_pengguna_search"type="text" placeholder="Nama Pengguna" /></th>
-   <th><input class="form-control" name="nama_siswa_search"type="text" placeholder="Nama Siswa" /></th>
-   <th><input class="form-control" name="cabang_search"type="text" placeholder="Cabang" /></th>
-   <th><input class="form-control" name="tingkat_search"type="text" placeholder="Tingkat" /></th>
- </tfoot>
-</table>
-<div class="col-md-12">
-  <ul class="pagination pagination-siswa">
-
-  </ul>
-</div>
-<!-- END TABEL SISWA -->
-<!-- START PESAN ERROR EMPTY INPUT -->
-<div class="alert alert-dismissable alert-danger" id="msg_e_siswa" hidden="true">
- <button type="button" class="close" onclick="hide_msg_e_siswa()" >×</button>
- <strong>O.M.G.!</strong> Silahkan pilih siswa yang akan mengikuti UJIAN.
-</div>
-<!-- END PESAN ERROR EMPTY INPUT -->
-<!--START PESAN BERHASIL SISWA DI ADD KE TO -->
-<div class="alert alert-dismissable alert-success" id="msg_s_siswa" hidden="true" >
- <button type="button" class="close" onclick="hide_msg_s_siswa()" >×</button>
- <strong>Well done!</strong> SISWA telah di tambahkan ke Try Out.
-</div>
-<!--END PESAN BERHASIL SISWA DI ADD KE TO  -->
-
-</div>
 <!-- Start Tab pane Siswa -->
 <!-- Start Tab pane Pengawas -->
 <div class="tab-pane "  id="pengawas">
@@ -173,9 +103,9 @@
   <table class="table table-bordered" style="font-size: 13px">
    <thead>
     <tr>
-     <th> <input type="checkbox" name="checkall"></th>
-     <th >No</th>
-     <th>Nama Pengwas</th>
+     <th width="12px"> <input type="checkbox" name="checkall"></th>
+     <th width="12px">No</th>
+     <th>Nama Sekolah</th>
      <th>Alamat</th>
    </tr>
  </thead>
@@ -226,7 +156,6 @@
     <div>
      <ul class="nav nav-tabs">
       <li class="active"><a href="#paketadd" data-toggle="tab">Paket</a></li>
-      <li><a href="#siswaadd" data-toggle="tab">Siswa</a></li>
       <li><a href="#pengawasadd" data-toggle="tab">pengawas</a></li>
     </ul>
   </div>
@@ -261,50 +190,6 @@
 </div>
 <!-- END LIST Paket yang sudah di ADD  -->
 
-<!-- START LIST SISWA yang sudah di ADD -->
-<div class="tab-pane" id="siswaadd">
-  <!-- Start tabel siswa add to -->
-  <div class="panel panel-default">
-   <div class="panel-heading">
-    <h3 class="panel-title">Siswa yang akan mengikuti TO</h3>
-  </div>
-  <div class="panel-body soaltambah">
-    <!-- START TABEL SISWA YG SUDAH DI ADD -->
-    <form action="" id="">
-     <table class="table table-striped" id="tblist_siswa" style="font-size: 13px" width="100%">
-      <thead>
-       <tr>
-        <th>No</th>
-        <th>Nama Pengguna</th>
-        <th>Nama Siswa</th>
-        <th>Cabang</th>
-        <th>Tingkat</th>
-        <th>Aksi</th>
-      </tr>
-    </thead>
-
-    <tbody>
-
-    </tbody>
-    <tfoot>
-     <th><input class="form-control" type="text" placeholder="No" /></th>
-     <th><input class="form-control" type="text" placeholder="Nama Pengguna" /></th>
-     <th><input class="form-control" type="text" placeholder="Nama Siswa" /></th>
-     <th><input class="form-control" type="text" placeholder="Cabang" /></th>
-     <th><input class="form-control" type="text" placeholder="Tingkat" /></th>
-     <th>Aksi</th>
-   </tfoot>
- </table>
-
-</form>
-<!-- END TABEL SISWA YG SUDAH DI ADD  -->
-
-</div>
-</div>
-<!-- END tabel siswa add to -->
-</div>
-<!-- LIST Siswa yang sudah di ADD -->
-<!-- List pengawas yg di beri akses -->
 <div class="tab-pane" id="pengawasadd">
   <!-- Start tabel siswa add to -->
   <div class="panel panel-default">
@@ -318,7 +203,7 @@
       <thead>
        <tr>
         <th>No</th>
-        <th>Nama</th>
+        <th>Nama Sekolah</th>
         <th>Alamat</th>
         <th>Aksi</th>
       </tr>
