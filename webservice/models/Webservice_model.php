@@ -2,10 +2,10 @@
 class Webservice_model extends CI_Model
 {
 
-//  GET SISWA YANG AKAN IKUTAN TRYOUT	
-	function get_siswa_on_tryout($data){
-		$query = "SELECT `id`, `namaDepan`, `namaBelakang`, `alamat`, `noKontak`, `penggunaID`, `photo`, `biografi`, `status` FROM tb_siswa s WHERE s.`id` IN( 
-			SELECT id_siswa FROM `tb_hakakses-to` WHERE id_tryout = $data )";
+//  GET SISWA YANG ADA DI SKOLAH TERTENTU.	
+	function get_siswa_at_school($data){
+		$query = "SELECT `id`, `namaDepan`, `namaBelakang`, `alamat`, `noKontak`, `penggunaID`, `photo`, `biografi`, `status` FROM tb_siswa s 
+		WHERE sekolahID = ".$data;
 $result = $this->db->query($query);
 return $result->result_array();
 }
@@ -16,8 +16,7 @@ function get_pengguna_on_tryout($data){
 	, `oauth_uid`, `oauth_uid`,hakAkses,p.status, last_akses
 	FROM tb_pengguna p
 	JOIN tb_siswa s ON s.`penggunaID` = p.`id`
-	JOIN `tb_hakakses-to` ha ON ha.`id_siswa` = s.`id`
-	WHERE id_tryout = $data ";
+	WHERE sekolahID = $data ";
 	$result = $this->db->query($query);
 	return $result->result_array();	
 }
@@ -34,7 +33,7 @@ function get_hak_akses_on_tryout($data){
 // GET SOAL DI TO TERTENTU
 function get_soal_on_tryout($data){
 	$query = "SELECT p.id_soal,judul_soal, soal, jawaban, 
-	kesulitan, sumber,
+	kesulitan, sumber,audio,
 	b.`create_by`, b.random, b.publish, b.UUID, b.status, gambar_soal, 
 	pembahasan, gambar_pembahasan, video_pembahasan, status_pembahasan, link        
 	FROM `tb_banksoal` b
@@ -88,9 +87,10 @@ public function get_paket_by_toid($id) {
 
 // GET ADMIN OFFLINE
 function check_user_admin_offline($username, $password){
-	$this->db->select('*');
+	$this->db->select('*, s.id as sekolahID');
 
 	$this->db->from('tb_pengguna pengguna');
+	$this->db->join('tb_sekolah s','s.penggunaID = pengguna.id');
 	$this->db->where('kataSandi', $password);
 	$this->db->where('pengguna.status','1');
 	$this->db->where('pengguna.hakAkses','pengawas');
@@ -109,27 +109,27 @@ function check_user_admin_offline($username, $password){
 // GET TO YANG HAK AKSESNYA ID PENGGUNA TERTENTU
     function get_all_to($penggunaID){
     	$query = "SELECT t.`id_tryout`,t.`nm_tryout`,t.`tgl_mulai`,t.`tgl_berhenti`,t.`publish`,t.`UUID`,t.`wkt_mulai`,t.`wkt_berakhir`,t.`penggunaID` FROM `tb_hakakses-pengawas` hp
-					JOIN `tb_tryout` t ON t.`id_tryout` = hp.`id_tryout`
-					JOIN tb_sekolah s ON s.`id` = hp.`id_pengawas`
-					JOIN tb_pengguna u ON u.`id` = s.`penggunaID`
-					WHERE s.`penggunaID`=$penggunaID ";
+    	JOIN `tb_tryout` t ON t.`id_tryout` = hp.`id_tryout`
+    	JOIN tb_sekolah s ON s.`id` = hp.`id_pengawas`
+    	JOIN tb_pengguna u ON u.`id` = s.`penggunaID`
+    	WHERE s.`penggunaID`=$penggunaID ";
 
     	$result = $this->db->query($query);
     	return $result->result_array();
     }
 
 // get pasangan tryout mm paket
-        function get_mm_tryout_paket($data){
+    function get_mm_tryout_paket($data){
     	$query = "SELECT mm.id, mm.id_paket, mm.id_tryout FROM `tb_mm-tryoutpaket` mm
-		WHERE `id_tryout` = $data";
+    	WHERE `id_tryout` = $data";
 
     	$result = $this->db->query($query);
     	return $result->result_array();
-}
+    }
 
 // insert report paket
-	function insert_report($data) {
-		$this->db->insert('tb_report-paket', $data);
-	}
+    function insert_report($data) {
+    	$this->db->insert('tb_report-paket', $data);
+    }
 }
 ?>

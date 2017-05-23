@@ -29,8 +29,8 @@ class Webservice extends MX_Controller
 	}
 
 	//GET PAKET SISWA
-	public function siswaoffline($idto){
-		$data = $this->Webservice_model->get_siswa_on_tryout($idto);
+	public function siswaoffline($sekolahID){
+		$data = $this->Webservice_model->get_siswa_at_school($sekolahID);
 		$datas = json_encode($data);
 		echo $datas;
 	}
@@ -82,14 +82,15 @@ class Webservice extends MX_Controller
 				$row = $hasil_login[0];
 				$verifikasiCode = md5($row->regTime);
 				$data_login = array(
-					'id' => $row->id,
+					'id' => $row->penggunaID,
 					'USERNAME' => $row->namaPengguna,
 					'HAKAKSES' => 'adminOffline',
 					'AKTIVASI' => $row->aktivasi,
 					'eMail' => $row->eMail,
 					'verifikasiCode' => $verifikasiCode,
 					'loggedin' => TRUE,
-					'status' => 'berhasil'
+					'status' => 'berhasil',
+					'sekolahID'=>$row->sekolahID
 					);
 			}else{
 				$data_login = ['status'=>"Gagal"];
@@ -142,6 +143,11 @@ class Webservice extends MX_Controller
 		}else{
 			echo json_encode(['status'=>false]);
 		}
+	}
+
+	function test(){
+		$data = $this->Webservice_model->check_user_admin_offline("adminOpik", "a0066c4ed186b9ed329411f715f49443");
+		print_r($data);
 	}
 }
 ?>
