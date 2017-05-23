@@ -11,118 +11,21 @@
 }
 </style>
 <!-- MODAL LATIHAN PERSENTASE-->
-<div class="modal fade" tabindex="-1" role="dialog" id="latihan_persentase">
-  <div class="modal-dialog" role="document" style="width: 80%">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3>Perkembangan Latihan</h3>
 
-      </div>
-      <div class="modal-body">
-
-        <table class="table rpersentase" width=100% style="font-size: 13px">
-          <thead>
-            <tr>
-              <th>No</th>
-              <th>Nama Bab</th>
-              <th>Jumlah Soal</th>
-              <th>Jumlah Salah</th>
-              <th>Jumlah Kosong</th>
-              <th>Jumlah Benar</th>
-              <th>Score</th>
-              <th>Persentase</th>
-            </tr>
-          </thead>
-          <tbody>
-
-          </tbody>
-        </table>
-      </div>
-
-      <div class="modal-footer bg-color-3">
-        <button type="button" class="cws-button bt-color-1 alt small selesai" data-dismiss="modal">Batal</button>
-      </div>
-
-    </div>
+<div class="modal fade " tabindex="-1" role="dialog" id="myModal">
+ <div class="modal-dialog" role="document">
+  <div class="modal-content">
+   <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><br>
   </div>
-</div>
-<!-- MODAL LATIHAN PERSENTASE-->
-
-<!-- MODAL LATIHAN PERSENTASE-->
-<div class="modal fade" tabindex="-1" role="dialog" id="learning_persentase">
-  <div class="modal-dialog" role="document" style="width: 80%">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3>Progress Learning Line</h3>
-
-      </div>
-      <div class="modal-body">
-
-        <table class="table lpersentase" width=100% style="font-size: 13px">
-          <thead>
-            <tr>
-              <th>No</th>
-              <th>Nama Topik</th>
-              <th>Step Dikerjakan</th>
-              <th>Jumlah Step</th>
-              <th>Persentase</th>
-              <th>Bar</th>
-            </tr>
-          </thead>
-          <tbody>
-
-          </tbody>
-        </table>
-      </div>
-
-      <div class="modal-footer bg-color-3">
-        <button type="button" class="cws-button bt-color-1 alt small selesai" data-dismiss="modal">Batal</button>
-      </div>
-
+  <div class="modal-body">
+    <div id="chartContainer" style="height: 400px; width: 100%;">
     </div>
-  </div>
+  </form>
 </div>
-<!-- MODAL LATIHAN PERSENTASE-->
-
-<!-- MODAL LATIHAN PERSENTASE-->
-<div class="modal fade" tabindex="-1" role="dialog" id="laporan_tryout">
-  <div class="modal-dialog" role="document" style="width: 80%">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3>Laporan Semua Paket Tryout</h3>
-
-      </div>
-      <div class="modal-body">
-
-        <table class="table rpaket" width=100% style="font-size: 13px">
-          <thead>
-            <tr>
-             <th>no</th>
-            <th>Nama Paket</th>
-            <th>Nama Tryout</th>
-            <th>Jumlah Soal</th>
-            <th>Benar</th>
-            <th>Salah</th>
-            <th>Kosong</th>
-            <th>Nilai</th>
-            <th>Waktu Mengerjakan</th>
-            </tr>
-          </thead>
-          <tbody>
-
-          </tbody>
-        </table>
-      </div>
-
-      <div class="modal-footer bg-color-3">
-        <button type="button" class="cws-button bt-color-1 alt small selesai" data-dismiss="modal">Batal</button>
-      </div>
-
-    </div>
-  </div>
+</div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
 </div>
-<!-- MODAL LATIHAN PERSENTASE-->
-
 
 <div class="page-title" style="background:#2b3036">
   <div class="grid-row">
@@ -136,192 +39,64 @@
   </div>
 </div>
 
-<!-- PERKEMBANGAN learning Line -->
-<section class="padding-section" style="padding:0;">
 
 
-<div class="grid-row clear-fix" style="padding-bottom: 0;padding-bottom:0">
-    <h3>Pesan</h3> 
-    <?php if ($this->session->userdata('HAKAKSES')=='ortu'): ?>
-    Hi, <?=$this->session->userdata('USERNAME') ?> ! Dibawah ini adalah pesan.<br><br>
-    <?php else: ?>
-      Hi, <?=$this->session->userdata('USERNAME') ?> ! Dibawah ini adalah pesan. Tetap semangat!<br><br>
-  <?php endif ?>
-
-  <a href="<?=base_url('ortuback/pesan') ?>" class="cws-button bt-color-3 alt small">Selengkapnya</a> <br><br> 
- 
-    
-    <div class="grid-col-row clear-fix">
-      <?php foreach ($pesan as $key ) : ?>
-        <div class="grid-col grid-col-4" title="10%">
-          <div class="portfolio-item">
-            <div class="picture">
-              <div class="course-item">
-                <div class="course-date bg-color-3 clear-fix skill-bar">
-                  <h3 style="margin:0;"><a href="">Pesan</a></h3>
-                  <hr style="margin-bottom: 5px">  
-                  <div class="day"><?=$key['jenis']?></div><br>
-                   <?php if ($key['isi']== null): ?>
-                    <div class="day">{Tidak ada pesan}</div>
-                      <?php else: ?>
-                  <div class="day"><?php $c = $key['isi']; echo substr($c, 0, 50) ?></div>
-                  <?php endif ?>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>    
-      <?php endforeach ?>
-    </div>
-
-  </div>
 
 
-  <div class="grid-row clear-fix" style="padding-bottom: 0;padding-bottom:0">
-    <?php if ($this->session->userdata('HAKAKSES')=='ortu'): ?>
-    <h3>Topik yang baru saja dipelajari <?=$siswa?>..</h3> 
-    Hi, <?=$this->session->userdata('USERNAME') ?> ! Dibawah ini adalah progress learning line dari <?=$siswa?>! <br><br>
-  <?php else: ?>
-    <h3>Topik yang baru saja dipelajari..</h3> 
-    Hi, <?=$this->session->userdata('USERNAME') ?> ! Dibawah ini adalah progress learning line kamu, silahkan lanjutkan untuk bisa menyelesaikan topik-topik yang disediakan. Tetap semangat!<br><br>
-    <?php endif ?>
-    <a onclick="show_modal_learning()" class="cws-button bt-color-3 alt small">Selengkapnya</a> <br><br>    
-    <div class="grid-col-row clear-fix">
-      <?php foreach ($topik  as $item): ?>
-        <?php $persentasi = (int)$item['stepDone'] / (int)$item['jumlah_step'] * 100; ?>
-        <div class="grid-col grid-col-4" title="<?=(int)$persentasi ?>%">
-          <div class="portfolio-item">
-            <div class="picture">
-              <div class="course-item">
-                <div class="course-date bg-color-3 clear-fix skill-bar">
-                  <h3 style="margin:0;"><a href="<?=base_url("linetopik/learningline/".$item['babID']) ?>"><?=$item['namaTopik'] ?></a></h3>
-                  <hr style="margin-bottom: 5px">  
-                  <div class="day"><?=(int)$persentasi ?>% Progress</div><br>
-                  <div class="day"><?=$item['stepDone'] ?> / <?=$item['jumlah_step'] ?> Step Line Dikerjakan</div>
-                  <div class="bar">
-                    <span class="bg-color-4 skill-bar-progress" processed="true" style="width: <?=$persentasi ?>%;"></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      <?php endforeach ?>
-    </div>
-  </div>
-</section>
-<!-- PERKEMBANGAN learning Line -->
+<!-- video random -->
+<section class="section bgcolor-white"> 
+  <div class="container">
+<!-- video random -->
 
+<div class="col-md-12">
+    <section>
+      <!-- gallery navigation -->
+      <h4>Paket Soal yang Sudah Dikerjakan</h4>
+      <!-- gallery container -->
+      <div class="col-md-12">
+        <?php //if($paket_dikerjakan==array()): ?>
+          <!-- <h5>Tidak ada paket soal.</h5> -->
+        <?php //else: ?>
+          <table class="table" style="font-size: 13px">
+            <thead>
+             <tr>
+              <th>ID Paket</th>
+              <th width="30%">Aksi</th>
+              <th>Nama Paket Soal</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php foreach ($paket_dikerjakan as $paketitem): ?>
+              <tr>
+                <td><?=$paketitem['id'] ?></td>
+                <td>
 
-<!-- PERKEMBANGAN learning Line -->
-<section class="padding-section" style="padding:0;">
-  <div class="grid-row clear-fix" style="padding-bottom: 0;padding-bottom:0">
-    <?php if ($this->session->userdata('HAKAKSES')=='ortu'): ?>
-    <h3>Latihan yang telah dikerjakan <?=$siswa?>..</h3> 
-    Dibawah ini adalah latihan yang sudah dihitung berdasarkan babnya, silahkan untuk di lihat agar mengetahui perkembangan <?=$siswa?><br><br>
-    <?php else: ?>
-    Dibawah ini adalah latihan yang sudah dihitung berdasarkan babnya, silahkan untuk di lihat agar mengetahui perkembangan anda<br><br>
-    <?php endif ?>
-    <a onclick="show_modal_latihan()" class="cws-button bt-color-3 alt small">Selengkapnya</a> <br><br>    
-    <div class="grid-col-row clear-fix">
-      <?php foreach ($latihan  as $item): ?>
-        <?php $persentasi = (int)$item['total_benar'] / (int)$item['total_soal'] * 100; ?>
-        <div class="grid-col grid-col-4" title="<?=$item['judulBab'] ?>">
-          <div class="portfolio-item">
-            <div class="picture">
-              <div class="course-item">
-                <div class="course-date bg-color-3 clear-fix skill-bar">
-                  <h3 style="margin:0;"><a href="<?=base_url("linetopik/learningline/".$item['judulBab']) ?>"><?=$item['judulBab'] ?></a></h3>
-                  <hr style="margin-bottom: 5px">
-                  <div class="day"><?=$item['total_benar'] ?> Benar dari <?=$item['total_soal'] ?> soal</div> <br> 
-                  <div class="day"><?=(int)$persentasi ?>% Benar</div> <br>
-                  <div class="day">Nilai : <bold><i><?=(int)$item['total_benar'] / (int)$item['total_soal'] * 100 ?></i></bold> </div>
+                 <a onclick="detail_paket(<?=$paketitem['id_paket']?>)" 
+                  class="btn btn-primary modal-on<?=$paketitem['id_paket']?>"
+                  data-todo='<?=json_encode($paketitem)?>' title="Lihat Score"><i class="glyphicon glyphicon-list-alt"></i></a>
 
-                  <div class="bar">
-                    <span class="bg-color-4 skill-bar-progress" processed="true" style="width: <?=$persentasi ?>%;"></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      <?php endforeach ?>
-    </div>
-    <hr class="divider-color">
-  </div>
-</section>
-<!-- PERKEMBANGAN learning Line -->
-
-<!-- PERKEMBANGAN TO -->
-<section class="padding-section" style="padding-top: 0;margin-top: 0">
-  <div class="grid-row clear-fix">
-    <?php if ($this->session->userdata('HAKAKSES')=='ortu'): ?>
-    <h3>Grafik Tryout dari <?=$siswa?></h3>
-    <p>Dibawah ini adalah grafik perkembangan TO <?=$siswa?>..</p>
-  <?php else: ?>
-     <h3>Grafik Tryout</h3>
-    <p>Dibawah ini adalah grafik perkembangan TO kamu, jika nilaninya masih tidak memuaskan jangan khawatir pasti kamu bisa memperbaikinya dengan cara banyak mengikuti latihan. Tetap semangat! </p>
-    <?php endif ?>
-    <br>
-    <?php if ($this->session->userdata('HAKAKSES')=='ortu'): ?>
-      <a onclick="show_modal_tryout()" class="cws-button bt-color-3 alt small">Selengkapnya</a> 
-    <?php else: ?>
-    <?php endif ?>
-<!--     <label for="" class="">
-      Filter Tryout : <select class="form-control tryout_select" name="tryout_select">
-      <option value="">-- Cari Berdasarkan Tryout --</option>
-    </select>
-  </label> -->
-  <div class="panel-body" >
-    <div class="panel-body pt0" id="resizeble" style="height:430px">
-      <div class="container" id="chartContainer" style="width:100%">
+                  <?php //if ($status_to=="done"): ?>
+                    <a onclick="pembahasanto(<?=$paketitem['id_paket']?>)" 
+                      class="btn btn-primary"
+                      data-todo='<?=json_encode($paketitem)?>' title="Pembahasan"><i class="glyphicon glyphicon-book"></i></a>
+                    <?php //endif ?>
+                  </td>
+                <td><?=$paketitem['nm_paket'] ?></td>
+                
+                </tr>
+              <?php endforeach ?>
+            </tbody>
+          </table>
+        <?php// endif ?>
 
       </div>
-    </div>      
-  </div>
-</div>  
-</section>
-<hr class="divider-big">
-<!-- PERKEMBANGAN TO -->
-
-<!-- video random -->
-<section class="padding-section" style="padding-bottom: : 0;">
-  <div class="grid-row clear-fix">
-    <h3 style="margin:0">Recent Video</h3>
-    Nah, dibawah ini terdapat video terbaru loh, yuk coba tonton..
-    <hr>  <br>
-    <div class="grid-col-row clear-fix">
-      <?php foreach ($video as $item): ?>
-        <div class="grid-col grid-col-3">
-          <div class=" portfolio-item">
-            <div class="picture">
-              <div class="hover-effect"></div>
-              <div class="link-cont">
-                <span></span>
-                <?php $url =  base_url()."video/seevideo/".$item['videoid']?>
-                <a href="<?=$url ?>" class="cws-right fa fa-play"></a>
-              </div>
-              <center>
-                <?php if (!empty($item['link'])): ?>
-                  <iframe  width="250" src="<?=$item['link'] ?>"></iframe>
-                <?php endif ?>
-              </center>
-
-            </div>
-            <h3><?=$item['judulVideo'] ?></h3>
-            <p><?=$item['deskripsi'] ?></p>
-          </div>
-        </div>
-      <?php endforeach ?>
-
 
     </div>
-    <hr class="divider-color">  
 
   </div>
-</section>
-<!-- video random -->
 
+  <!-- / gallery container -->
+</section>
 
 
 
@@ -446,3 +221,132 @@ $('.tryout_select').change(function () {
     $('#laporan_tryout').modal('show');
   }
 </script>
+
+<!--/ END Template Main -->
+<script type="text/javascript"> 
+  function kerjakan(id_to){
+    var kelas = ".modal-on"+id_to;
+    var data_to = $(kelas).data('todo');
+    url = base_url+"index.php/tryout/buatto";
+    console.log(data_to);
+
+    var datas = {
+      id_paket:data_to.id_paket,
+      id_tryout:data_to.id_tryout,
+      id_mm_tryoutpaket:data_to.mmid
+    }
+
+    $.ajax({
+      url : url,
+      type: "POST",
+      data: datas,
+      dataType: "TEXT",
+      success: function(data)
+      {
+       window.location.href = base_url + "index.php/tryout/mulaitest";
+     },
+     error: function (jqXHR, textStatus, errorThrown)
+     {
+      console.log("gagal");
+    }
+  });
+  }
+
+  function pembahasanto(id_to){
+    var kelas = ".modal-on"+id_to;
+    var data_to = $(kelas).data('todo');
+    url = base_url+"index.php/tryout/buatpembahasan";
+
+    var datas = {
+      id_paket:data_to.id_paket,
+      id_tryout:data_to.id_tryout,
+      id_mm_tryoutpaket:data_to.id
+    }
+
+    $.ajax({
+      url : url,
+      type: "POST",
+      data: datas,
+      dataType: "TEXT",
+      success: function(data)
+      {
+       window.location.href = base_url + "index.php/tryout/mulaipembahasan";
+     },
+     error: function (jqXHR, textStatus, errorThrown)
+     {
+      swal("gagal");
+    }
+  });
+  }
+
+  function detail_paket(id_to){
+    var kelas = ".modal-on"+id_to;
+    var data_to = $(kelas).data('todo');
+    console.log(data_to);
+    $('.modal-title').text('Grafik Paket Soal Tryout');
+    $('#myModal').modal('show');
+    load_grafik(data_to);
+  }
+
+  function load_grafik(data) {
+   var chart = new CanvasJS.Chart("chartContainer", {
+     title: {
+      text: "Nama Paket : "+data.nm_paket
+    },
+    animationEnabled: true,
+    theme: "theme1",
+    data: [
+    {
+
+      type: "doughnut",
+      indexLabelFontFamily: "Garamond",
+      indexLabelFontSize: 20,
+      startAngle: 0,
+      indexLabelFontColor: "dimgrey",
+      indexLabelLineColor: "darkgrey",
+      toolTipContent: "Jumlah : {y} ",
+      dataPoints: [
+      { y : data.total_nilai, indexLabel:"Poin {y}"},
+      { y: data.jmlh_salah, indexLabel: "Salah {y}" },
+      { y: data.jmlh_kosong, indexLabel: "Kosong {y}" },
+      { y: data.jmlh_benar, indexLabel: "Benar {y}" },
+      ]
+    }
+    ]
+  });
+   chart.render();
+ }
+
+
+
+ function lihat_grafik(id){
+  var kelas = ".modal-on"+id;
+  var data = $(kelas).data('todo');
+  $('.modal-title').text('Grafik Latihan ');
+  $('#myModal').modal('show');
+  load_grafik(data);
+}
+
+
+
+function show_report(){
+  $('#myModal2').modal('show');
+  $('#myModal2 modal-title').text('Report Latihan');
+}
+
+
+
+$(document).ready(function() {
+  $(".table").dataTable();
+  $("#owl2").owlCarousel();
+});
+
+function forbiden(){
+  swal('Maaf, to belum bisa di kerjakan!');
+}
+
+function habis(){
+  swal('Waktu pengerjaan to sudah habis!, anda tidak dapat mengerjakan to.');
+}
+</script>
+<script src="<?= base_url('assets/back/plugins/canvasjs.min.js') ?>"></script>

@@ -235,7 +235,7 @@ class Mtryout extends MX_Controller {
         $this->db->insert('tb_report-paket', $data);
     }
 
-    public function datatopaket($id) {
+     public function datatopaket($id) {
         $this->db->select('try.nm_tryout as namato, p.nm_paket as namapa');
         $this->db->from('tb_mm-tryoutpaket as tp');
         $this->db->join('tb_tryout as try','tp.id_tryout = try.id_tryout');
@@ -411,6 +411,29 @@ public function get_laporan_to(){
     $result = $this->db->query($query);
     return $result->result_array(); 
 }
+
+# get report nilai oleh id pengguna tertentu
+    function get_report_by_pengguna_id(){
+        $id = $this->session->userdata('id');
+        
+        $query = "SELECT * FROM ( SELECT * FROM `tb_report-paket` WHERE id_pengguna = '".$id."' ) AS p
+        JOIN `tb_mm-tryoutpaket` mm ON mm.`id` = p.`id_mm-tryout-paket`
+        JOIN `tb_paket` pkt ON pkt.`id_paket` = mm.`id_paket`
+        JOIN tb_tryout t ON t.`id_tryout` = mm.`id_tryout`
+        ";
+        $result = $this->db->query($query);
+        return $result->result_array();      
+    }
+
+     function get_report_paket_by_mmid($data){
+        $this->db->select('*');
+        $this->db->from('tb_report-paket p');
+        $this->db->where('p.id_mm-tryout-paket',$data['id_mm']);
+        $this->db->where('p.id_pengguna',$data['id_pengguna']);
+        $query = $this->db->get(); 
+        return $query->result()[0]; 
+    }
+
 }
 
 ?>
