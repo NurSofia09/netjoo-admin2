@@ -119,42 +119,14 @@
                         <div class="clear-both"></div>
 
                         <div class="form-group">
-                            <div class="col-sm-5 col-md-offset-1">
-                                <!-- menampilkan tingkat sekolah untuk memfilter kelas siswa-->
-                                <select class="form-control" name="tingkatSiswaID" id="tingkatSekolah"  required>
-                                
-                                 
+                            <div class="col-sm-10 col-md-offset-1">
+                                <!-- menampilkan sekolah untuk memfilter kelas siswa-->
+                                <select class="form-control" name="nmSekolah" id="nmSekolah"  required>
+                                    <?php foreach ($sekolah as $sekolah_item): ?>
+                                        <option value="<?=$sekolah_item['id'] ?>"><?=$sekolah_item['namaSekolah'] ?></option>
+                                    <?php endforeach ?>
                                 </select>
                             </div>
-                            <!-- menampilkan kelas siswa yg telah di filer berdasarkan tingkat sekolah -->
-                             <div class="col-sm-5 ">
-                                <select class="form-control" name="tingkatID" id="kelasSiswa"  required>
-                                
-                                  
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-
-                            <div class="col-sm-10 col-md-offset-1">
-
-                                <input type="text" placeholder="Nama Sekolah" class="form-control" name="namasekolah" value="<?php echo set_value('namasekolah'); ?>"data-parsley-required required>
-
-                            </div>
-
-                        </div>
-
-
-
-                        <div class="form-group">
-
-                            <div class="col-sm-10 col-md-offset-1">
-
-                                <input placeholder="Alamat Sekolah" type="text" class="form-control" name="alamatsekolah" value="<?php echo set_value('alamatsekolah'); ?>"data-parsley-required required>
-
-                            </div>
-
                         </div>
 
 
@@ -207,28 +179,7 @@
                             </div>
 
                         </div>
-                        <hr>
-                        <!-- Start form data bimbel -->
-                        <div  class="form-group">
-                             <div class="col-sm-10 col-md-offset-1">
-
-
-                                <p class="text-center">BIMBEL</p>
-
-                                <!-- list Bimbel -->
-                                <select class="form-control" name="bimbel">
-                                    <option value="">- Pilih Bimbel Kalian -</option>
-                                    <option value="Neutron">Neutron</option>
-                                    <option value="GO">GO</option>
-                                    <option value="1bimbel lainya">Bimbel lainya</option>
-                                </select>
-                                    <!-- untuk menampilkan pesan kesalaha penginputan nama pengguna -->
-                                    <span class="text-danger"><?php echo form_error('bimbel'); ?></span>
-                             
-                                <!--  -->
-
-                            </div>
-                        </div>
+                    
                         <hr class="form-group Keaktivan hide ">
    
                         <!-- start from data siswa neon -->

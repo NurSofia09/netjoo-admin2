@@ -552,6 +552,17 @@ class Msiswa extends CI_Model {
         $this->db->where('UUID', $UUID);
         $this->db->update('tb_laporan_ortu');
     }
+
+    // get sekolah
+    public function get_sekolah()
+    {
+        $this->db->select('id,namaSekolah, alamat');
+        $this->db->from('tb_sekolah');
+        $this->db->where('status',1);
+        $query=$this->db->get();
+        return $query->result_array();
+
+    }
 }
 
 ?>

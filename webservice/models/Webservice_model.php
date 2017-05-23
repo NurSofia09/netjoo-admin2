@@ -126,5 +126,10 @@ function check_user_admin_offline($username, $password){
     	$result = $this->db->query($query);
     	return $result->result_array();
 }
+
+// insert report paket
+	function insert_report($data) {
+		$this->db->insert('tb_report-paket', $data);
+	}
 }
 ?>

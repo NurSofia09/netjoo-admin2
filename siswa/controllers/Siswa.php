@@ -328,6 +328,7 @@ public function daftarsiswa() {
         $data['mataPelajaran'] = $this->mregister->get_matapelajaran();
         $data['datKelas']=$this->msiswa->get_kelas();
         $data['cabang'] = $this->mcabang->get_all_cabang();
+        $data['sekolah'] = $this->msiswa->get_sekolah();
 
         $this->parser->parse('admin/v-index-admin', $data);
     }else{
@@ -373,11 +374,7 @@ public function savesiswa(){
         $noKontak = htmlspecialchars($this->input->post('nokontak'));
 
 
-        $tingkatID = htmlspecialchars($this->input->post('tingkatID'));
-        $namaSekolah = htmlspecialchars($this->input->post('namasekolah'));
-        $alamatSekolah = htmlspecialchars($this->input->post('alamatsekolah'));
-        $cabangID = htmlspecialchars($this->input->post('cabang'));
-        $noIndukNeutron = htmlspecialchars($this->input->post('noinduk'));
+        $sekolahID = htmlspecialchars($this->input->post('nmSekolah'));
 
         //data akun
         $namaPengguna = htmlspecialchars($this->input->post('namapengguna'));
@@ -410,12 +407,8 @@ public function savesiswa(){
             'namaBelakang' => $namaBelakang,
             'alamat' => $alamat,
             'noKontak' => $noKontak,
-            'namaSekolah' => $namaSekolah,
-            'alamatSekolah' => $alamatSekolah,
             'penggunaID' => $penggunaID,
-            'tingkatID' => $tingkatID,
-            'cabangID' => $cabangID,
-            'noIndukNeutron' => $noIndukNeutron
+            'sekolahID' => $sekolahID
             );
 
             //melempar data guru ke function insert_guru di kelas model
