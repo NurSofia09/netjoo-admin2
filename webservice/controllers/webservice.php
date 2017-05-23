@@ -111,5 +111,37 @@ class Webservice extends MX_Controller
 		$data = $this->Webservice_model->get_mm_tryout_paket($id);
 		echo json_encode($data);	
 	}
+
+
+	function accept_report_to(){
+		if ($this->input->post()) {
+			$post = $this->input->post();
+			$dat_Report=array(
+				'siswaID'=>$post['siswaID'],
+				'id_pengguna'=>$post['id_pengguna'],	
+				'id_mm-tryout-paket'=>$post['id_mm-tryout-paket'],	
+				'jmlh_kosong'=>$post['jmlh_kosong'],
+				'jmlh_benar'=>$post['jmlh_benar'],
+				'jmlh_salah'=>$post['jmlh_salah'],
+				'total_nilai'=>$post['total_nilai'],
+				'poin'=>$post['poin'],
+				'tgl_pengerjaan'=>$post['tgl_pengerjaan'],
+				'status_pengerjaan'=>$post['status_pengerjaan'],
+				'rekap_hasil_koreksi'=>$post['rekap_hasil_koreksi']
+			);
+			// $data['report'] = $this->input->post();
+			// insert ke tb
+			$insert = $this->Webservice_model->insert_report($dat_Report);
+			if ($insert) {
+				echo json_encode(['status'=>$dat_Report]);
+			
+			} else {
+				echo json_encode(['status'=>$dat_Report]);
+			}
+
+		}else{
+			echo json_encode(['status'=>false]);
+		}
+	}
 }
 ?>

@@ -2,7 +2,7 @@
 /**
 * 
 */
-class Pengawas extends MX_Controller
+class Sekolah extends MX_Controller
 {
 	
 	function __construct()
@@ -10,7 +10,7 @@ class Pengawas extends MX_Controller
 		$this->load->helper('session');
         $this->load->library('parser');
         $this->load->model('register/mregister');
-        $this->load->model('Mpengawas');
+        $this->load->model('sekolah_model');
                 $this->load->library('sessionchecker');
         $this->sessionchecker->checkloggedin();
 
@@ -113,23 +113,23 @@ class Pengawas extends MX_Controller
             );
 
             //melempar data guru ke function insert_guru di kelas model
-            $data['mregister'] = $this->Mpengawas->insert_pengawas($data_pengawas);
+            $data['mregister'] = $this->sekolah_model->insert_pengawas($data_pengawas);
             redirect(base_url('pengawas/listPengawas'));
         }
 	}
 
-	public function listPengawas($value='')
+	public function listsekolah($value='')
 	{
-	    $data['judul_halaman'] = "Daftar Pengawas";
+	    $data['judul_halaman'] = "Daftar Sekolah";
 	    $data['files'] = array(
-	        APPPATH . 'modules/pengawas/views/v-daftar-pengawas.php',
+	        APPPATH . 'modules/sekolah/views/v-daftar-pengawas.php',
 	        );
 	    $this->parser->parse('admin/v-index-admin',$data);
 
 	}
 	public function ajax_listPengawas()
 	{
-        $list = $this->load->Mpengawas->get_allPengawas();
+        $list = $this->load->sekolah_model->get_allPengawas();
         $data = array();
         $baseurl = base_url();
         $no=1;
@@ -138,7 +138,7 @@ class Pengawas extends MX_Controller
             $row = array();
             $row[] = $no;
             $row[] = $list_pengawas['namaPengguna'];
-            $row[] = $list_pengawas['nama'];
+            $row[] = $list_pengawas['namaSekolah'];
             $row[] = $list_pengawas['alamat'];
             $row[] = $list_pengawas['noKontak'];
             $row[] = $list_pengawas['email'];
@@ -162,7 +162,7 @@ class Pengawas extends MX_Controller
 
 	public function ubahPengawas($uuid)
 	{
-		$data['oldData']=$this->Mpengawas->get_pengawas_by_uuid($uuid);
+		$data['oldData']=$this->sekolah_model->get_pengawas_by_uuid($uuid);
 		
 		if ($this->cekSession()) {
            $data['mataPelajaran'] = $this->mregister->get_matapelajaran();
@@ -216,7 +216,7 @@ class Pengawas extends MX_Controller
             );
 
             //melempar data guru ke function insert_guru di kelas model
-            $data['mregister'] = $this->Mpengawas->ubah_pengawas($data_pengawas,$uuid);
+            $data['mregister'] = $this->sekolah_model->ubah_pengawas($data_pengawas,$uuid);
             redirect(base_url('pengawas/listPengawas'));
         // }
 	}
@@ -225,7 +225,7 @@ class Pengawas extends MX_Controller
 	{
           if ($this->input->post()) {
             $post = $this->input->post();
-             $this->Mpengawas->del_pengawas($post['uuid']);
+             $this->sekolah_model->del_pengawas($post['uuid']);
         }
 	}
 
@@ -233,7 +233,7 @@ class Pengawas extends MX_Controller
     {
       if ($this->input->post()) {
             $post = $this->input->post();
-            $nama = $this->Mpengawas->get_namaPengguna($post['penggunaID']);
+            $nama = $this->sekolah_model->get_namaPengguna($post['penggunaID']);
             $kataSandi = md5($nama );
             $this->Mpengawas->reset_password($kataSandi,$post['penggunaID']);
         }

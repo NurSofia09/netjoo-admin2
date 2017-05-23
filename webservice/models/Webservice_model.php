@@ -77,7 +77,7 @@ function get_pilihan_jawaban($data){
 
 // GET PAKET BERDASARKAN ID TO
 public function get_paket_by_toid($id) {
-	$query = "SELECT p.id_paket,nm_paket,deskripsi,p.status,jumlah_soal,durasi,random,p.`penggunaID` FROM `tb_paket` p
+	$query = "SELECT p.token, p.id_paket,nm_paket,deskripsi,p.status,jumlah_soal,durasi,random FROM `tb_paket` p
 	JOIN `tb_mm-tryoutpaket` mm
 	ON p.`id_paket` = mm.`id_paket`
 	JOIN `tb_tryout` t ON t.`id_tryout` = mm.`id_tryout`
@@ -110,9 +110,9 @@ function check_user_admin_offline($username, $password){
     function get_all_to($penggunaID){
     	$query = "SELECT t.`id_tryout`,t.`nm_tryout`,t.`tgl_mulai`,t.`tgl_berhenti`,t.`publish`,t.`UUID`,t.`wkt_mulai`,t.`wkt_berakhir`,t.`penggunaID` FROM `tb_hakakses-pengawas` hp
 					JOIN `tb_tryout` t ON t.`id_tryout` = hp.`id_tryout`
-					JOIN tb_pengawas p ON p.`id` = hp.`id_pengawas`
-					JOIN tb_pengguna u ON u.`id` = p.`penggunaID`
-					WHERE p.`penggunaID`=$penggunaID ";
+					JOIN tb_sekolah s ON s.`id` = hp.`id_pengawas`
+					JOIN tb_pengguna u ON u.`id` = s.`penggunaID`
+					WHERE s.`penggunaID`=$penggunaID ";
 
     	$result = $this->db->query($query);
     	return $result->result_array();
@@ -126,5 +126,10 @@ function check_user_admin_offline($username, $password){
     	$result = $this->db->query($query);
     	return $result->result_array();
 }
+
+// insert report paket
+	function insert_report($data) {
+		$this->db->insert('tb_report-paket', $data);
+	}
 }
 ?>

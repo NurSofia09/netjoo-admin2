@@ -2,7 +2,7 @@
 /**
 * 
 */
-class Mpengawas extends CI_Model
+class Sekolah_model extends CI_Model
 {
 	
 	public function insert_pengawas($data_pengawas) {
@@ -12,10 +12,10 @@ class Mpengawas extends CI_Model
 
     public function get_allPengawas()
     {
-    	$this->db->select('pengawas.id as idPengawas,nama,alamat,noKontak,namaPengguna,email,uuid,penggunaID');
-    	$this->db->from('tb_pengawas pengawas');
-    	$this->db->join('tb_pengguna pengguna','pengguna.id=pengawas.penggunaID');
-    	$this->db->where('pengawas.status',1);
+    	$this->db->select('s.id as id_sekolah,namaSekolah,alamat,noKontak,namaPengguna,email,uuid,penggunaID');
+    	$this->db->from('tb_sekolah s');
+    	$this->db->join('tb_pengguna pengguna','pengguna.id=s.penggunaID');
+    	$this->db->where('s.status',1);
     	$query = $this->db->get();
     	return $query->result_array();
     }
