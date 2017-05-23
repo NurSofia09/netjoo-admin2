@@ -13,6 +13,7 @@ class Welcome extends MX_Controller {
         $this->load->model( 'video/mvideos' );
         $this->load->model( 'siswa/msiswa' );
         $this->load->model( 'ortu/mOrtu' );
+        $this->load->model('tryout/Mtryout');
         $this->load->model( 'ortuback/Ortuback_model' );
         $this->load->library('sessionchecker');
         $this->sessionchecker->checkloggedin();
@@ -45,18 +46,7 @@ class Welcome extends MX_Controller {
         APPPATH.'modules/testimoni/views/v-footer.php',
         );
 
-    if ($this->session->userdata('HAKAKSES')=='ortu') {
-        $id_pengguna= $this->session->userdata['id'];
-        $namaDepan=$this->mOrtu->get_siswa($id_pengguna)[0]['namaDepan'];
-        $namaBelakang=$this->mOrtu->get_siswa($id_pengguna)[0]['namaBelakang'];
-        $data['siswa'] =$namaDepan.' '. $namaBelakang ;
-        // ini buat ortu
-        $data['datLapor'] = $this->Ortuback_model->get_daftar_pesan($id_pengguna);
-        $data['count_pesan'] = $this->Ortuback_model->get_count($id_pengguna);
-
-    }
-
-
+    $data['paket_dikerjakan'] = $this->Mtryout->get_report_by_pengguna_id();
     $data['video'] = $this->mvideos->get_video_limit();
     $data['topik'] = $this->msiswa->persentasi_limit(3);
     $data['latihan'] = $this->msiswa->get_limit_persentase_latihan(3);
