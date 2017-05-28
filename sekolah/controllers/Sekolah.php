@@ -40,7 +40,7 @@ class Sekolah extends MX_Controller
            $data['mataPelajaran'] = $this->mregister->get_matapelajaran();
             $data['judul_halaman'] = "Register Pengawas";
             $data['files'] = array(
-                APPPATH . 'modules/pengawas/views/v-form-pengawas.php',
+                APPPATH . 'modules/sekolah/views/v-form-pengawas.php',
             );
             // jika admin
             $this->parser->parse('admin/v-index-admin', $data);

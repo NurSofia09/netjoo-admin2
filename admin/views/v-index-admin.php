@@ -305,7 +305,15 @@ JS aoutocomplate
         </a>
       </li>
       <!--/ Sidebar shrink -->
-
+<!-- Offcanvas left: This menu will take position at the top of template header (mobile only). Make sure that only #header have the `position: relative`, or it may cause unwanted behavior -->
+<li class="navbar-main hidden-lg hidden-md hidden-sm">
+ <a href="javascript:void(0);" data-toggle="sidebar" data-direction="ltr" rel="tooltip" title="Menu sidebar">
+  <span class="meta">
+   <span class="icon"><i class="ico-paragraph-justify3"></i></span>
+ </span>
+</a>
+</li>
+<!--/ Offcanvas left -->
 
 
       <!-- Notification dropdown -->
