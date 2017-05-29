@@ -239,6 +239,22 @@ class Sekolah extends MX_Controller
         }
     }
 
+    function index(){
+        $data['judul_halaman'] = "Daftar Sekolah";
+        $data['files'] = array(
+            APPPATH . 'modules/sekolah/views/v-daftar-sekolah.php',
+            );
+        $this->parser->parse('admin/v-index-admin',$data);
+    }
+
+      function formsekolah(){
+        $data['judul_halaman'] = "Form Tambahkan Sekolah";
+        $data['files'] = array(
+            APPPATH . 'modules/sekolah/views/v-form-sekolah.php',
+            );
+        $this->parser->parse('admin/v-index-admin',$data);
+    }
+
 
 }
  ?>

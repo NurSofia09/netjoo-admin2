@@ -87,13 +87,13 @@ public function get_paket_by_toid($id) {
 
 // GET ADMIN OFFLINE
 function check_user_admin_offline($username, $password){
-	$this->db->select('*, s.id as sekolahID');
-
+	$this->db->select('pengguna.id as penggunaID, namaPengguna, hakAkses, s.id as sekolahID, aktivasi,regTime, pengguna.email');
 	$this->db->from('tb_pengguna pengguna');
-	$this->db->join('tb_sekolah s','s.penggunaID = pengguna.id');
 	$this->db->where('kataSandi', $password);
 	$this->db->where('pengguna.status','1');
 	$this->db->where('pengguna.hakAkses','pengawas');
+	$this->db->join('tb_sekolah_pengguna sp', 'sp.penggunaID = pengguna.id');
+	$this->db->join('tb_sekolah s', 's.id = sp.sekolahID');
 
 	$this->db->where("(namaPengguna='$username' OR eMail='$username')", NULL, FALSE);
 	$this->db->limit(1);

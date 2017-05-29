@@ -76,7 +76,8 @@ class Webservice extends MX_Controller
 		if ($this->input->post()) {
 			$post = $this->input->post();
 			$hasil_login = $this->Webservice_model->check_user_admin_offline($post['username'], md5($post['password']));
-			// $hasil_login = $this->Webservice_model->check_user_admin_offline('user_admin', '401e9969e47a57558eb6638bc0544e3e');
+			// $hasil_login = $this->Webservice_model->check_user_admin_offline('adminOpik', 'a0066c4ed186b9ed329411f715f49443');
+			
 
 			if ($hasil_login) {
 				$row = $hasil_login[0];
@@ -86,7 +87,7 @@ class Webservice extends MX_Controller
 					'USERNAME' => $row->namaPengguna,
 					'HAKAKSES' => 'adminOffline',
 					'AKTIVASI' => $row->aktivasi,
-					'eMail' => $row->eMail,
+					'eMail' => $row->email,
 					'verifikasiCode' => $verifikasiCode,
 					'loggedin' => TRUE,
 					'status' => 'berhasil',
