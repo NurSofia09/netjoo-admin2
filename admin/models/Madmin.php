@@ -23,6 +23,28 @@ class Madmin extends CI_Model
         return $query->result();
     }
 
+
+    # get report nilai oleh id pengguna tertentu
+    function get_report_paket(){
+        // $id = $this->session->userdata('id');
+        
+        $query = "SELECT * FROM `tb_report-paket` AS p
+                    JOIN `tb_mm-tryoutpaket` mm ON mm.`id` = p.`id_mm-tryout-paket`
+                    JOIN `tb_paket` pkt ON pkt.`id_paket` = mm.`id_paket`
+                    JOIN tb_tryout t ON t.`id_tryout` = mm.`id_tryout`
+                    JOIN `tb_siswa` sis ON sis.`id` = p.`siswaID`
+                ";
+        $result = $this->db->query($query);
+        return $result->result_array();      
+    }
+
+    public function dropreport_t( $id ) {
+
+        $this->db->where( 'id_report', $id );
+        $this->db->delete('`tb_report-paket');
+
+    }
+
 }
 
 ?>

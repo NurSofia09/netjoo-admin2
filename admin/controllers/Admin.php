@@ -45,6 +45,74 @@ class Admin extends MX_Controller {
     }
 
 
+    function ajax_report_tryout(){
+    $datas = $this->madmin->get_report_paket();
+    // var_dump($datas);
+
+    $list = array();
+    $no = 0;
+        //mengambil nilai list
+    $baseurl = base_url();
+    foreach ($datas as $list_item) {
+        $no++;
+        $row = array();
+        $sumBenar=$list_item ['jmlh_benar'];
+        $sumSalah=$list_item ['jmlh_salah'];
+        $sumKosong=$list_item ['jmlh_kosong'];
+            //hitung jumlah soal
+        $jumlahSoal=$sumBenar+$sumSalah+$sumKosong;
+
+        $nilai=0;
+            // cek jika pembagi 0
+        if ($jumlahSoal != 0) {
+                //hitung nilai
+            $nilai=$sumBenar/$jumlahSoal*100;
+        }
+        $row[] = $no;
+        $row[] = $list_item['namaDepan'];
+        $row[] = $list_item['nm_paket'];
+        //kondisi jika orang tua yang login maka akan ditampikan nama tryout
+        $row[] = $list_item['nm_tryout'];
+        $row[] = $list_item['jumlah_soal'];
+        $row[] = $list_item['jmlh_benar'];
+        $row[] = $list_item['jmlh_salah'];
+        $row[] = $list_item['jmlh_kosong'];
+        $row[] = $jumlahSoal;
+
+        $array = array("id_tryout"=>$list_item['id_tryout'],
+            "id_mm_tryout_paket"=>$list_item['id_mm-tryout-paket'],
+            "id_paket"=>$list_item['id_mm-tryout-paket']);
+
+
+
+        $row[] ='<a class="btn btn-sm btn-success  modal-on'.$list_item['id_paket'].'" 
+        data-todo='.htmlspecialchars(json_encode($array)).' 
+
+        title="Lihat Pembahasan" onclick="pembahasanto('."'".$list_item['id_paket']."'".')"><i class="ico-edit"></i></a> 
+
+        <a class="btn btn-sm btn-danger  modal-on'.$list_item['id_report'].'" 
+        data-todo='.htmlspecialchars(json_encode($array)).' 
+
+        title="Lihat Pembahasan" onclick="delete_report('."'".$list_item['id_report']."'".')"><i class="ico-remove"></i></a> ';
+        
+
+        $list[] = $row;   
+
+    }
+
+    $output = array(
+        "data" => $list,
+        );
+    echo json_encode($output);
+
+}
+
+
+function dropreporttry($id ) {
+        $this->madmin->dropreport_t( $id );
+    }
+
+
 
     function daftarvideo() {
         $data['videos'] = $this->mvideos->get_all_videos_admin();
