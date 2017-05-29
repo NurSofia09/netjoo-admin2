@@ -9,8 +9,8 @@
             <div class="modal-body form">
                 <form action="#" id="form" class="form-horizontal">
                     <div class="panel-body">
-                     <!-- START PESAN ERROR EMPTY INPUT -->
-                     <div class="form-group alert alert-dismissable alert-danger" id="e_paket" hidden="true" >
+                       <!-- START PESAN ERROR EMPTY INPUT -->
+                       <div class="form-group alert alert-dismissable alert-danger" id="e_paket" hidden="true" >
                         <button type="button" class="close" onclick="hide_e_paket()" >×</button>
                         <strong>O.M.G.!</strong> Silahkan Diisi Semua.
                     </div>
@@ -145,6 +145,7 @@
                                                 <th>Nama Paket Soal</th>
                                                 <th>Jumlah soal</th>
                                                 <th class="text-center">Durasi</th>
+                                                <th class="text-center">Token</th>
                                                 <th>Random</th>
                                                 <th>Aksi</th>
                                             </tr>
@@ -157,6 +158,7 @@
                                                 <th>Nama Paket Soal</th>
                                                 <th>Jumlah soal</th>
                                                 <th class="text-center">Durasi</th>
+                                                <th class="text-center">Token</th>
                                                 <th>Random</th>
                                                 <th>Aksi</th>
                                             </tr>
@@ -169,29 +171,29 @@
                 </div>
             </div>
         </div>
-<script type="">
+        <script type="">
     var save_method; //for save method string
     var table;
     $(document).ready(function() {
       table = $('#tbpaket').DataTable({ 
-       "ajax": {
-        "url": base_url+"index.php/paketsoal/ajax_list",
-        "type": "POST"
-      },
-      "language": {
-        "blengthMenu": "Menampilkan _MENU_ records per page",
-        "bzeroRecords": "Maaf Tidak ada yang ditemukan",
-        "binfo": "Menampilkan page _PAGE_ dari _PAGES_",
-        "binfoEmpty": "Tidak Ada Record Guru",
-        "binfoFiltered": "(filtered from _MAX_ total records)"
-      },
+         "ajax": {
+            "url": base_url+"index.php/paketsoal/ajax_list",
+            "type": "POST"
+        },
+        "language": {
+            "blengthMenu": "Menampilkan _MENU_ records per page",
+            "bzeroRecords": "Maaf Tidak ada yang ditemukan",
+            "binfo": "Menampilkan page _PAGE_ dari _PAGES_",
+            "binfoEmpty": "Tidak Ada Record Guru",
+            "binfoFiltered": "(filtered from _MAX_ total records)"
+        },
 
-      "processing": true,
+        "processing": true,
 
-
-    });
 
     });
+
+  });
 
 //panggil modal
 
@@ -242,21 +244,21 @@ function save(){
 
              // ajax adding data to database
              var datas = {id_paket:id_paket,
-                            nama_paket:nama_paket,
-                          jumlah_soal:jumlah_soal,
-                          deskripsi:deskripsi,
-                          durasi:durasi,
-                          random:random};
+                nama_paket:nama_paket,
+                jumlah_soal:jumlah_soal,
+                deskripsi:deskripsi,
+                durasi:durasi,
+                random:random};
 
-             $.ajax({
-                url : url,
-                type: "POST",
-                data: datas,
-                dataType: "TEXT",
-                success: function(data)
-                {
+                $.ajax({
+                    url : url,
+                    type: "POST",
+                    data: datas,
+                    dataType: "TEXT",
+                    success: function(data)
+                    {
 
-                   $('#modal_form').modal('hide');
+                     $('#modal_form').modal('hide');
                 $('#btnSave').text('save'); //change button text
                 $('#btnSave').attr('disabled',false); //set button enable
                 reload_table(); 
@@ -268,10 +270,10 @@ function save(){
                 $('#btnSave').attr('disabled',false); //set button enable 
             }
         });
-         } else {
-           $("#e_paket").show();
-       }
-   }
+            } else {
+             $("#e_paket").show();
+         }
+     }
 // sampai sini
 
 function reload_table()
@@ -284,7 +286,7 @@ function delete_paket(id)
 
 // =============
 url = base_url+"index.php/paketsoal/droppaketsoal/"+id;
-  swal({
+swal({
     title: "Yakin akan menghapus Paket ini?",
     text: "Anda tidak dapat membatalkan ini.",
     type: "warning",
@@ -292,8 +294,8 @@ url = base_url+"index.php/paketsoal/droppaketsoal/"+id;
     confirmButtonColor: "#DD6B55",
     confirmButtonText: "Ya,Tetap hapus!",
     closeOnConfirm: false
-  },
-  function(){
+},
+function(){
     var datas = {id:id};
     $.ajax({
       dataType:"text",
@@ -303,12 +305,12 @@ url = base_url+"index.php/paketsoal/droppaketsoal/"+id;
       success:function(){
         swal("Terhapus!", "Paket berhasil dihapus.", "success");
         reload_table();
-      },
-      error:function(){
+    },
+    error:function(){
         sweetAlert("Oops...", "Data gagal terhapus!", "error");
-      }
-    });
-  });
+    }
+});
+});
 
 // ======================
 
@@ -334,10 +336,10 @@ function edit_paket(id)
             $('[name="jumlah_soal"]').val(data.jumlah_soal);
             $('[name="durasi"]').val(data.durasi);
             if (data.random ==1) {
-               $('#idrand').attr('checked', true);
-           } else {
-               $('#idrand').attr('unchecked', true);
-           }
+             $('#idrand').attr('checked', true);
+         } else {
+             $('#idrand').attr('unchecked', true);
+         }
             $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
             $('.modal-title').text('Edit Paket Soal'); // Set title to Bootstrap modal title
         },
