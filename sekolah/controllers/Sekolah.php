@@ -11,12 +11,12 @@ class Sekolah extends MX_Controller
         $this->load->library('parser');
         $this->load->model('register/mregister');
         $this->load->model('sekolah_model');
-                $this->load->library('sessionchecker');
+        $this->load->library('sessionchecker');
         $this->sessionchecker->checkloggedin();
 
-	}
+    }
 
-	 function cekSession() {
+    function cekSession() {
         $status = false;
         $hakAkses = $this->session->userdata['HAKAKSES'];
         if ($hakAkses == 'admin') {
@@ -34,173 +34,173 @@ class Sekolah extends MX_Controller
     }
 
 	//form pengawas
-	public function formPengawas()
-	{
-		  if ($this->cekSession()) {
-           $data['mataPelajaran'] = $this->mregister->get_matapelajaran();
-            $data['judul_halaman'] = "Register Pengawas";
-            $data['files'] = array(
-                APPPATH . 'modules/sekolah/views/v-form-pengawas.php',
+    public function formPengawas()
+    {
+        if ($this->cekSession()) {
+         $data['mataPelajaran'] = $this->mregister->get_matapelajaran();
+         $data['judul_halaman'] = "Register Pengawas";
+         $data['files'] = array(
+            APPPATH . 'modules/sekolah/views/v-form-pengawas.php',
             );
             // jika admin
-            $this->parser->parse('admin/v-index-admin', $data);
-        }
-	}
+         $this->parser->parse('admin/v-index-admin', $data);
+     }
+ }
 
 	//add pengawas
-	public function savePengawas()
-	{
+ public function savePengawas()
+ {
 
         		// load library n helper
-        $this->load->helper(array('form', 'url'));
-        $this->load->library('form_validation');
+    $this->load->helper(array('form', 'url'));
+    $this->load->library('form_validation');
 
 		//syarat pengisian form regitrasi guru
-        $this->form_validation->set_rules('namapengguna', 'Nama Pengguna', 'trim|required|min_length[6]|max_length[12]|is_unique[tb_pengguna.namaPengguna]');
-        $this->form_validation->set_rules('nama', 'Nama', 'required');
-        $this->form_validation->set_rules('alamat', 'Alamat', 'required');
-        $this->form_validation->set_rules('nokontak', 'No Kontak', 'required');
-        $this->form_validation->set_rules('katasandi', 'Kata Sandi', 'required|min_length[6]|matches[passconf]');
-        $this->form_validation->set_rules('passconf', 'Password Confirmation', 'required');
-        $this->form_validation->set_rules('email', 'Email', 'required|is_unique[tb_pengguna.email]');
+    $this->form_validation->set_rules('namapengguna', 'Nama Pengguna', 'trim|required|min_length[6]|max_length[12]|is_unique[tb_pengguna.namaPengguna]');
+    $this->form_validation->set_rules('nama', 'Nama', 'required');
+    $this->form_validation->set_rules('alamat', 'Alamat', 'required');
+    $this->form_validation->set_rules('nokontak', 'No Kontak', 'required');
+    $this->form_validation->set_rules('katasandi', 'Kata Sandi', 'required|min_length[6]|matches[passconf]');
+    $this->form_validation->set_rules('passconf', 'Password Confirmation', 'required');
+    $this->form_validation->set_rules('email', 'Email', 'required|is_unique[tb_pengguna.email]');
 
 		 //pesan error atau pesan kesalahan pengisian form registrasi guru
-        $this->form_validation->set_message('namapengguna', 'is_unique', '*Nama Pengguna sudah terpakai');
-        $this->form_validation->set_message('is_unique', 'email', '*Email sudah terpakai');
-        $this->form_validation->set_message('is_unique', '*Nama Pengguna sudah terpakai');
-        $this->form_validation->set_message('max_length', '*Nama Pengguna maksimal 12 karakter!');
-        $this->form_validation->set_message('min_length', '*Inputan minimal 6 karakter!');
-        $this->form_validation->set_message('required', '*tidak boleh kosong!');
-        $this->form_validation->set_message('matches', '*Kata Sandi tidak sama!');
+    $this->form_validation->set_message('namapengguna', 'is_unique', '*Nama Pengguna sudah terpakai');
+    $this->form_validation->set_message('is_unique', 'email', '*Email sudah terpakai');
+    $this->form_validation->set_message('is_unique', '*Nama Pengguna sudah terpakai');
+    $this->form_validation->set_message('max_length', '*Nama Pengguna maksimal 12 karakter!');
+    $this->form_validation->set_message('min_length', '*Inputan minimal 6 karakter!');
+    $this->form_validation->set_message('required', '*tidak boleh kosong!');
+    $this->form_validation->set_message('matches', '*Kata Sandi tidak sama!');
 
 
-        if ($this->form_validation->run() == FALSE) {
-            $this->formPengawas();
-        } else {
+    if ($this->form_validation->run() == FALSE) {
+        $this->formPengawas();
+    } else {
             //data pengawass
-            $nama = htmlspecialchars($this->input->post('nama'));
-            $alamat = htmlspecialchars($this->input->post('alamat'));
-            $noKontak = htmlspecialchars($this->input->post('nokontak'));
+        $nama = htmlspecialchars($this->input->post('nama'));
+        $alamat = htmlspecialchars($this->input->post('alamat'));
+        $noKontak = htmlspecialchars($this->input->post('nokontak'));
 
             //data untuk akun
-            $namaPengguna = htmlspecialchars($this->input->post('namapengguna'));
-            $kataSandi = htmlspecialchars(md5($this->input->post('katasandi')));
-            $email = htmlspecialchars($this->input->post('email'));
-            $hakAkses = 'pengawas';
+        $namaPengguna = htmlspecialchars($this->input->post('namapengguna'));
+        $kataSandi = htmlspecialchars(md5($this->input->post('katasandi')));
+        $email = htmlspecialchars($this->input->post('email'));
+        $hakAkses = 'pengawas';
 
             //data array akun
-            $data_akun = array(
-                'namaPengguna' => $namaPengguna,
-                'kataSandi' => $kataSandi,
-                'eMail' => $email,
-                'hakAkses' => $hakAkses,
+        $data_akun = array(
+            'namaPengguna' => $namaPengguna,
+            'kataSandi' => $kataSandi,
+            'eMail' => $email,
+            'hakAkses' => $hakAkses,
             );
 
 
             //melempar data guru ke function insert_pengguna di kelas model
-            $data['mregister'] = $this->mregister->insert_pengguna($data_akun);
+        $data['mregister'] = $this->mregister->insert_pengguna($data_akun);
             //untuk mengambil nilai id pengguna untuk di jadikan FK pada tabel pengawas
-            $data['tb_pengguna'] = $this->mregister->get_idPengguna($namaPengguna)[0];
-            $penggunaID = $data['tb_pengguna']['id'];
+        $data['tb_pengguna'] = $this->mregister->get_idPengguna($namaPengguna)[0];
+        $penggunaID = $data['tb_pengguna']['id'];
 
             //data array guru
-            $data_pengawas = array(
-                'nama' => $nama,
-                'alamat' => $alamat,
-                'noKontak' => $noKontak,
-               	'penggunaID' => $penggunaID,
-               	'uuid' => uniqid(),
+        $data_pengawas = array(
+            'nama' => $nama,
+            'alamat' => $alamat,
+            'noKontak' => $noKontak,
+            'penggunaID' => $penggunaID,
+            'uuid' => uniqid(),
             );
 
             //melempar data guru ke function insert_guru di kelas model
-            $data['mregister'] = $this->sekolah_model->insert_pengawas($data_pengawas);
-            redirect(base_url('pengawas/listPengawas'));
-        }
-	}
+        $data['mregister'] = $this->sekolah_model->insert_pengawas($data_pengawas);
+        redirect(base_url('pengawas/listPengawas'));
+    }
+}
 
-	public function listsekolah($value='')
-	{
-	    $data['judul_halaman'] = "Daftar Sekolah";
-	    $data['files'] = array(
-	        APPPATH . 'modules/sekolah/views/v-daftar-pengawas.php',
-	        );
-	    $this->parser->parse('admin/v-index-admin',$data);
+public function listsekolah($value='')
+{
+   $data['judul_halaman'] = "Daftar Sekolah";
+   $data['files'] = array(
+       APPPATH . 'modules/sekolah/views/v-daftar-pengawas.php',
+       );
+   $this->parser->parse('admin/v-index-admin',$data);
 
-	}
-	public function ajax_listPengawas()
-	{
-        $list = $this->load->sekolah_model->get_allPengawas();
-        $data = array();
-        $baseurl = base_url();
-        $no=1;
-        foreach ( $list as $list_pengawas) {
-            
-            $row = array();
-            $row[] = $no;
-            $row[] = $list_pengawas['namaPengguna'];
-            $row[] = $list_pengawas['namaSekolah'];
-            $row[] = $list_pengawas['alamat'];
-            $row[] = $list_pengawas['noKontak'];
-            $row[] = $list_pengawas['email'];
+}
+public function ajax_listPengawas()
+{
+    $list = $this->load->sekolah_model->get_allPengawas();
+    $data = array();
+    $baseurl = base_url();
+    $no=1;
+    foreach ( $list as $list_pengawas) {
 
-            $row[]=' 
-            <a class="btn btn-sm btn-danger"  title="Hapus" onclick="dropPengawas('."'".$list_pengawas['uuid']."'".')"><i class="ico-remove"></i></a>
-             <a class="btn btn-sm btn-danger"  title="Reset Password" onclick="resetPassword('."'".$list_pengawas['penggunaID']."'".')"><i class="ico-key"></i></a>
-            <a href="pengawas/ubahPengawas/'.$list_pengawas["uuid"].'" class="btn btn-sm btn-warning"  title="Ubah" ><i class="ico-file"></i></a>';
+        $row = array();
+        $row[] = $no;
+        $row[] = $list_pengawas['namaPengguna'];
+        $row[] = $list_pengawas['namaSekolah'];
+        $row[] = $list_pengawas['alamat'];
+        $row[] = $list_pengawas['noKontak'];
+        $row[] = $list_pengawas['email'];
 
-            $data[] = $row;
-            $no++;
+        $row[]=' 
+        <a class="btn btn-sm btn-danger"  title="Hapus" onclick="dropPengawas('."'".$list_pengawas['uuid']."'".')"><i class="ico-remove"></i></a>
+        <a class="btn btn-sm btn-danger"  title="Reset Password" onclick="resetPassword('."'".$list_pengawas['penggunaID']."'".')"><i class="ico-key"></i></a>
+        <a href="pengawas/ubahPengawas/'.$list_pengawas["uuid"].'" class="btn btn-sm btn-warning"  title="Ubah" ><i class="ico-file"></i></a>';
 
-        }
-        $output = array(
-            
-            "data"=>$data,
+        $data[] = $row;
+        $no++;
+
+    }
+    $output = array(
+
+        "data"=>$data,
         );
 
-        echo json_encode( $output );
-	}
+    echo json_encode( $output );
+}
 
-	public function ubahPengawas($uuid)
-	{
-		$data['oldData']=$this->sekolah_model->get_pengawas_by_uuid($uuid);
-		
-		if ($this->cekSession()) {
-           $data['mataPelajaran'] = $this->mregister->get_matapelajaran();
-            $data['judul_halaman'] = "Ubah Pengawas";
-            $data['files'] = array(
-                APPPATH . 'modules/pengawas/views/v-ubah-pengawas.php',
-            );
+public function ubahPengawas($uuid)
+{
+  $data['oldData']=$this->sekolah_model->get_pengawas_by_uuid($uuid);
+
+  if ($this->cekSession()) {
+     $data['mataPelajaran'] = $this->mregister->get_matapelajaran();
+     $data['judul_halaman'] = "Ubah Pengawas";
+     $data['files'] = array(
+        APPPATH . 'modules/pengawas/views/v-ubah-pengawas.php',
+        );
             // jika admin
-            $this->parser->parse('admin/v-index-admin', $data);
-        }
-	}
+     $this->parser->parse('admin/v-index-admin', $data);
+ }
+}
 
-	public function editPengawas($value='')
-	{
+public function editPengawas($value='')
+{
 		   		// load library n helper
-        $this->load->helper(array('form', 'url'));
-        $this->load->library('form_validation');
+    $this->load->helper(array('form', 'url'));
+    $this->load->library('form_validation');
 
 		//syarat pengisian form ubah pengawas
-        $this->form_validation->set_rules('nama', 'Nama', 'required');
-        $this->form_validation->set_rules('alamat', 'Alamat', 'required');
-        $this->form_validation->set_rules('nokontak', 'No Kontak', 'required');
+    $this->form_validation->set_rules('nama', 'Nama', 'required');
+    $this->form_validation->set_rules('alamat', 'Alamat', 'required');
+    $this->form_validation->set_rules('nokontak', 'No Kontak', 'required');
         // $this->form_validation->set_rules('email', 'Email', 'required|is_unique[tb_pengguna.email]');
 
 		 //pesan error atau pesan kesalahan pengisian form ubah pengawas
-        $this->form_validation->set_message('is_unique', 'email', '*Email sudah terpakai');
-        $this->form_validation->set_message('min_length', '*Inputan minimal 6 karakter!');
-        $this->form_validation->set_message('required', '*tidak boleh kosong!');
+    $this->form_validation->set_message('is_unique', 'email', '*Email sudah terpakai');
+    $this->form_validation->set_message('min_length', '*Inputan minimal 6 karakter!');
+    $this->form_validation->set_message('required', '*tidak boleh kosong!');
 
 
         // if ($this->form_validation->run() == FALSE) {
         //     $this->formPengawas();
         // } else {
             //data pengawass
-            $nama = htmlspecialchars($this->input->post('nama'));
-            $alamat = htmlspecialchars($this->input->post('alamat'));
-            $noKontak = htmlspecialchars($this->input->post('nokontak'));
-            $uuid = htmlspecialchars($this->input->post('uuid'));
+    $nama = htmlspecialchars($this->input->post('nama'));
+    $alamat = htmlspecialchars($this->input->post('alamat'));
+    $noKontak = htmlspecialchars($this->input->post('nokontak'));
+    $uuid = htmlspecialchars($this->input->post('uuid'));
             // $email = htmlspecialchars($this->input->post('email'));
             //data array akun
 
@@ -209,52 +209,125 @@ class Sekolah extends MX_Controller
             //untuk mengambil nilai id pengguna untuk di jadikan FK pada tabel pengawas
 
             //data array guru
-            $data_pengawas = array(
-                'nama' => $nama,
-                'alamat' => $alamat,
-                'noKontak' => $noKontak,
-            );
+    $data_pengawas = array(
+        'nama' => $nama,
+        'alamat' => $alamat,
+        'noKontak' => $noKontak,
+        );
 
             //melempar data guru ke function insert_guru di kelas model
-            $data['mregister'] = $this->sekolah_model->ubah_pengawas($data_pengawas,$uuid);
-            redirect(base_url('pengawas/listPengawas'));
+    $data['mregister'] = $this->sekolah_model->ubah_pengawas($data_pengawas,$uuid);
+    redirect(base_url('pengawas/listPengawas'));
         // }
-	}
-
-	public function deletePengawas()
-	{
-          if ($this->input->post()) {
-            $post = $this->input->post();
-             $this->sekolah_model->del_pengawas($post['uuid']);
-        }
-	}
-
-    public function resetPassword()
-    {
-      if ($this->input->post()) {
-            $post = $this->input->post();
-            $nama = $this->sekolah_model->get_namaPengguna($post['penggunaID']);
-            $kataSandi = md5($nama );
-            $this->Mpengawas->reset_password($kataSandi,$post['penggunaID']);
-        }
-    }
-
-    function index(){
-        $data['judul_halaman'] = "Daftar Sekolah";
-        $data['files'] = array(
-            APPPATH . 'modules/sekolah/views/v-daftar-sekolah.php',
-            );
-        $this->parser->parse('admin/v-index-admin',$data);
-    }
-
-      function formsekolah(){
-        $data['judul_halaman'] = "Form Tambahkan Sekolah";
-        $data['files'] = array(
-            APPPATH . 'modules/sekolah/views/v-form-sekolah.php',
-            );
-        $this->parser->parse('admin/v-index-admin',$data);
-    }
-
-
 }
- ?>
+
+public function deletePengawas()
+{
+  if ($this->input->post()) {
+    $post = $this->input->post();
+    $this->sekolah_model->del_pengawas($post['uuid']);
+}
+}
+
+public function resetPassword()
+{
+  if ($this->input->post()) {
+    $post = $this->input->post();
+    $nama = $this->sekolah_model->get_namaPengguna($post['penggunaID']);
+    $kataSandi = md5($nama );
+    $this->Mpengawas->reset_password($kataSandi,$post['penggunaID']);
+}
+}
+
+function index(){
+    $data['judul_halaman'] = "Daftar Sekolah";
+    $data['files'] = array(
+        APPPATH . 'modules/sekolah/views/v-daftar-sekolah.php',
+        );
+    $this->parser->parse('admin/v-index-admin',$data);
+}
+
+function formsekolah(){
+    $data['judul_halaman'] = "Form Tambahkan Sekolah";
+    $data['files'] = array(
+        APPPATH . 'modules/sekolah/views/v-form-sekolah.php',
+        );
+
+    $data['provinces'] = $this->sekolah_model->get_all_provinsi();
+    $this->parser->parse('admin/v-index-admin',$data);
+}
+
+
+function get_kota_kabupaten_by_provinceid($province_id){
+    $data['city'] = $this->sekolah_model->get_kotakabupaten_byprovinceid($province_id);
+    echo json_encode($data['city']);
+}
+
+function get_kecamatan_by_kotakabupaten_id($kotakabupaten_id){
+    $data['district'] = $this->sekolah_model->get_kecamatan_bykotakabupatenid($kotakabupaten_id);
+    echo json_encode($data['district']);
+}
+
+function add_sekolah(){
+    if ($this->input->post()) {
+        $post = $this->input->post();
+        $data_insert = ['namaSekolah'=>$post['nama_sekolah'],
+        'alamat'=>$post['alamat'],
+        'phone'=>$post['phone'],
+        'kecamatanID'=>$post['kecamatan']];
+        $this->sekolah_model->insert_sekolah($data_insert);
+        echo json_encode(['status'=>'1']);           
+    }else{
+        echo json_encode(['status'=>'0']);
+    }        
+}
+
+function daftarsekolah(){
+   $data['judul_halaman'] = "Daftar Sekolah";
+   $data['files'] = array(
+    APPPATH . 'modules/sekolah/views/v-daftar-sekolah.php',
+    );
+   $this->parser->parse('admin/v-index-admin',$data);
+}
+
+function get_datatable_sekolah(){
+    $list = $this->sekolah_model->get_all_sekolah();
+
+    $data = array();
+    $no=1;
+    foreach ( $list as $list_sekolah) {
+
+        $row = array();
+        $row[] = $no;
+        $row[] = $list_sekolah['namaSekolah'];
+        $row[] = $list_sekolah['alamat'];
+        $row[] = $list_sekolah['phone'];
+        $row[] = $list_sekolah['namaKecamatan'];
+        $row[] = $list_sekolah['namaKota'];
+        $row[] = $list_sekolah['namaProvinsi'];
+
+
+        $row[]=' 
+        <a class="btn btn-sm btn-danger"  title="Hapus" onclick="drop_sekolah('."'".$list_sekolah['sekolahID']."'".')"><i class="ico-remove"></i></a>
+        <a href="pengawas/ubahPengawas/'.$list_sekolah["sekolahID"].'" class="btn btn-sm btn-warning"  title="Ubah" ><i class="ico-file"></i></a>';
+
+        $data[] = $row;
+        $no++;
+
+    }
+    $output = array(
+
+        "data"=>$data,
+        );
+
+    echo json_encode( $output );
+}
+
+function delete_sekolah(){
+    if ($this->input->post()) {
+        $id_sekolah = $this->input->post('id');
+        $this->sekolah_model->delete_sekolah($id_sekolah);
+    }
+}
+}
+?>
