@@ -73,6 +73,9 @@ class Sekolah_model extends CI_Model
         $this->db->set('kataSandi',$kataSandi);
         $this->db->update('tb_pengguna');
     }
+
+
+      
     
 }
  ?>

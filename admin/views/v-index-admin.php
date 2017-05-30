@@ -487,6 +487,8 @@ JS aoutocomplate
       </ul>
     </li>
 
+
+
   </ul>
 </li>
 
@@ -521,16 +523,41 @@ JS aoutocomplate
 </ul>
 </li>
 
+<li>
+        <a href="<?= base_url('index.php/admin/nilai_tryout');?>" data-toggle="submenu" data-parent=".topmenu">
+          <span class="figure"><i class="ico-notebook"></i></span>
+          <span class="text">Nilai </span>
+          <span class="arrow"></span>
+        </a>
 
+        
+</li>
 
-<!-- <li>
-  <a href="<?=base_url('token') ?>" data-toggle="submenu" data-parent=".topmenu">
-    <span class="figure"><i class="ico-qrcode"></i></span>
-    <span class="text">Token</span>
-    <span class="arrow"></span>
+<li>
+ <a href="javascript:void(0);" data-target="#mpengawas" data-toggle="submenu" data-parent=".topmenu">
+  <span class="figure"><i class="ico-clipboard"></i></span>
+  <span class="text">Admin Sekolah </span>
+  <span class="arrow"></span>
+</a>
+
+<ul id="mpengawas" class="submenu collapse ">
+  <li class="submenu-header ellipsis">Admin Sekolah</li>
+
+  <li >
+   <a href="<?= base_url('index.php/adminsekolah/formAdminsekolah');?>">
+    <span class="text">Register Admin Sekolah</span>
   </a>
 </li>
- -->
+
+<li >
+ <a href="<?= base_url('index.php/adminsekolah/listAdminsekolah');?>" >
+  <span class="text">Daftar Admin Sekolah</span>
+</a>
+</li>
+
+
+</ul>
+</li>
 
 
 </ul>

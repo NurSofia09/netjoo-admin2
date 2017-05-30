@@ -85,12 +85,7 @@ class Admin extends MX_Controller {
 
 
 
-        $row[] ='<a class="btn btn-sm btn-success  modal-on'.$list_item['id_paket'].'" 
-        data-todo='.htmlspecialchars(json_encode($array)).' 
-
-        title="Lihat Pembahasan" onclick="pembahasanto('."'".$list_item['id_paket']."'".')"><i class="ico-edit"></i></a> 
-
-        <a class="btn btn-sm btn-danger  modal-on'.$list_item['id_report'].'" 
+        $row[] ='<a class="btn btn-sm btn-danger  modal-on'.$list_item['id_report'].'" 
         data-todo='.htmlspecialchars(json_encode($array)).' 
 
         title="Lihat Pembahasan" onclick="delete_report('."'".$list_item['id_report']."'".')"><i class="ico-remove"></i></a> ';
@@ -106,6 +101,30 @@ class Admin extends MX_Controller {
     echo json_encode($output);
 
 }
+
+public function nilai_tryout(){
+
+        $data['judul_halaman'] = "Nilai Tryout";
+        $data['files'] = array(
+            APPPATH . 'modules/admin/views/v-nilai-tryout.php',
+            );
+
+        $hakAkses = $this->session->userdata['HAKAKSES'];
+
+        if ($hakAkses == 'admin') {
+            // jika admin
+            $this->parser->parse('v-index-admin', $data);
+        } elseif ($hakAkses == 'guru') {
+            // jika guru
+            redirect(site_url('guru/dashboard/'));
+        } elseif ($hakAkses == 'siswa') {
+            redirect(site_url('welcome'));
+        } else {
+            // jika siswa redirect ke homepage
+            redirect(site_url('login'));
+        }
+
+    }
 
 
 function dropreporttry($id ) {
