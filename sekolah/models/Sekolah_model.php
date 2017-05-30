@@ -75,7 +75,52 @@ class Sekolah_model extends CI_Model
     }
 
 
+<<<<<<< HEAD
       
+=======
+    public function get_all_provinsi(){
+        $this->db->select('*');
+        $this->db->from('tb_provinsi');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function get_kotakabupaten_byprovinceid($province_id){
+        $this->db->select('*');
+        $this->db->from('tb_kabupaten_kota');
+        $this->db->where('province_id', $province_id);
+
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function get_kecamatan_bykotakabupatenid($kotakabupaten_id){
+        $this->db->select('*');
+        $this->db->from('tb_kecamatan');
+        $this->db->where('regency_id', $kotakabupaten_id);
+
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function insert_sekolah($data) {
+        $this->db->insert('tb_sekolah', $data);   
+    }
+
+    public function get_all_sekolah(){
+        $this->db->select('sekolah.id as sekolahID, namaSekolah, alamat, phone, k.`name` AS namaKecamatan, kab.`name` AS namaKota, p.`name` AS namaProvinsi');
+        $this->db->from('(SELECT * FROM tb_sekolah) AS sekolah');
+        $this->db->join('tb_kecamatan k',' k.id = sekolah.kecamatanID');
+        $this->db->join('`tb_kabupaten_kota` kab',' kab.id = k.`regency_id`');
+        $this->db->join('`tb_provinsi` p',' kab.`province_id` = p.id');
+
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+>>>>>>> 038e5fe4b8a42979619f57e27957b7dfa029b30e
     
+    function delete_sekolah($id_siswa){
+        $this->db->delete('tb_sekolah', array('id' => $id_siswa));
+    }
 }
- ?>
+?>

@@ -87,13 +87,13 @@ public function get_paket_by_toid($id) {
 
 // GET ADMIN OFFLINE
 function check_user_admin_offline($username, $password){
-	$this->db->select('*, s.id as sekolahID');
-
+	$this->db->select('pengguna.id as penggunaID, namaPengguna, hakAkses, s.id as sekolahID, aktivasi,regTime, pengguna.email');
 	$this->db->from('tb_pengguna pengguna');
-	$this->db->join('tb_sekolah s','s.penggunaID = pengguna.id');
 	$this->db->where('kataSandi', $password);
 	$this->db->where('pengguna.status','1');
 	$this->db->where('pengguna.hakAkses','pengawas');
+	$this->db->join('tb_sekolah_pengguna sp', 'sp.penggunaID = pengguna.id');
+	$this->db->join('tb_sekolah s', 's.id = sp.sekolahID');
 
 	$this->db->where("(namaPengguna='$username' OR eMail='$username')", NULL, FALSE);
 	$this->db->limit(1);
@@ -110,7 +110,7 @@ function check_user_admin_offline($username, $password){
     function get_all_to($penggunaID){
     	$query = "SELECT t.`id_tryout`,t.`nm_tryout`,t.`tgl_mulai`,t.`tgl_berhenti`,t.`publish`,t.`UUID`,t.`wkt_mulai`,t.`wkt_berakhir`,t.`penggunaID` FROM `tb_hakakses-pengawas` hp
     	JOIN `tb_tryout` t ON t.`id_tryout` = hp.`id_tryout`
-    	JOIN tb_sekolah s ON s.`id` = hp.`id_pengawas`
+    	JOIN tb_sekolah_pengguna s ON s.`id` = hp.`id_pengawas`
     	JOIN tb_pengguna u ON u.`id` = s.`penggunaID`
     	WHERE s.`penggunaID`=$penggunaID ";
 
