@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="<?= base_url('assets/plugins/datatables/css/jquery.datatables.min.css'); ?>">
   <script src="<?= base_url('assets/sal/sweetalert-dev.js');?>"></script>
   <link rel="stylesheet" href="<?= base_url('assets/sal/sweetalert.css');?>">
- <script>var base_url = '<?php echo base_url() ?>'</script>
+  <script>var base_url = '<?php echo base_url() ?>'</script>
   <!--/ END META SECTION -->
 
   <!-- START STYLESHEETS -->
@@ -29,23 +29,23 @@
 
 
   <!--/ Plugins stylesheet -->
-<!-- css aoutocomplate -->
-<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
-<link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet"></link>
+  <!-- css aoutocomplate -->
+  <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
+  <link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet"></link>
 
 <!-- <link href='<?php echo base_url();?>assets/css/jquery.autocomplete.css' rel='stylesheet' />
 JS aoutocomplate
 <script type='text/javascript' src='<?php echo base_url();?>assets/js/jquery.autocomplete.js'></script> -->
-  <!-- Application stylesheet : mandatory -->
-  <link rel="stylesheet" href="<?= base_url('assets/library/bootstrap/css/bootstrap.min.css') ?>">
-  <link rel="stylesheet" href="<?= base_url('assets/stylesheet/layout.min.css') ?>">
-  <link rel="stylesheet" href="<?= base_url('assets/stylesheet/uielement.min.css') ?>">
-  <!--/ Application stylesheet -->
-  <!-- END STYLESHEETS -->
+<!-- Application stylesheet : mandatory -->
+<link rel="stylesheet" href="<?= base_url('assets/library/bootstrap/css/bootstrap.min.css') ?>">
+<link rel="stylesheet" href="<?= base_url('assets/stylesheet/layout.min.css') ?>">
+<link rel="stylesheet" href="<?= base_url('assets/stylesheet/uielement.min.css') ?>">
+<!--/ Application stylesheet -->
+<!-- END STYLESHEETS -->
 
-  <!-- START JAVASCRIPT SECTION - Load only modernizr script here -->
-  <script src="<?= base_url('assets//library/modernizr/js/modernizr.min.js') ?>"></script>
-  <!--/ END JAVASCRIPT SECTION -->
+<!-- START JAVASCRIPT SECTION - Load only modernizr script here -->
+<script src="<?= base_url('assets//library/modernizr/js/modernizr.min.js') ?>"></script>
+<!--/ END JAVASCRIPT SECTION -->
 
 </head>
 <!--/ END Head -->
@@ -305,109 +305,109 @@ JS aoutocomplate
         </a>
       </li>
       <!--/ Sidebar shrink -->
-<!-- Offcanvas left: This menu will take position at the top of template header (mobile only). Make sure that only #header have the `position: relative`, or it may cause unwanted behavior -->
-<li class="navbar-main hidden-lg hidden-md hidden-sm">
- <a href="javascript:void(0);" data-toggle="sidebar" data-direction="ltr" rel="tooltip" title="Menu sidebar">
-  <span class="meta">
-   <span class="icon"><i class="ico-paragraph-justify3"></i></span>
- </span>
-</a>
-</li>
-<!--/ Offcanvas left -->
+      <!-- Offcanvas left: This menu will take position at the top of template header (mobile only). Make sure that only #header have the `position: relative`, or it may cause unwanted behavior -->
+      <li class="navbar-main hidden-lg hidden-md hidden-sm">
+       <a href="javascript:void(0);" data-toggle="sidebar" data-direction="ltr" rel="tooltip" title="Menu sidebar">
+        <span class="meta">
+         <span class="icon"><i class="ico-paragraph-justify3"></i></span>
+       </span>
+     </a>
+   </li>
+   <!--/ Offcanvas left -->
 
 
-      <!-- Notification dropdown -->
-      <li class="dropdown custom" id="header-dd-notification">
-        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-          <span class="meta">
-            <span class="icon"><i class="ico-bell"></i></span>
-            <span class="hasnotification hasnotification-danger"></span>
-          </span>
-        </a>
+   <!-- Notification dropdown -->
+   <li class="dropdown custom" id="header-dd-notification">
+    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+      <span class="meta">
+        <span class="icon"><i class="ico-bell"></i></span>
+        <span class="hasnotification hasnotification-danger"></span>
+      </span>
+    </a>
 
-        <!-- Dropdown menu -->
-        <div class="dropdown-menu" role="menu">
-          <div class="dropdown-header">
-            <span class="title">Notification <span class="count"></span></span>
-            <span class="option text-right"><a href="javascript:void(0);">Clear all</a></span>
-          </div>
-          <div class="dropdown-body slimscroll">
-            <!-- indicator -->
-            <div class="indicator inline"><span class="spinner"></span></div>
-            <!--/ indicator -->
+    <!-- Dropdown menu -->
+    <div class="dropdown-menu" role="menu">
+      <div class="dropdown-header">
+        <span class="title">Notification <span class="count"></span></span>
+        <span class="option text-right"><a href="javascript:void(0);">Clear all</a></span>
+      </div>
+      <div class="dropdown-body slimscroll">
+        <!-- indicator -->
+        <div class="indicator inline"><span class="spinner"></span></div>
+        <!--/ indicator -->
 
-            <!-- Message list -->
-            <div class="media-list">
-              <a href="javascript:void(0);" class="media read border-dotted">
-                <span class="media-object pull-left">
-                  <i class="ico-checkmark3 bgcolor-success"></i>
-                </span>
-                <span class="media-body">
-                  <span class="media-text">Lorem ipsum dolor sit amet, <span class="text-primary semibold">consectetur</span> adipisicing elit.</span>
-                  <!-- meta icon -->
-                  <span class="media-meta pull-right">14w</span>
-                  <!--/ meta icon -->
-                </span>
-              </a>
-            </div>
-            <!--/ Message list -->
-          </div>
+        <!-- Message list -->
+        <div class="media-list">
+          <a href="javascript:void(0);" class="media read border-dotted">
+            <span class="media-object pull-left">
+              <i class="ico-checkmark3 bgcolor-success"></i>
+            </span>
+            <span class="media-body">
+              <span class="media-text">Lorem ipsum dolor sit amet, <span class="text-primary semibold">consectetur</span> adipisicing elit.</span>
+              <!-- meta icon -->
+              <span class="media-meta pull-right">14w</span>
+              <!--/ meta icon -->
+            </span>
+          </a>
         </div>
-        <!--/ Dropdown menu -->
-      </li>
-      <!--/ Notification dropdown -->
-
-      <!-- Search form toggler  -->
-      <li>
-        <a href="javascript:void(0);" data-toggle="dropdown" data-target="#dropdown-form">
-          <span class="meta">
-            <span class="icon"><i class="ico-search"></i></span>
-          </span>
-        </a>
-      </li>
-      <!--/ Search form toggler -->
-    </ul>
-    <!--/ END Left nav -->
-
-    <!-- START navbar form -->
-    <div class="navbar-form navbar-left dropdown" id="dropdown-form">
-      <form action="" role="search">
-        <div class="has-icon">
-          <input type="text" class="form-control" placeholder="Search application...">
-          <i class="ico-search form-control-icon"></i>
-        </div>
-      </form>
+        <!--/ Message list -->
+      </div>
     </div>
-    <!-- START navbar form -->
+    <!--/ Dropdown menu -->
+  </li>
+  <!--/ Notification dropdown -->
 
-    <!-- START Right nav -->
-    <ul class="nav navbar-nav navbar-right">
-      <!-- Profile dropdown -->
-      <li class="dropdown profile">
-        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-          <span class="meta">
-            <span class="avatar"><img src="<?= base_url('assets/image/avatar/avatar7.jpg') ?>" class="img-circle" alt="" /></span>
-            <span class="text hidden-xs hidden-sm pl5"><?=$this->session->userdata['USERNAME'];?></span>
-            <span class="caret"></span>
-          </span>
-        </a>
-        <ul class="dropdown-menu" role="menu">
-          <li><a href="javascript:void(0);"><span class="icon"><i class="ico-user-plus2"></i></span> My Accounts</a></li>
+  <!-- Search form toggler  -->
+  <li>
+    <a href="javascript:void(0);" data-toggle="dropdown" data-target="#dropdown-form">
+      <span class="meta">
+        <span class="icon"><i class="ico-search"></i></span>
+      </span>
+    </a>
+  </li>
+  <!--/ Search form toggler -->
+</ul>
+<!--/ END Left nav -->
 
-          <li><a href="javascript:void(0);"><span class="icon"><i class="ico-question"></i></span> Help</a></li>
-          <li class="divider"></li>
-          <li><a href="<?=base_url('index.php/logout');?>"><span class="icon"><i class="ico-exit"></i></span> Sign Out</a></li>
-        </ul>
-      </li>
-      <!-- Profile dropdown -->
+<!-- START navbar form -->
+<div class="navbar-form navbar-left dropdown" id="dropdown-form">
+  <form action="" role="search">
+    <div class="has-icon">
+      <input type="text" class="form-control" placeholder="Search application...">
+      <i class="ico-search form-control-icon"></i>
+    </div>
+  </form>
+</div>
+<!-- START navbar form -->
 
-      <!-- Offcanvas right This menu will take position at the top of template header (mobile only). Make sure that only #header have the `position: relative`, or it may cause unwanted behavior -->
+<!-- START Right nav -->
+<ul class="nav navbar-nav navbar-right">
+  <!-- Profile dropdown -->
+  <li class="dropdown profile">
+    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+      <span class="meta">
+        <span class="avatar"><img src="<?= base_url('assets/image/avatar/avatar7.jpg') ?>" class="img-circle" alt="" /></span>
+        <span class="text hidden-xs hidden-sm pl5"><?=$this->session->userdata['USERNAME'];?></span>
+        <span class="caret"></span>
+      </span>
+    </a>
+    <ul class="dropdown-menu" role="menu">
+      <li><a href="javascript:void(0);"><span class="icon"><i class="ico-user-plus2"></i></span> My Accounts</a></li>
 
-      <!--/ Offcanvas right -->
+      <li><a href="javascript:void(0);"><span class="icon"><i class="ico-question"></i></span> Help</a></li>
+      <li class="divider"></li>
+      <li><a href="<?=base_url('index.php/logout');?>"><span class="icon"><i class="ico-exit"></i></span> Sign Out</a></li>
     </ul>
-    <!--/ END Right nav -->
-  </div>
-  <!--/ END Toolbar -->
+  </li>
+  <!-- Profile dropdown -->
+
+  <!-- Offcanvas right This menu will take position at the top of template header (mobile only). Make sure that only #header have the `position: relative`, or it may cause unwanted behavior -->
+
+  <!--/ Offcanvas right -->
+</ul>
+<!--/ END Right nav -->
+</div>
+<!--/ END Toolbar -->
 </header>
 <!--/ END Template Header -->
 
@@ -450,87 +450,87 @@ JS aoutocomplate
 
 
 
-     
 
-<li>
-  <a href="javascript:void(0);" data-target="#banksoal" data-toggle="submenu" data-parent=".topmenu">
-    <span class="figure"><i class="ico-clipboard2"></i></span>
-    <span class="text">Bank Soal</span>
-    <span class="arrow"></span>
-  </a>
 
-  <ul id="banksoal" class="submenu collapse ">
-    <li class="submenu-header ellipsis">Bank Soal</li>
+      <li>
+        <a href="javascript:void(0);" data-target="#banksoal" data-toggle="submenu" data-parent=".topmenu">
+          <span class="figure"><i class="ico-clipboard2"></i></span>
+          <span class="text">Bank Soal</span>
+          <span class="arrow"></span>
+        </a>
 
-    <li >
-      <a href="javascript:void(0);" onclick="add_soal()">
-        <span class="text">Tambahkan Bank Soal</span> 
-      </a>
-    </li>
-    <li >
-      <a href="javascript:void(0);" data-target="#subbanksoal" data-toggle="submenu"  >
-        <span class="text">Daftar Bank Soal</span>
+        <ul id="banksoal" class="submenu collapse ">
+          <li class="submenu-header ellipsis">Bank Soal</li>
+
+          <li >
+            <a href="javascript:void(0);" onclick="add_soal()">
+              <span class="text">Tambahkan Bank Soal</span> 
+            </a>
+          </li>
+          <li >
+            <a href="javascript:void(0);" data-target="#subbanksoal" data-toggle="submenu"  >
+              <span class="text">Daftar Bank Soal</span>
+              <span class="arrow"></span>
+            </a>
+            <ul id="subbanksoal" class="submenu collapse ">
+              <li class="submenu-header ellipsis">Sub Bank Soal</li>
+              <li><a href="<?=base_url('index.php/banksoal/mysoal')?>"><span class="text">Daftar Soal Saya</span>
+              </a></li>
+              <li><a href="<?=base_url('index.php/banksoal/listsoal')?>"><span class="text">Daftar Semua Soal</span>
+              </a></li>
+              <li><a href="<?=base_url('index.php/banksoal/allsoal')?>"><span class="text">Daftar Tabel Soal</span>
+              </a></li>
+              <li><a href="javascript:void(0);" onclick="add_soal()"><span class="text">Filter Bank Soal</span>
+              </a></li>
+
+
+            </ul>
+          </li>
+
+
+
+        </ul>
+      </li>
+
+
+      <li>
+       <a href="javascript:void(0);" data-target="#tryout" data-toggle="submenu" data-parent=".topmenu">
+        <span class="figure"><i class="ico-clipboard"></i></span>
+        <span class="text">Try Outs</span>
         <span class="arrow"></span>
       </a>
-      <ul id="subbanksoal" class="submenu collapse ">
-        <li class="submenu-header ellipsis">Sub Bank Soal</li>
-        <li><a href="<?=base_url('index.php/banksoal/mysoal')?>"><span class="text">Daftar Soal Saya</span>
-        </a></li>
-        <li><a href="<?=base_url('index.php/banksoal/listsoal')?>"><span class="text">Daftar Semua Soal</span>
-        </a></li>
-        <li><a href="<?=base_url('index.php/banksoal/allsoal')?>"><span class="text">Daftar Tabel Soal</span>
-        </a></li>
-        <li><a href="javascript:void(0);" onclick="add_soal()"><span class="text">Filter Bank Soal</span>
-        </a></li>
 
+      <ul id="tryout" class="submenu collapse ">
+        <li class="submenu-header ellipsis">Try Out</li>
 
-      </ul>
+        <li >
+         <a href="<?= base_url('index.php/paketsoal/tambahpaketsoal');?>">
+          <span class="text">Paket Soal</span>
+        </a>
+      </li>
+
+      <li >
+       <a href="<?= base_url('index.php/toback/listTo');?>">
+        <span class="text">Daftar Try Out</span>
+      </a>
     </li>
-
-
-
-  </ul>
-</li>
-
-
-<li>
- <a href="javascript:void(0);" data-target="#tryout" data-toggle="submenu" data-parent=".topmenu">
-  <span class="figure"><i class="ico-clipboard"></i></span>
-  <span class="text">Try Outs</span>
-  <span class="arrow"></span>
-</a>
-
-<ul id="tryout" class="submenu collapse ">
-  <li class="submenu-header ellipsis">Try Out</li>
-
-  <li >
-   <a href="<?= base_url('index.php/paketsoal/tambahpaketsoal');?>">
-    <span class="text">Paket Soal</span>
-  </a>
-</li>
-
-<li >
- <a href="<?= base_url('index.php/toback/listTo');?>">
-  <span class="text">Daftar Try Out</span>
-</a>
-</li>
-<li >
- <a href="<?= base_url('admincabang/laporanpaket');?>">
-  <span class="text">Laporan Tryout</span>
-</a>
-</li>
+    <li >
+     <a href="<?= base_url('admincabang/laporanpaket');?>">
+      <span class="text">Laporan Tryout</span>
+    </a>
+  </li>
 
 </ul>
 </li>
 
 <li>
-        <a href="<?= base_url('index.php/admin/nilai_tryout');?>" data-toggle="submenu" data-parent=".topmenu">
-          <span class="figure"><i class="ico-notebook"></i></span>
-          <span class="text">Nilai </span>
-          <span class="arrow"></span>
-        </a>
+  <a href="<?= base_url('index.php/admin/nilai_tryout');?>" data-toggle="submenu" data-parent=".topmenu">
+    <span class="figure"><i class="ico-notebook"></i></span>
+    <span class="text">Nilai </span>
+    <span class="arrow"></span>
+  </a>
 
-        
+
 </li>
 
 <li>
@@ -554,8 +554,30 @@ JS aoutocomplate
   <span class="text">Daftar Admin Sekolah</span>
 </a>
 </li>
+</ul>
+</li>
 
+<li>
+ <a href="javascript:void(0);" data-target="#sekolah_menu" data-toggle="submenu" data-parent=".topmenu">
+  <span class="figure"><i class="ico-clipboard"></i></span>
+  <span class="text">Sekolah </span>
+  <span class="arrow"></span>
+</a>
 
+<ul id="sekolah_menu" class="submenu collapse ">
+  <!-- <li class="submenu-header ellipsis">Daftar S</li> -->
+
+  <li >
+   <a href="<?= base_url('index.php/sekolah/formsekolah');?>">
+    <span class="text">Register Sekolah</span>
+  </a>
+</li>
+
+<li >
+ <a href="<?= base_url('index.php/sekolah/daftarsekolah');?>" >
+  <span class="text">Daftar Sekolah</span>
+</a>
+</li>
 </ul>
 </li>
 
@@ -787,7 +809,7 @@ $('#modalvideo').modal('show'); // show bootstrap modal
            }
 
            loadTkt();
-function add_gallery() {
+           function add_gallery() {
   $('#modalgallery').modal('show'); // show bootstrap modal
 }
 function filter_gallery() {

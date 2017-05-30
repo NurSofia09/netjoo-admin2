@@ -37,19 +37,19 @@ class Sekolah extends MX_Controller
     public function formPengawas()
     {
         if ($this->cekSession()) {
-         $data['mataPelajaran'] = $this->mregister->get_matapelajaran();
-         $data['judul_halaman'] = "Register Pengawas";
-         $data['files'] = array(
+           $data['mataPelajaran'] = $this->mregister->get_matapelajaran();
+           $data['judul_halaman'] = "Register Pengawas";
+           $data['files'] = array(
             APPPATH . 'modules/sekolah/views/v-form-pengawas.php',
             );
             // jika admin
-         $this->parser->parse('admin/v-index-admin', $data);
-     }
- }
+           $this->parser->parse('admin/v-index-admin', $data);
+       }
+   }
 
 	//add pengawas
- public function savePengawas()
- {
+   public function savePengawas()
+   {
 
         		// load library n helper
     $this->load->helper(array('form', 'url'));
@@ -120,11 +120,11 @@ class Sekolah extends MX_Controller
 
 public function listsekolah($value='')
 {
-   $data['judul_halaman'] = "Daftar Sekolah";
-   $data['files'] = array(
-       APPPATH . 'modules/sekolah/views/v-daftar-pengawas.php',
-       );
-   $this->parser->parse('admin/v-index-admin',$data);
+ $data['judul_halaman'] = "Daftar Sekolah";
+ $data['files'] = array(
+     APPPATH . 'modules/sekolah/views/v-daftar-pengawas.php',
+     );
+ $this->parser->parse('admin/v-index-admin',$data);
 
 }
 public function ajax_listPengawas()
@@ -165,14 +165,14 @@ public function ubahPengawas($uuid)
   $data['oldData']=$this->sekolah_model->get_pengawas_by_uuid($uuid);
 
   if ($this->cekSession()) {
-     $data['mataPelajaran'] = $this->mregister->get_matapelajaran();
-     $data['judul_halaman'] = "Ubah Pengawas";
-     $data['files'] = array(
-        APPPATH . 'modules/pengawas/views/v-ubah-pengawas.php',
-        );
+   $data['mataPelajaran'] = $this->mregister->get_matapelajaran();
+   $data['judul_halaman'] = "Ubah Pengawas";
+   $data['files'] = array(
+    APPPATH . 'modules/pengawas/views/v-ubah-pengawas.php',
+    );
             // jika admin
-     $this->parser->parse('admin/v-index-admin', $data);
- }
+   $this->parser->parse('admin/v-index-admin', $data);
+}
 }
 
 public function editPengawas($value='')
@@ -247,12 +247,15 @@ function index(){
     $this->parser->parse('admin/v-index-admin',$data);
 }
 
-function formsekolah(){
+function formsekolah($id_sekolah = null){
     $data['judul_halaman'] = "Form Tambahkan Sekolah";
     $data['files'] = array(
         APPPATH . 'modules/sekolah/views/v-form-sekolah.php',
         );
-
+    if ($id_sekolah!=null) {
+        $data['single_sekolah'] = $this->sekolah_model->get_sekolah_single_byid($id_sekolah)[0];
+        $data['judul_halaman'] = "Edit Data Sekolah ".$data['single_sekolah']['namaSekolah'];
+    }
     $data['provinces'] = $this->sekolah_model->get_all_provinsi();
     $this->parser->parse('admin/v-index-admin',$data);
 }
@@ -282,12 +285,28 @@ function add_sekolah(){
     }        
 }
 
+function update_sekolah(){
+    if ($this->input->post()) {
+        $post = $this->input->post();
+        $data['update'] = ['namaSekolah'=>$post['nama_sekolah'],
+        'alamat'=>$post['alamat'],
+        'phone'=>$post['phone'],
+        'kecamatanID'=>$post['kecamatan']
+        ];
+        $data['id'] = $post['id'];
+        $this->sekolah_model->update_sekolah($data);
+        echo json_encode(['status'=>'1']);           
+    }else{
+        echo json_encode(['status'=>'0']);
+    }        
+}
+
 function daftarsekolah(){
-   $data['judul_halaman'] = "Daftar Sekolah";
-   $data['files'] = array(
+ $data['judul_halaman'] = "Daftar Sekolah";
+ $data['files'] = array(
     APPPATH . 'modules/sekolah/views/v-daftar-sekolah.php',
     );
-   $this->parser->parse('admin/v-index-admin',$data);
+ $this->parser->parse('admin/v-index-admin',$data);
 }
 
 function get_datatable_sekolah(){
@@ -309,7 +328,7 @@ function get_datatable_sekolah(){
 
         $row[]=' 
         <a class="btn btn-sm btn-danger"  title="Hapus" onclick="drop_sekolah('."'".$list_sekolah['sekolahID']."'".')"><i class="ico-remove"></i></a>
-        <a href="pengawas/ubahPengawas/'.$list_sekolah["sekolahID"].'" class="btn btn-sm btn-warning"  title="Ubah" ><i class="ico-file"></i></a>';
+        <a href="sekolah/formsekolah/'.$list_sekolah["sekolahID"].'" class="btn btn-sm btn-warning"  title="Ubah" ><i class="ico-file"></i></a>';
 
         $data[] = $row;
         $no++;
