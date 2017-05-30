@@ -581,6 +581,30 @@ JS aoutocomplate
 </ul>
 </li>
 
+<li>
+ <a href="javascript:void(0);" data-target="#siswa_menu" data-toggle="submenu" data-parent=".topmenu">
+  <span class="figure"><i class="ico-book"></i></span>
+  <span class="text">Siswa </span>
+  <span class="arrow"></span>
+</a>
+
+<ul id="siswa_menu" class="submenu collapse ">
+  <!-- <li class="submenu-header ellipsis">Daftar S</li> -->
+
+  <li >
+   <a href="<?= base_url('index.php/siswa/daftarsiswa');?>">
+    <span class="text">Register Siswa</span>
+  </a>
+</li>
+
+<li >
+ <a href="<?= base_url('index.php/siswa/daftar');?>" >
+  <span class="text">Daftar Siswa</span>
+</a>
+</li>
+</ul>
+</li>
+
 
 </ul>
 <!--/ END Template Navigation/Menu -->
