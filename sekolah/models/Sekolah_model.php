@@ -4,35 +4,35 @@
 */
 class Sekolah_model extends CI_Model
 {
-	
-	public function insert_pengawas($data_pengawas) {
+    
+    public function insert_pengawas($data_pengawas) {
 
         $this->db->insert('tb_pengawas', $data_pengawas);   
     }
 
     public function get_allPengawas()
     {
-    	$this->db->select('s.id as id_sekolah,namaSekolah,alamat,noKontak,namaPengguna,email,uuid,penggunaID');
-    	$this->db->from('tb_sekolah s');
-    	$this->db->join('tb_pengguna pengguna','pengguna.id=s.penggunaID');
-    	$this->db->where('s.status',1);
-    	$query = $this->db->get();
-    	return $query->result_array();
+        $this->db->select('s.id as id_sekolah,namaSekolah,alamat,noKontak,namaPengguna,email,uuid,penggunaID');
+        $this->db->from('tb_sekolah s');
+        $this->db->join('tb_pengguna pengguna','pengguna.id=s.penggunaID');
+        $this->db->where('s.status',1);
+        $query = $this->db->get();
+        return $query->result_array();
     }
 
     public function get_pengawas_by_uuid($uuid='')
     {
-    	$this->db->select('pengawas.id as idPengawas,nama,alamat,noKontak,namaPengguna,email,uuid,penggunaID');
-    	$this->db->from('tb_pengawas pengawas');
-    	$this->db->join('tb_pengguna pengguna','pengguna.id=pengawas.penggunaID');
-    	$this->db->where('uuid',$uuid);
-    	$query = $this->db->get();
-    	return $query->result_array()[0];
+        $this->db->select('pengawas.id as idPengawas,nama,alamat,noKontak,namaPengguna,email,uuid,penggunaID');
+        $this->db->from('tb_pengawas pengawas');
+        $this->db->join('tb_pengguna pengguna','pengguna.id=pengawas.penggunaID');
+        $this->db->where('uuid',$uuid);
+        $query = $this->db->get();
+        return $query->result_array()[0];
     }
 
     public function ubah_email($email,$uuid)
     {
-    	$this->db->where('uuid', $uuid);
+        $this->db->where('uuid', $uuid);
 
         $this->db->set('eMail', $email);
 
@@ -41,7 +41,7 @@ class Sekolah_model extends CI_Model
 
     public function ubah_pengawas($data_pengawas,$uuid)
     {
-    	$this->db->where('uuid', $uuid);
+        $this->db->where('uuid', $uuid);
 
         $this->db->set( $data_pengawas);
 
@@ -50,7 +50,7 @@ class Sekolah_model extends CI_Model
 
     public function del_pengawas($uuid)
     {
-    	$this->db->where('uuid', $uuid);
+        $this->db->where('uuid', $uuid);
 
         $this->db->set('status',0);
 
@@ -75,9 +75,6 @@ class Sekolah_model extends CI_Model
     }
 
 
-<<<<<<< HEAD
-      
-=======
     public function get_all_provinsi(){
         $this->db->select('*');
         $this->db->from('tb_provinsi');
@@ -117,7 +114,6 @@ class Sekolah_model extends CI_Model
         $query = $this->db->get();
         return $query->result_array();
     }
->>>>>>> 038e5fe4b8a42979619f57e27957b7dfa029b30e
     
     function delete_sekolah($id_siswa){
         $this->db->delete('tb_sekolah', array('id' => $id_siswa));
