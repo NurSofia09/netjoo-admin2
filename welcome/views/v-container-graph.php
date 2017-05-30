@@ -49,7 +49,7 @@
 <!-- video random -->
 
 <div class="col-md-12">
-    <section>
+
       <!-- gallery navigation -->
       <h4>Paket Soal yang Sudah Dikerjakan</h4>
       <!-- gallery container -->
@@ -82,6 +82,58 @@
                     <?php //endif ?>
                   </td>
                 <td><?=$paketitem['nm_paket'] ?></td>
+                
+                </tr>
+              <?php endforeach ?>
+            </tbody>
+          </table>
+        <?php// endif ?>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- / gallery container -->
+</section>
+
+<!-- video random -->
+<section class="section bgcolor-white"> 
+  <div class="container">
+<!-- video random -->
+
+<div class="col-md-12">
+
+      <!-- gallery navigation -->
+      <h4>Nilai Pembahasan </h4>
+      <!-- gallery container -->
+      <div class="col-md-12">
+        <?php //if($paket_dikerjakan==array()): ?>
+          <!-- <h5>Tidak ada paket soal.</h5> -->
+        <?php //else: ?>
+          <table class="table" style="font-size: 13px">
+            <thead>
+             <tr>
+              <th>No</th>
+              <th>Nama Paket </th>
+              <th>Nama Tryout</th>
+              <th>Nilai Tertinggi</th>
+              <th>Nilai Terendah</th>
+              <th>Rata-rata</th>
+            </tr>
+          </thead>
+          <tbody>
+          <?php $no= 1; ?>
+            <?php foreach ($pembahasan_maxmin as $row): ?>
+              <?php $rata = floatval($row['rata']) ?>
+              <tr>
+                <td><?=$no++ ?></td>
+                <td><?=$row['nama_paket'] ?></td>
+                <td><?=$row['nama_try'] ?></td>
+                <td><?=$row['nilai_tertinggi'] ?></td>
+                <td><?=$row['nilai_terendah'] ?></td>
+                <td><?=$rata?></td>
                 
                 </tr>
               <?php endforeach ?>

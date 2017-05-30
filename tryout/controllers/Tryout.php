@@ -222,9 +222,12 @@ class Tryout extends MX_Controller {
         } 
     }
     public function mulaipembahasan() {
+
         if (!empty($this->session->userdata['id_mm-tryoutpaketpembahasan'])) {
             $id = $this->session->userdata['id_mm-tryoutpaketpembahasan'];
             $data = ['id_mm'=>$id, 'id_pengguna'=>$this->session->userdata('id')];
+            
+            
             $data['rekap_jawaban'] = json_decode($this->Mtryout->get_report_paket_by_mmid($data)->rekap_hasil_koreksi);
             $data['topaket'] = $this->Mtryout->datatopaket($id);
             $jumlah_soal = count($data['rekap_jawaban']);
@@ -244,6 +247,10 @@ class Tryout extends MX_Controller {
                     $data['soal'][$i]['status_koreksi'] = $data['rekap_jawaban'][$i]->status_koreksi;
                 }
             }
+            $idsis = $this->session->userdata('id');
+            $data['idsekolah'] = $this->Mtryout->get_idsekolah($idsis);
+            
+            // var_dump($data['idsekolah']);
 
 
             $this->load->view('v-pembahasanto.php', $data);

@@ -131,5 +131,17 @@ function check_user_admin_offline($username, $password){
     function insert_report($data) {
     	$this->db->insert('tb_report-paket', $data);
     }
+
+// get pembahasan berdasarkan sekolah
+    function get_pembahasan_sekolah($data){
+    	$query = "SELECT * FROM `tb_report-paket` rp
+				JOIN `tb_sekolah_pengguna` sp ON rp.`id_pengguna` = sp.`penggunaID`
+				WHERE `sp`.`sekolahID` = '$data'";
+
+    	$result = $this->db->query($query);
+    	return $result->result_array();
+    }
+
+
 }
 ?>

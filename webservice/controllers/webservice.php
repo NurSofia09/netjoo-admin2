@@ -28,6 +28,13 @@ class Webservice extends MX_Controller
 		echo $datas;
 	}
 
+	//GET PAKET OFFLINE
+	public function pembahasanoffline($id){
+		$data = $this->Webservice_model->get_pembahasan_sekolah($id);
+		$datas = json_encode($data);
+		echo $datas;
+	}
+
 	//GET PAKET SISWA
 	public function siswaoffline($sekolahID){
 		$data = $this->Webservice_model->get_siswa_at_school($sekolahID);
