@@ -95,7 +95,9 @@
         <?php $i = 1; $nosoal = 1; ?>
         <div id="my-slideshow" style="">
          <ul class="bjqs" style="display: block;list-style: none">
+         <input name="sekolah" type="text" value="<?=$idsekolah?>" hidden="true">
           <?php foreach ($soal as $key): ?>
+            
            <li class="bjqs-slide" style="display: none;">
             <div class="">
              <div class="panel panel-default" style="">
@@ -305,6 +307,7 @@
             <a href="<?=base_url('welcome')?>" class="btn btn-info btn-block" >Pembahasan Selesai</a>
            </div>
 
+
           </div>
          </div> 
          <!--/ panel body with collapse capabale--> 
@@ -317,6 +320,8 @@
    </div>
 
   </div>
+
+
  </section>
 
  <!--/ END Register Content -->
@@ -329,3 +334,23 @@
 
 </section>
     <!--/ END Template Main -->
+
+<!-- <script type="text/javascript">
+  
+// JENIS KETIKA DI CHANGE
+
+
+  idsekolah = $('select[name=idsekolah]').val();
+  url = base_url+"webservice/pembahasanoffline/"+idsekolah;
+    console.log(url);
+
+
+  $.getJSON( url function( json ) {
+ $.each( json, function( key, val ) {
+
+ });
+});
+
+ 
+
+</script> -->

@@ -428,11 +428,39 @@ public function get_laporan_to(){
      function get_report_paket_by_mmid($data){
         $this->db->select('*');
         $this->db->from('tb_report-paket p');
+        $this->db->join('`tb_sekolah_pengguna` sp ',' `p`.`id_pengguna` = `sp`.`penggunaID`'); 
         $this->db->where('p.id_mm-tryout-paket',$data['id_mm']);
         $this->db->where('p.id_pengguna',$data['id_pengguna']);
         $query = $this->db->get(); 
         return $query->result()[0]; 
     }
+
+    function get_idsekolah($id){
+        $this->db->select('sekolahID');
+        $this->db->from('`tb_report-paket` rp');
+        $this->db->join('`tb_sekolah_pengguna` sp ',' rp.`id_pengguna` = sp.`penggunaID`'); 
+        $this->db->where('`sp`.`penggunaID`',$id);
+
+        $query = $this->db->get(); 
+        return $query->result_array()[0]['sekolahID']; 
+    }
+
+
+    # get report nilai tertinggi dan terendah berdasarkan sekolah 
+    function get_maxmin_pembahasan($data){        
+        $query = "SELECT `pk`.`nm_paket` as nama_paket ,tr.`nm_tryout` as nama_try, MAX(`total_nilai`) AS nilai_tertinggi,  MIN(`total_nilai`) AS nilai_terendah, AVG(`total_nilai`) AS `rata` 
+                FROM `tb_report-paket` rp
+                JOIN `tb_mm-tryoutpaket` mmtr ON `rp`.`id_mm-tryout-paket` = `mmtr`.`id`
+                JOIN `tb_paket` pk ON `mmtr`.`id_paket` = `pk`.`id_paket`
+                JOIN `tb_tryout` tr ON `mmtr`.`id_tryout` = `tr`.`id_tryout`
+                JOIN `tb_sekolah_pengguna` sp ON rp.`id_pengguna` = sp.`penggunaID`
+                WHERE `sp`.`sekolahID` = '$data'
+                GROUP BY `pk`.`id_paket`
+        ";
+        $result = $this->db->query($query);
+        return $result->result_array();      
+    }
+
 
 }
 

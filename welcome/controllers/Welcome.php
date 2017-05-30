@@ -45,13 +45,18 @@ class Welcome extends MX_Controller {
         APPPATH.'modules/welcome/views/v-container-graph.php',
         APPPATH.'modules/testimoni/views/v-footer.php',
         );
+    $idsis = $this->session->userdata('id');
+    $data['idsekolah'] = $this->Mtryout->get_idsekolah($idsis);
+    $idsekolah = $data['idsekolah'];
 
+    $data['pembahasan_maxmin'] = $this->Mtryout->get_maxmin_pembahasan($idsekolah);
     $data['paket_dikerjakan'] = $this->Mtryout->get_report_by_pengguna_id();
     $data['video'] = $this->mvideos->get_video_limit();
     $data['topik'] = $this->msiswa->persentasi_limit(3);
     $data['latihan'] = $this->msiswa->get_limit_persentase_latihan(3);
     $data['pesan'] = $this->msiswa->get_pesan();
 
+    // var_dump($data['pembahasan_maxmin']);
     $this->parser->parse( 'templating/index', $data );
 
 

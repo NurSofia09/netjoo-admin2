@@ -185,9 +185,24 @@ class Mlogin extends CI_Model {
 
     public function get_namaSiswa($idPengguna)
     {
-       $this->db->select('namaDepan, namaBelakang');
+       $this->db->select('namaDepan, namaBelakang,penggunaID');
        $this->db->from('tb_siswa');
        $this->db->where('penggunaID',$idPengguna);
+       $query = $this->db->get();
+
+       if ($query->num_rows() == 1) {
+            return  $query->result_array()[0]; //if data is true
+        } else {
+            return array(); //if data is wrong
+        }
+       
+    }
+
+    public function get_sekolahsiswa($siswa)
+    {
+       $this->db->select('sekolahID');
+       $this->db->from('tb_sekolah_pengguna sp');
+       $this->db->where('sp.penggunaID',$siswa);
        $query = $this->db->get();
 
        if ($query->num_rows() == 1) {

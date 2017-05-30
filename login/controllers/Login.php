@@ -91,11 +91,13 @@ public function validasiLogin() {
                 }
                 redirect(site_url('guru/dashboard/'));
             } elseif ($hakAkses == 'siswa') {
-                $tampSiswa=$this->Mlogin->get_namaSiswa($idPengguna);
+                $tampSiswa=$this->Mlogin->get_namaSiswa($idPengguna)[penggunaID];
+                $tempSiswa2=$this->Mlogin->get_sekolahsiswa($tampSiswa)[sekolahID];
                 $namaSiswa = $tampSiswa['namaDepan'] . ' '  . $tampSiswa['namaBelakang']  ;
                      //set session nama Siswa
                $this->session->set_userdata('NAMASISWA', $namaSiswa);
                $this->cek_token();
+               // var_dump($tempSiswa2);
                redirect(site_url('welcome'));
 
            } elseif ($hakAkses == 'ortu') {
