@@ -20,7 +20,7 @@
                             <th>Nama Pengguna</th>
                             <th>Sekolah</th>
                             <th>Email</th>
-                            <th>Report Siswa</th>
+                            <!-- <th>Report Siswa</th> -->
                             <th>Aksi</th>
                         </tr>
                     </thead>

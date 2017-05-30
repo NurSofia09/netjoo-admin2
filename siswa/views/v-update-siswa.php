@@ -69,62 +69,72 @@
                         <div class="">
                             <br>
                             <p class="text-center">IDENTITAS SEKOLAH</p>
-                            <input type="text" id="oldtkt" value="<?=$siswa['tingkatID'];?>" hidden >
-                            <input type="text" id="oldkelas" value="<?=$siswa['kelasID'];?>" hidden>
                         </div>
                         <div class="clear-both"></div>
                         <div class="form-group">
-                            <div class="col-sm-5 col-md-offset-1">
-                                <!-- menampilkan tingkat sekolah untuk memfilter kelas siswa-->
-                                <select class="form-control" name="tingkatSiswaID" id="tingkatSekolah"  required>
-                                
-                                 
-                                </select>
-                            </div>
-                            <!-- menampilkan kelas siswa yg telah di filer berdasarkan tingkat sekolah -->
-                             <div class="col-sm-5 ">
-                                <select class="form-control" name="tingkatID" id="kelasSiswa"  required>
-                                
-                                  
-                                </select>
-                            </div>
-                        </div>
-                          
-                        <div class="form-group">
                             <div class="col-sm-10 col-md-offset-1">
-                                <input type="text" placeholder="Nama Sekolah" class="form-control" name="namasekolah" value="<?= $siswa['namaSekolah']?>" data-parsley-required required>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-sm-10 col-md-offset-1">
-                                <input placeholder="Alamat Sekolah" type="text" class="form-control" name="alamatsekolah" value="<?= $siswa['alamatSekolah']?>" data-parsley-required required>
+                                 <!-- menampilkan sekolah untuk memfilter kelas siswa-->
+                                <select class="form-control" name="nmSekolah" id="nmSekolah"  required>
+                                    <?php foreach ($sekolah as $sekolah_item): ?>
+                                        <?php if ($sekolah_item['id'] ==$siswa['sekolahID']): ?>
+                                            
+                                            <option value="<?=$sekolah_item['id'] ?>" selected><?=$sekolah_item['namaSekolah'] ?></option>
+                                        <?php else : ?>
+                                            <option value="<?=$sekolah_item['id'] ?>"><?=$sekolah_item['namaSekolah'] ?></option>
+                                        <?php endif; ?>
+                                    <?php endforeach ?>
+                                </select>
                             </div>
                         </div>
 
                      <hr>
-                     <!-- Start form data bimbel -->
-                        <div  class="form-group">
-                             <div class="col-sm-10 col-md-offset-1">
+                       <!--  <div class="">
 
+                            <br>
 
-                                <p class="text-center">BIMBEL</p>
+                            <p class="text-center">IDENTITAS AKUN</p>
 
-                                <!-- list Bimbel -->
-                                <select class="form-control" name="bimbel">
-                                    <option value="">- Pilih Bimbel Kalian -</option>
-                                    <option value="Neutron" id="opNeutron">Neutron</option>
-                                    <option value="GO">GO</option>
-                                    <option value="1bimbel lainya">Bimbel lainya</option>
-                                </select>
-                                    <!-- untuk menampilkan pesan kesalaha penginputan nama pengguna -->
-                                    <span class="text-danger"><?php echo form_error('bimbel'); ?></span>
-                             
-                                <!--  -->
+                        </div> -->
+
+                        <!-- <div class="form-group">
+
+                            <div class="col-sm-10 col-md-offset-1">
+
+                                <input placeholder="Username" type="text" class="form-control" name="namapengguna" value="<?= $siswa['namaPengguna'] ?>"  data-parsley-required required>
+
+                                <span class="text-danger"><?php echo form_error('namapengguna'); ?></span>
 
                             </div>
+
                         </div>
-                       
+
+                        <div class="form-group">
+
+                            <div class="col-sm-10 col-md-offset-1">
+
+                                <input placeholder="Password" type="password" class="form-control" name="katasandi" maxlength="20" value="<?= $siswa['kataSandi'] ?>" required>
+
+                                <span class="text-danger"><?php echo form_error('katasandi'); ?></span>
+
+                            </div>
+
+                        </div>
+ -->
+                       <!--  <div class="form-group">
+
+                            <div class="col-sm-10 col-md-offset-1">
+
+                                <input placeholder="Confirm Password" type="password" class="form-control" name="passconf" data-parsley-equalto="input[name=password]" maxlength="20" value="<?= $siswa['kataSandi'] ?>" required>
+
+                                <span class="text-danger"><?php echo form_error('katasandi'); ?></span>
+
+
+
+                            </div>
+
+                        </div>
+                     -->
+
                         <hr class="Keaktivan hide" >
                         <!-- start from data siswa neon -->
                             <div class="form-group Keaktivan hide " >
