@@ -4,8 +4,10 @@ class Webservice_model extends CI_Model
 
 //  GET SISWA YANG ADA DI SKOLAH TERTENTU.	
 	function get_siswa_at_school($data){
-		$query = "SELECT `id`, `namaDepan`, `namaBelakang`, `alamat`, `noKontak`, `penggunaID`, `photo`, `biografi`, `status` FROM tb_siswa s 
-		WHERE sekolahID = ".$data;
+		$query = "SELECT s.`id`, `namaDepan`, `namaBelakang`, `alamat`, `noKontak`, s.`penggunaID`, `photo`, `biografi`, s.`status` 
+FROM (SELECT * FROM `tb_sekolah_pengguna` sp WHERE sp.`sekolahID` = ".$data." ) sekop
+JOIN tb_pengguna p ON p.`id` = sekop.penggunaID
+JOIN tb_siswa s ON s.`penggunaID` = p.`id` ";
 $result = $this->db->query($query);
 return $result->result_array();
 }
@@ -14,9 +16,12 @@ return $result->result_array();
 function get_pengguna_on_tryout($data){
 	$query = "SELECT p.id,namaPengguna, kataSandi, eMail, regTime, aktivasi, avatar
 	, `oauth_uid`, `oauth_uid`,hakAkses,p.status, last_akses
-	FROM tb_pengguna p
-	JOIN tb_siswa s ON s.`penggunaID` = p.`id`
-	WHERE sekolahID = $data ";
+FROM (SELECT * FROM `tb_sekolah_pengguna` sp WHERE sp.`sekolahID` = ".$data." ) sekop
+JOIN tb_pengguna p ON p.`id` = sekop.penggunaID
+JOIN tb_siswa s ON s.`penggunaID` = p.`id` 
+
+
+";
 	$result = $this->db->query($query);
 	return $result->result_array();	
 }
@@ -131,17 +136,5 @@ function check_user_admin_offline($username, $password){
     function insert_report($data) {
     	$this->db->insert('tb_report-paket', $data);
     }
-
-// get pembahasan berdasarkan sekolah
-    function get_pembahasan_sekolah($data){
-    	$query = "SELECT * FROM `tb_report-paket` rp
-				JOIN `tb_sekolah_pengguna` sp ON rp.`id_pengguna` = sp.`penggunaID`
-				WHERE `sp`.`sekolahID` = '$data'";
-
-    	$result = $this->db->query($query);
-    	return $result->result_array();
-    }
-
-
 }
 ?>
