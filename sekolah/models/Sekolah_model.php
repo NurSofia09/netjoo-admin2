@@ -4,7 +4,7 @@
 */
 class Sekolah_model extends CI_Model
 {
-    
+
     public function insert_pengawas($data_pengawas) {
 
         $this->db->insert('tb_pengawas', $data_pengawas);   
@@ -118,5 +118,27 @@ class Sekolah_model extends CI_Model
     function delete_sekolah($id_siswa){
         $this->db->delete('tb_sekolah', array('id' => $id_siswa));
     }
+    public function update_sekolah($data){
+        $this->db->where('id', $data['id']);
+        $this->db->set($data['update']);
+        $this->db->update('tb_sekolah');
+    }
+
+    function get_sekolah_single_byid($id_sekolah){
+        $this->db->select('s.id, s.namaSekolah, s.alamat, s.phone, 
+            k.id kecamatanID, k.`name` kecamatan,
+            kot.id kotaID, kot.name namaKota,
+            p.id provinsiID, p.`name` namaProvinsi');
+
+        $this->db->from('(SELECT * FROM tb_sekolah WHERE id='.$id_sekolah.') s');
+        $this->db->join('tb_kecamatan k',' k.id = s.kecamatanID');
+        $this->db->join('`tb_kabupaten_kota` kot',' kot.id = k.`regency_id`');
+        $this->db->join('`tb_provinsi` p',' kot.`province_id` = p.id');
+
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+
 }
 ?>

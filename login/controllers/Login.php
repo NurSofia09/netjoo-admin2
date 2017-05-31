@@ -43,7 +43,6 @@ class Login extends MX_Controller {
 
         APPPATH . 'modules/login/views/vLogin.php',
 
-        APPPATH . 'modules/homepage/views/v-footer.php',
 
         );
 

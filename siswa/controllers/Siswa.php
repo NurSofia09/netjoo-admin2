@@ -284,7 +284,7 @@ public function ajax_daftar_siswa() {
 
         $row[] = $list_siswa['namaSekolah'];
         $row[] = '<a href=""  title="Mail To">' . $list_siswa['eMail'] . '</a> <i class="ico-mail-send"></i>';
-        $row[] = '<a href="' . base_url('index.php/siswa/reportSiswa/' . $list_siswa['penggunaID']) . '" "> Lihat detail</a></i>';
+        // $row[] = '<a href="' . base_url('index.php/siswa/reportSiswa/' . $list_siswa['penggunaID']) . '" "> Lihat detail</a></i>';
 
         $row[] = '<a class="btn btn-sm btn-warning"  title="Edit" href="' . base_url('index.php/siswa/updateSiswa/' . $list_siswa['idsiswa'] . '/' . $list_siswa['penggunaID']) . '" "><i class="ico-edit"></i></a> 
 
@@ -450,6 +450,8 @@ function updateSiswa($idsiswa, $idpengguna) {
          $datSiswa = $this->msiswa->get_siswa_byid($idsiswa, $idpengguna);
          $data['siswa']=$datSiswa[0];
          $data['datKelas']=$this->msiswa->get_kelas();
+         $data['sekolah'] = $this->msiswa->get_sekolah();
+
          $data['judul_halaman'] = "Rubah Data Siswa";
          $data['files'] = array(
             APPPATH . 'modules/siswa/views/v-update-siswa.php',
@@ -791,30 +793,24 @@ public function editSiswa(){
             $idsiswa=htmlspecialchars($this->input->post('idsiswa'));
 
 
-            $tingkatID = htmlspecialchars($this->input->post('tingkatID'));
-            $namaSekolah = htmlspecialchars($this->input->post('namasekolah'));
-            $alamatSekolah = htmlspecialchars($this->input->post('alamatsekolah'));
-            $cabangID = htmlspecialchars($this->input->post('cabang'));
-            $noIndukNeutron = htmlspecialchars($this->input->post('noinduk'));
 
-    //data array siswa
+            $sekolahID = htmlspecialchars($this->input->post('nmSekolah'));
+
+            //data array siswa
             $data_post = array(
                 'namaDepan' => $namaDepan,
                 'namaBelakang' => $namaBelakang,
                 'alamat' => $alamat,
                 'noKontak' => $noKontak,
-                'namaSekolah' => $namaSekolah,
-                'alamatSekolah' => $alamatSekolah,
-                'tingkatID' => $tingkatID,
-                'cabangID' => $cabangID,
-                'noIndukNeutron' => $noIndukNeutron
+                'sekolahID' => $sekolahID
                 );
+            // var_dump($data_post);
             $this->msiswa->update_siswa1($data_post,$idsiswa);
 
-            redirect('siswa/listsiswa');
+            redirect('siswa/daftar');
 
         }else{
-            redirect('siswa/listsiswa');
+            redirect('siswa/daftar');
         }
 
     }else{

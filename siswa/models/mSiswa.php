@@ -219,8 +219,9 @@ class Msiswa extends CI_Model {
     #query get semua siswa
 
     function get_all_siswa() {
-        $this->db->select('*,siswa.id as idsiswa');
-        $this->db->from('tb_siswa siswa');
+        $this->db->select('*,siswa.id as idsiswa, sklh.namaSekolah');
+        $this->db->from('tb_sekolah sklh');
+        $this->db->join('tb_siswa siswa', 'sklh.id=siswa.sekolahID');
         $this->db->join('tb_pengguna pengguna', 'siswa.penggunaID = pengguna.id');
         $this->db->where('siswa.status', 1);
         $query = $this->db->get();
@@ -239,10 +240,10 @@ class Msiswa extends CI_Model {
 
 
     function get_siswa_byid($idsiswa, $idpengguna) {
-        $this->db->select('siswa.id as idsiswa,siswa.namaDepan,siswa.namaBelakang,siswa.alamat,siswa.noKontak,siswa.tingkatID as kelasID,siswa.namaSekolah,siswa.alamatSekolah,siswa.cabangID,tkt.depedensi as tingkatID');
-        $this->db->from('tb_siswa siswa');
+        $this->db->select('siswa.id as idsiswa,siswa.namaDepan,siswa.namaBelakang,siswa.alamat,siswa.noKontak, siswa.sekolahID');
+        $this->db->from('tb_sekolah sklh');
+        $this->db->join('tb_siswa siswa', 'sklh.id=siswa.sekolahID');
         $this->db->join('tb_pengguna pengguna', 'siswa.penggunaID = pengguna.id');
-        $this->db->join('tb_tingkat tkt','tkt.id = siswa.tingkatID');
         $this->db->where('pengguna.id', $idpengguna);
         $query = $this->db->get();
         return $query->result_array();
@@ -558,7 +559,6 @@ class Msiswa extends CI_Model {
     {
         $this->db->select('id,namaSekolah, alamat');
         $this->db->from('tb_sekolah');
-        $this->db->where('status',1);
         $query=$this->db->get();
         return $query->result_array();
 
