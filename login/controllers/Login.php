@@ -93,7 +93,8 @@ public function validasiLogin() {
             } elseif ($hakAkses == 'siswa') {
                 $tampSiswa=$this->Mlogin->get_namaSiswa($idPengguna)[penggunaID];
                 $tempSiswa2=$this->Mlogin->get_sekolahsiswa($tampSiswa)[sekolahID];
-                $namaSiswa = $tampSiswa['namaDepan'] . ' '  . $tampSiswa['namaBelakang']  ;
+                $tampSiswaa=$this->Mlogin->get_namaSiswa($idPengguna);
+                $namaSiswa = $tampSiswaa['namaDepan'] . ' '  . $tampSiswaa['namaBelakang']  ;
                      //set session nama Siswa
                $this->session->set_userdata('NAMASISWA', $namaSiswa);
                $this->cek_token();
