@@ -220,9 +220,10 @@ class Msiswa extends CI_Model {
 
     function get_all_siswa() {
         $this->db->select('*,siswa.id as idsiswa, sklh.namaSekolah');
-        $this->db->from('tb_sekolah sklh');
-        $this->db->join('tb_siswa siswa', 'sklh.id=siswa.sekolahID');
+        $this->db->from('tb_siswa siswa');
         $this->db->join('tb_pengguna pengguna', 'siswa.penggunaID = pengguna.id');
+        $this->db->join('tb_sekolah_pengguna sp', 'pengguna.id=sp.penggunaID');
+        $this->db->join('tb_sekolah sklh', 'sp.sekolahID=sklh.id');
         $this->db->where('siswa.status', 1);
         $query = $this->db->get();
         return $query->result_array();
@@ -240,10 +241,11 @@ class Msiswa extends CI_Model {
 
 
     function get_siswa_byid($idsiswa, $idpengguna) {
-        $this->db->select('siswa.id as idsiswa,siswa.namaDepan,siswa.namaBelakang,siswa.alamat,siswa.noKontak, siswa.sekolahID');
-        $this->db->from('tb_sekolah sklh');
-        $this->db->join('tb_siswa siswa', 'sklh.id=siswa.sekolahID');
+        $this->db->select('siswa.id as idsiswa,siswa.namaDepan,siswa.namaBelakang,siswa.alamat,siswa.noKontak, sp.sekolahID, siswa.penggunaID,
+                            pengguna.namaPengguna, pengguna.kataSandi');
+        $this->db->from('tb_siswa siswa');
         $this->db->join('tb_pengguna pengguna', 'siswa.penggunaID = pengguna.id');
+        $this->db->join('tb_sekolah_pengguna sp', 'pengguna.id=sp.penggunaID');
         $this->db->where('pengguna.id', $idpengguna);
         $query = $this->db->get();
         return $query->result_array();
@@ -562,6 +564,20 @@ class Msiswa extends CI_Model {
         $query=$this->db->get();
         return $query->result_array();
 
+    }
+
+    // update sekolah pengguna
+    public function update_sekolah_pengguna($data,$id_pengguna) {
+        $this->db->where('penggunaID', $id_pengguna);
+        $this->db->update('tb_sekolah_pengguna', $data);
+        
+    }
+
+    // update pengguna
+    public function update_pengguna($data,$id_pengguna) {
+        $this->db->where('id', $id_pengguna);
+        $this->db->update('tb_pengguna', $data);
+        
     }
 }
 

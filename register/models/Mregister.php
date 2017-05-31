@@ -522,6 +522,16 @@ class Mregister extends CI_Model {
     }
 
 
+     //merupakan function untuk menyimpan data sekolah pengguna  
+
+    public function insert_sekolah_pengguna($data) {
+
+
+
+        $this->db->insert('tb_sekolah_pengguna', $data);
+
+    }
+
 
 }
 
