@@ -375,6 +375,7 @@ public function savesiswa(){
 
 
         $sekolahID = htmlspecialchars($this->input->post('nmSekolah'));
+        $UUID = uniqid();
 
         //data akun
         $namaPengguna = htmlspecialchars($this->input->post('namapengguna'));
@@ -408,11 +409,22 @@ public function savesiswa(){
             'alamat' => $alamat,
             'noKontak' => $noKontak,
             'penggunaID' => $penggunaID,
-            'sekolahID' => $sekolahID
             );
 
             //melempar data guru ke function insert_guru di kelas model
         $data['mregister'] = $this->mregister->insert_siswabyadmin($data_siswa, $email, $namaPengguna);
+
+        // insert data ke tabel sekolah_pengguna
+        //data array sekolah_pengguna
+        $data_sklh = array(
+            'penggunaID' => $penggunaID,
+            'sekolahID' => $sekolahID,
+            'uuid' => $UUID
+            );
+
+        //melempar data sekolah_pengguna ke function insert_sekolah_pengguna di kelas model
+        $data['mregister'] = $this->mregister->insert_sekolah_pengguna($data_sklh);
+
         redirect(base_url('index.php/siswa/daftarsiswa'));
     }
 
@@ -785,27 +797,62 @@ public function editSiswa(){
     //data siswa
     if ($this->get_status_login()){     
         if ($this->input->post()){     
+             //load library n helper
+            $this->load->helper(array('form', 'url'));
+            $this->load->library('form_validation');
 
+            //syarat pengisian form regitrasi siswa
+            $this->form_validation->set_rules('namapengguna', 'Nama Pengguna', 'trim|required|min_length[5]|max_length[12]|is_unique[tb_pengguna.namaPengguna]');
+            // $this->form_validation->set_rules('katasandi', 'Kata Sandi', 'required|matches[passconf]|min_length[5]');
+            // $this->form_validation->set_rules('passconf', 'Password Confirmation', 'required');
+            // $this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[tb_pengguna.email]');
+
+            //pesan error atau pesan kesalahan pengisian form registrasi siswa
+            $this->form_validation->set_message('is_unique', '*Nama Pengguna atau email sudah terpakai');
+            $this->form_validation->set_message('max_length', '*Nama Pengguna maksimal 12 karakter!');
+            $this->form_validation->set_message('min_length', '*Inputan minimal 6 karakter!');
+            $this->form_validation->set_message('required', '*tidak boleh kosong!');
+            $this->form_validation->set_message('matches', '*Kata Sandi tidak sama!');
+            // $this->form_validation->set_message('valid_email', '*silahkan masukan alamat email anda dengan benar');
+
+             //data akun
+            $namaPengguna = htmlspecialchars($this->input->post('namapengguna'));
+            // $kataSandi = htmlspecialchars(md5($this->input->post('katasandi')));
+            // $email = htmlspecialchars($this->input->post('email'));
+
+            // data siswa
             $namaDepan = htmlspecialchars($this->input->post('namadepan'));
             $namaBelakang = htmlspecialchars($this->input->post('namabelakang'));
             $alamat = htmlspecialchars($this->input->post('alamat'));
             $noKontak = htmlspecialchars($this->input->post('nokontak'));
             $idsiswa=htmlspecialchars($this->input->post('idsiswa'));
-
-
-
             $sekolahID = htmlspecialchars($this->input->post('nmSekolah'));
+            $penggunaID = htmlspecialchars($this->input->post('penggunaID'));
 
             //data array siswa
             $data_post = array(
                 'namaDepan' => $namaDepan,
                 'namaBelakang' => $namaBelakang,
                 'alamat' => $alamat,
-                'noKontak' => $noKontak,
+                'noKontak' => $noKontak
+                );
+            // update di tb_siswa
+            $this->msiswa->update_siswa1($data_post,$idsiswa);
+
+            //data array sekolah pengguna
+            $data_sklh = array(
                 'sekolahID' => $sekolahID
                 );
-            // var_dump($data_post);
-            $this->msiswa->update_siswa1($data_post,$idsiswa);
+            // update di tb_sekolah_pengguna
+            $this->msiswa->update_sekolah_pengguna($data_sklh,$penggunaID);
+
+            //data array pengguna
+            $data_pengguna = array(
+                'namaPengguna' => $namaPengguna
+                // 'kataSandi' => $kataSandi
+                );
+            // update di tb_pengguna
+            $this->msiswa->update_pengguna($data_pengguna,$penggunaID);
 
             redirect('siswa/daftar');
 

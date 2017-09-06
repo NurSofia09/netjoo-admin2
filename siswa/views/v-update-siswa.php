@@ -40,11 +40,13 @@
                             <!--<label class="control-label col-sm-2">Judul Soal</label>-->
                             <div class="col-sm-5 col-md-offset-1">
                                 <input type="text" name="idsiswa" hidden="true" value="<?=$siswa['idsiswa'];?>" >
+                                <input type="text" name="penggunaID" value="<?= $siswa['penggunaID'] ?>" hidden="true">
                                 <input type="text" name="namadepan" class="form-control" placeholder="Nama Depan" required="true" value="<?= $siswa['namaDepan'] ?>">
                                 <span class="text-danger"> <?php echo form_error('namadepan'); ?></span>
                             </div>
                             <div class="col-sm-5">
                                 <input type="text" name="namabelakang" class="form-control" placeholder="Nama Belakang"  value="<?= $siswa['namaBelakang'] ?>">
+
                                 <span class="text-danger"> <?php echo form_error('namabelakang'); ?></span>
                             </div>
 
@@ -88,15 +90,15 @@
                         </div>
 
                      <hr>
-                       <!--  <div class="">
+                        <div class="">
 
                             <br>
 
                             <p class="text-center">IDENTITAS AKUN</p>
 
-                        </div> -->
+                        </div>
 
-                        <!-- <div class="form-group">
+                        <div class="form-group">
 
                             <div class="col-sm-10 col-md-offset-1">
 
@@ -108,7 +110,7 @@
 
                         </div>
 
-                        <div class="form-group">
+                       <!--  <div class="form-group">
 
                             <div class="col-sm-10 col-md-offset-1">
 
@@ -118,8 +120,8 @@
 
                             </div>
 
-                        </div>
- -->
+                        </div> -->
+
                        <!--  <div class="form-group">
 
                             <div class="col-sm-10 col-md-offset-1">
@@ -132,52 +134,10 @@
 
                             </div>
 
-                        </div>
-                     -->
+                        </div> -->
+                    
 
-                        <hr class="Keaktivan hide" >
-                        <!-- start from data siswa neon -->
-                            <div class="form-group Keaktivan hide " >
-                                 <div class="col-sm-10 col-md-offset-1">
-                                <p class="text-center">DATA NEON</p>
-                                </div>
-                            </div> 
-                            <div class="form-group Keaktivan hide ">
-                                <div class="col-sm-10 col-md-offset-1">
-                                    <select class="form-control" name="cabang">
-                                        <option value="">- Pilih Cabang -</option>
-                                        <?php foreach ($cabang as $cabang_item): ?> 
-
-                                        <?php if ($cabang_item->id==$siswa['cabangID']): ?>
-                                            <option value="<?=$cabang_item->id ?>" selected><?=$cabang_item->namaCabang ?></option>
-                                        <?php endif ?>
-                                            <option value="<?=$cabang_item->id ?>" ><?=$cabang_item->namaCabang ?></option>
-                                            
-                                        <?php endforeach ?>
-                                    </select>
-                                    <!-- untuk menampilkan pesan kesalaha penginputan nama pengguna -->
-                                    <span class="text-danger"><?php echo form_error('cabang'); ?></span>
-                                </div>
-                            </div>
-
-                            <div class="form-group Keaktivan hide">
-
-                                <div class="col-sm-10 col-md-offset-1">
-
-                                    <input placeholder="Nomer Induk Siswa Neutron contoh : 120300xxx" type="text" class="form-control" name="noinduk" value="<?php echo set_value('noinduk'); ?>" data-parsley-required>
-
-                                    <i class="ico-tag9 form-control-icon"></i>
-
-                                    <!-- untuk menampilkan pesan kesalaha penginputan nama pengguna -->
-
-                                    <span class="text-danger"><?php echo form_error('noinduk'); ?></span>
-
-                                </div>
-
-                            </div>
-                        <!-- end from data siswa neon  -->
-       
-                        <!-- end form data bimbel -->
+                       
                         
                     <div class="panel-footer">
                         <div class="col-md-4 pull-right">
