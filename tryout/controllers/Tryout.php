@@ -13,11 +13,6 @@ class Tryout extends MX_Controller {
         parent::__construct();
         $this->load->library('sessionchecker');
         $this->sessionchecker->checkloggedin();
-        if ($this->session->userdata('HAKAKSES')=='ortu') {
-            # langusung masuk
-        }else{
-        $this->sessionchecker->cek_token();
-        }
 
     }
 
@@ -222,7 +217,7 @@ class Tryout extends MX_Controller {
         } 
     }
     public function mulaipembahasan() {
-
+            //perubahan
         if (!empty($this->session->userdata['id_mm-tryoutpaketpembahasan'])) {
             $id = $this->session->userdata['id_mm-tryoutpaketpembahasan'];
             $data = ['id_mm'=>$id, 'id_pengguna'=>$this->session->userdata('id')];

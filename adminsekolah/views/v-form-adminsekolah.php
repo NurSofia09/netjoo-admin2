@@ -1,26 +1,16 @@
   <!-- START Template Main -->
-
   <section id="main" role="main">
-
     <!-- START Register Content -->
-
     <section class="container">
-
         <div class="row">
-
-            <div class="col-md-10">
-
-                <div class="text-center" style="margin-bottom:20px;">
-
-                    <img src="<?=base_url('assets/back/img/logo-tara.png') ?>" > 
-
-                    <br><h5 class="semibold text-muted mt-5"><br>Membuat Akun Admin Sekolah</h5>
-
-                </div>
-
+            <div class="col-md-11">
+               
                 <!-- Register form -->
 
                 <form class="panel nm" name="form-register" action="<?=base_url()?>index.php/adminsekolah/saveAdminsekolah" method="post">
+                 <div class="text-center" style="margin-bottom:20px;">
+                    <br><h5 class="semibold text-muted mt-5"><br>Membuat Akun Admin Sekolah</h5>
+                </div>
                     <ul class="list-table pa15">
                         <li>
                             <!-- Alert message -->

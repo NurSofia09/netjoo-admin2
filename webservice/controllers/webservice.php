@@ -1,12 +1,10 @@
 <?php 
-/**
- * 
- */
 class Webservice extends MX_Controller
 {
 
 	public function __construct()
 	{
+		header('Access-Control-Allow-Origin: *');
 		$this->load->model('tryout/mtryout');
 		$this->load->model('login/Mlogin');
 		$this->load->model('Webservice_model');
@@ -80,10 +78,10 @@ class Webservice extends MX_Controller
 
 	// LOGIN KE CONTROLLER PUNYA ORANG.
 	public function login(){
-		if ($this->input->post()) {
+		// if ($this->input->post()) {
 			$post = $this->input->post();
-			$hasil_login = $this->Webservice_model->check_user_admin_offline($post['username'], md5($post['password']));
-			// $hasil_login = $this->Webservice_model->check_user_admin_offline('adminOpik', 'a0066c4ed186b9ed329411f715f49443');
+			// $hasil_login = $this->Webservice_model->check_user_admin_offline($post['username'], md5($post['password']));
+			$hasil_login = $this->Webservice_model->check_user_admin_offline('adminOpik', 'a0066c4ed186b9ed329411f715f49443');
 			
 
 			if ($hasil_login) {
@@ -105,7 +103,7 @@ class Webservice extends MX_Controller
 			}
 
 			echo json_encode($data_login);
-		}
+		// }
 
 	}
 
@@ -147,7 +145,6 @@ class Webservice extends MX_Controller
 			} else {
 				echo json_encode(['status'=>$dat_Report]);
 			}
-
 		}else{
 			echo json_encode(['status'=>false]);
 		}
