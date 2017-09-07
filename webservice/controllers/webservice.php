@@ -80,8 +80,8 @@ class Webservice extends MX_Controller
 	public function login(){
 		// if ($this->input->post()) {
 			$post = $this->input->post();
-			// $hasil_login = $this->Webservice_model->check_user_admin_offline($post['username'], md5($post['password']));
-			$hasil_login = $this->Webservice_model->check_user_admin_offline('adminOpik', 'a0066c4ed186b9ed329411f715f49443');
+			$hasil_login = $this->Webservice_model->check_user_admin_offline($post['username'], md5($post['password']));
+			// $hasil_login = $this->Webservice_model->check_user_admin_offline('adminOpik', 'a0066c4ed186b9ed329411f715f49443');
 			
 
 			if ($hasil_login) {
