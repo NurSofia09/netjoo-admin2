@@ -75,7 +75,7 @@
 	      type:"POST",
 	      url:base_url+"index.php/adminsekolah/deleteAdminsekolah/",
 	      success:function(){
-	        swal("Terhapus!", "Token berhasil dihapus.", "success");
+	        swal("Terhapus!", "Admin Sekolah berhasil dihapus.", "success");
 	         reload_tblist();
 	      },
 	      error:function(){

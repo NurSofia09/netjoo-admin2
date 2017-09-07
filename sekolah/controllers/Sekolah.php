@@ -328,7 +328,7 @@ function get_datatable_sekolah(){
 
         $row[]=' 
         <a class="btn btn-sm btn-danger"  title="Hapus" onclick="drop_sekolah('."'".$list_sekolah['sekolahID']."'".')"><i class="ico-remove"></i></a>
-        <a href="sekolah/formsekolah/'.$list_sekolah["sekolahID"].'" class="btn btn-sm btn-warning"  title="Ubah" ><i class="ico-file"></i></a>';
+        <a href="formsekolah/'.$list_sekolah["sekolahID"].'" class="btn btn-sm btn-warning"  title="Ubah" ><i class="ico-file"></i></a>';
 
         $data[] = $row;
         $no++;
