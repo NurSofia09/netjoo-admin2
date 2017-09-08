@@ -46,18 +46,7 @@
 		}
  	}
 
- 	//get list  pdf user guide admin
- 	public function get_list_user_guide_admin($value='')
- 	{
- 		// get data user_guide
- 		$data=$this->M_hadmin->sc_user_guide_admin();
- 		
- 		foreach ($data as $key ) {
- 			$status_user_guide=$key->status_user_guide;
- 		} 		
- 		
- 		echo json_encode($dat);
- 	}
+ 	
 
  }
 ?>
