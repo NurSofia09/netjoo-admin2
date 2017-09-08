@@ -605,6 +605,13 @@ JS aoutocomplate
 </ul>
 </li>
 
+<li>
+  <a href="<?= base_url('index.php/help_admin') ?>">
+    <span class="figure"><i class="ico-book3"></i></span>
+    <span class="text">User Guide</span>
+  </a>
+</li>
+
 
 </ul>
 <!--/ END Template Navigation/Menu -->
