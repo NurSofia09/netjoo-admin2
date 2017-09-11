@@ -46,7 +46,7 @@
      <div class="col-md-12">
       <div class="panel panel-teal">
        <div class="panel-heading">
-        <h3 class="panel-title">Daftar Yang Akan DI Tambahkan Ke Try</h3>
+        <h3 class="panel-title">Daftar Yang Akan Di Tambahkan Ke Try</h3>
         <input type="text" name="id" id="id_to" value="<?=$id_to;?>" hidden='true' >
       </div>
       <!-- Start Panel Body -->

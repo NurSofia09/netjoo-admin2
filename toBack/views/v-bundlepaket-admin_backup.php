@@ -47,7 +47,7 @@
      <div class="col-md-12">
       <div class="panel panel-teal">
        <div class="panel-heading">
-        <h3 class="panel-title">Daftar Yang Akan DI Tambahkan Ke Try</h3>
+        <h3 class="panel-title">Daftar Yang Akan Di Tambahkan Ke Try</h3>
         <input type="text" name="id" id="id_to" value="<?=$id_to;?>" hidden='true' >
       </div>
       <!-- Start Panel Body -->
@@ -156,7 +156,7 @@
     <div>
      <ul class="nav nav-tabs">
       <li class="active"><a href="#paketadd" data-toggle="tab">Paket</a></li>
-      <li><a href="#pengawasadd" data-toggle="tab">pengawas</a></li>
+      <li><a href="#pengawasadd" data-toggle="tab">Pengawas</a></li>
     </ul>
   </div>
 
@@ -194,7 +194,7 @@
   <!-- Start tabel siswa add to -->
   <div class="panel panel-default">
    <div class="panel-heading">
-    <h3 class="panel-title">Siswa yang akan mengikuti TO</h3>
+    <h3 class="panel-title">Pengawas TO</h3>
   </div>
   <div class="panel-body soaltambah">
     <!-- START TABEL SISWA YG SUDAH DI ADD -->
@@ -339,7 +339,7 @@ function reload_tblist(){
  tblist_paketAdd.ajax.reload(null,false); 
  tblist_pengawasAdd.ajax.reload(null,false); 
  tblist_paket.ajax.reload();
- tblist_pengawas.ajax.reload();
+ // tblist_pengawas.ajax.reload();
 }
 
 function adda() {
@@ -555,7 +555,7 @@ function dropSiswa(idKey) {
 
 function dropPengawas(idKey) {
   var id_to =$('#id_to').val();
-  if (confirm('Apakah Anda yakin akan menghapus data siswa? ')) {
+  if (confirm('Apakah Anda yakin akan menghapus data pengawas? ')) {
     // ajax delete data to database
     $.ajax({
       url : base_url+"index.php/toback/dropPengawasTo/"+idKey,

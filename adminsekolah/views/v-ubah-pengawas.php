@@ -21,16 +21,16 @@
                 <!-- Register form -->
                 <form class="panel nm" name="form-register" action="<?=base_url()?>index.php/adminsekolah/editAdminsekolah" method="post">
                 <input type="text" value="<?=$oldData['uuid'];?>" name="uuid" hidden="true">
-                    <ul class="list-table pa15">
-                        <li>
+                    <!-- <ul class="list-table pa15">
+                        <li> -->
                             <!-- Alert message -->
-                            <div class="alert alert-info nm text-center">
+                            <!-- <div class="alert alert-info nm text-center">
                                 <span class="semibold text-center">Catatan :</span>&nbsp;&nbsp;Silahkan diisi Semua.
-                            </div>
+                            </div> -->
                             <!--/ Alert message -->
-                        </li>
+                        <!-- </li>
                         <li class="text-right" style="width:20px;"><a href="javascript:void(0);"><i class="ico-question-sign fsize16"></i></a></li>
-                    </ul>
+                    </ul> -->
 
                     <hr class="nm">
                     <div class="panel-body">
@@ -53,7 +53,7 @@
 
                 <hr class="nm">
 
-                <div class="panel-body">
+                <!-- <div class="panel-body">
 
                     <p class="semibold text-muted">Untuk konfirmasi dan pengaktifan akun baru anda, kita akan mengirim aktivasi code ke email anda.</p>
 
@@ -65,11 +65,11 @@
 
                             <input type="email" class="form-control" name="email" value="<?=$oldData['email']?>" placeholder="you@mail.com">
 
-                            <i class="ico-envelop form-control-icon"></i>
+                            <i class="ico-envelop form-control-icon"></i> -->
 
                             <!-- untuk menampilkan pesan kesalahan penginputan email -->
 
-                            <span class="text-danger"><?php echo form_error('email'); ?></span>
+                           <!--  <span class="text-danger"><?php echo form_error('email'); ?></span>
 
                         </div>
 
@@ -79,7 +79,7 @@
 
 
                 </div>
-
+ -->
                 <!-- end form konfirmasi akun by email -->
 
                 <div class="panel-footer">

@@ -11,7 +11,7 @@
 						<h3 class="panel-title">Daftar Admin Sekolah</h3>
 						<!-- Start menu tambah soal -->
 						<div class="panel-toolbar text-right">
-						<a class="btn btn-inverse btn-outline" href="<?= base_url(); ?>index.php/pengawas/formPengawas" title="Tambah Data" ><i class="ico-plus"></i></a>
+						<a class="btn btn-inverse btn-outline" href="<?= base_url(); ?>index.php/adminsekolah/formAdminsekolah" title="Tambah Data" ><i class="ico-plus"></i></a>
 						</div>
 						<!-- END menu tambah soal -->
 					</div>

@@ -140,7 +140,7 @@ class Adminsekolah extends MX_Controller
             $row[]=' 
             <a class="btn btn-sm btn-danger"  title="Hapus" onclick="dropAdminsekolah('."'".$list_adminsekolah['uuid']."'".')"><i class="ico-remove"></i></a>
              <a class="btn btn-sm btn-danger"  title="Reset Password" onclick="resetPassword('."'".$list_adminsekolah['penggunaID']."'".')"><i class="ico-key"></i></a>
-            <a href="ubahPengawas/'.$list_adminsekolah["uuid"].'" class="btn btn-sm btn-warning"  title="Ubah" ><i class="ico-file"></i></a>';
+            <a href="ubahadminsekolah/'.$list_adminsekolah["uuid"].'" class="btn btn-sm btn-warning"  title="Ubah" ><i class="ico-file"></i></a>';
 
             $data[] = $row;
             $no++;
@@ -154,7 +154,7 @@ class Adminsekolah extends MX_Controller
         echo json_encode( $output );
 	}
 
-	public function ubahPengawas($uuid)
+	public function ubahadminsekolah($uuid)
 	{
 		$data['oldData']=$this->Madminsekolah->get_adminsekolah_by_uuid($uuid);
 		
