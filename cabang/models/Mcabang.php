@@ -32,5 +32,16 @@ class Mcabang extends CI_Model
 	$this->db->set($array_update);
 	$this->db->update('tb_cabang');
 }
+
+	/*Mengambil semua sekolah*/
+	function get_all_sekolah(){
+		$this->db->select('*');
+		$this->db->from('tb_sekolah');
+		$this->db->order_by('id desc');
+
+
+		$query = $this->db->get();
+		return $query->result();
+	}	
 }
 ?>

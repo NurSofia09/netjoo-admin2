@@ -84,26 +84,26 @@ class Admincabang extends MX_Controller {
 	}
 
 	//laporan to ajax
-	public function laporanto($cabang="all",$tryout="all",$paket="all",$records_per_page=10,$page=0){
+	public function laporanto($sekolah="all",$tryout="all",$paket="all",$records_per_page=10,$page=0){
 		//data post
 		$records_per_page=$this->input->post('records_per_page');
 		$page=$this->input->post('page');
-		$cabang=$this->input->post('cabang');
+		$sekolah=$this->input->post('sekolah');
 		$tryout=$this->input->post('tryout');
 		$paket=$this->input->post('paket');
 		$keySearch=$this->input->post('keySearch');
 		//data post
 		# get cabang
-		$data['cabang'] = $this->mcabang->get_all_cabang();
+		$data['sekolah'] = $this->mcabang->get_all_sekolah();
 		# get to
 		$data['to'] = $this->mtoback->get_To();
 
 
 		if ($keySearch != '' && $keySearch !=' ' ) {
-			$datas = ['cabang'=>$cabang,'tryout'=>$tryout,'paket'=>$paket];
+			$datas = ['sekolah'=>$sekolah,'tryout'=>$tryout,'paket'=>$paket];
 			$all_report = $this->admincabang_model->cari_report_paket($datas,$records_per_page,$page,$keySearch);
 		} else {
-			$datas = ['cabang'=>$cabang,'tryout'=>$tryout,'paket'=>$paket];
+			$datas = ['sekolah'=>$sekolah,'tryout'=>$tryout,'paket'=>$paket];
 			$all_report = $this->admincabang_model->get_report_paket($datas,$records_per_page,$page);
 		}
 		
@@ -128,7 +128,7 @@ class Admincabang extends MX_Controller {
 							<td>'.$no.'</td>	
 							<td>'.$item ['namaPengguna'].'</td>
 							<td>'.$item ['nm_paket'].'</td>
-							<td>'.$item ['namaCabang'].'</td>
+							<td>'.$item ['namaSekolah'].'</td>
 							<td>'.$nama.'</td>
 							<td>'.$jumlahSoal.'</td>							
 							<td>'.$sumBenar.'</td>
@@ -144,26 +144,26 @@ class Admincabang extends MX_Controller {
 	
 		echo json_encode( $tb_paket );
 	}
-	public function pagination_daftar_paket($cabang="all",$tryout="all",$paket="all",$records_per_page=100,$page=0,$keySearch='')
+	public function pagination_daftar_paket($sekolah="all",$tryout="all",$paket="all",$records_per_page=100,$page=0,$keySearch='')
 	{
 		//data post
 		// $records_per_page=$this->input->post('records_per_page');
 		// $page=$this->input->post('page');
 		//data post
 		# get cabang
-		$data['cabang'] = $this->mcabang->get_all_cabang();
+		$data['sekolah'] = $this->mcabang->get_all_sekolah();
 		# get to
 		$data['to'] = $this->mtoback->get_To();
-		$cabang=$this->input->post('cabang');
+		$sekolah=$this->input->post('sekolah');
 		$tryout=$this->input->post('tryout');
 		$paket=$this->input->post('paket');
 		$keySearch=$this->input->post('keySearch');
-		$datas = ['cabang'=>$cabang,'tryout'=>$tryout,'paket'=>$paket];
+		$datas = ['sekolah'=>$sekolah,'tryout'=>$tryout,'paket'=>$paket];
 		if ($keySearch != '' && $keySearch !=' ' ) {
-			$datas = ['cabang'=>$cabang,'tryout'=>$tryout,'paket'=>$paket];
+			$datas = ['sekolah'=>$sekolah,'tryout'=>$tryout,'paket'=>$paket];
 			$jumlah_data = $this->admincabang_model->jumlah_cari_report_paket($datas,$keySearch);
 		} else {
-			$datas = ['cabang'=>$cabang,'tryout'=>$tryout,'paket'=>$paket];
+			$datas = ['sekolah'=>$sekolah,'tryout'=>$tryout,'paket'=>$paket];
 			$jumlah_data = $this->admincabang_model->jumlah_report_paket($datas);
 		}
 		
@@ -488,7 +488,7 @@ class Admincabang extends MX_Controller {
 			APPPATH . 'modules/admincabang/views/v-daftar-paket.php',
 			);
 		# get cabang
-		$data['cabang'] = $this->mcabang->get_all_cabang();
+		$data['sekolah'] = $this->mcabang->get_all_sekolah();
 		# get to
 		$data['to'] = $this->mtoback->get_To();
 		$hakAkses = $this->session->userdata['HAKAKSES'];
@@ -512,13 +512,13 @@ class Admincabang extends MX_Controller {
 		$this->laporan_all_to();
 	}
 
-	public function laporan_paket_filter($cabang="all",$tryout="all",$paket="all"){
+	public function laporan_paket_filter($sekolah="all",$tryout="all",$paket="all"){
 		$data['judul_halaman'] = "Laporan Paket TO Filter";
 		$data['files'] = array(
 			APPPATH . 'modules/admincabang/views/v-daftar-paket-filter.php',
 			);
 		# get cabang
-		$data['cabang'] = $this->mcabang->get_all_cabang();
+		$data['sekolah'] = $this->mcabang->get_all_cabang();
 		# get to
 		$data['to'] = $this->mtoback->get_To();
 		$hakAkses = $this->session->userdata['HAKAKSES'];

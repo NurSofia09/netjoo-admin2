@@ -19,10 +19,10 @@ class Admincabang_model extends CI_model {
 
 	//get report all
 	function get_report_paket($data,$records_per_page='',$page=''){
-		$this->db->order_by('tgl_pengerjaan','desc');
+		$this->db->order_by('tglpengerjaan','desc');
 	
-		if ($data['cabang']!="all") {
-			$this->db->where('id_cabang', $data['cabang']);
+		if ($data['sekolah']!="all") {
+			$this->db->where('id_sekolah', $data['sekolah']);
 		}
 
 		if ($data['tryout']!="all") {
@@ -41,7 +41,7 @@ class Admincabang_model extends CI_model {
 	function cari_report_paket($data,$records_per_page='',$page='',$keySearch=''){
 		$this->db->order_by('tgl_pengerjaan','asc');
 
-		$this->db->like('namaPengguna',$keySearch);
+		$this->db->like('namPengguna',$keySearch);
 		$this->db->or_like('nm_paket',$keySearch);
 		$this->db->or_like('namaDepan',$keySearch);
 		$this->db->or_like('namaPengguna',$keySearch);
@@ -49,8 +49,8 @@ class Admincabang_model extends CI_model {
 		$this->db->or_like('nama_lengkap',$keySearch);
 		$this->db->or_like('tgl_pengerjaan',$keySearch);
 	
-		if ($data['cabang']!="all") {
-			$this->db->where('id_cabang', $data['cabang']);
+		if ($data['sekolah']!="all") {
+			$this->db->where('id_sekolah', $data['sekolah']);
 		}
 
 		if ($data['tryout']!="all") {
@@ -68,8 +68,8 @@ class Admincabang_model extends CI_model {
 	function get_report_paket_pdf($data){
 		$this->db->order_by('namaDepan','asc');
 	
-		if ($data['cabang']!="all") {
-			$this->db->where('id_cabang', $data['cabang']);
+		if ($data['sekolah']!="all") {
+			$this->db->where('id_sekolah', $data['sekolah']);
 		}
 
 		if ($data['tryout']!="all") {
@@ -86,8 +86,8 @@ class Admincabang_model extends CI_model {
 
 		//jumlah report all
 	function jumlah_report_paket($data){
-		if ($data['cabang']!="all") {
-			$this->db->where('id_cabang', $data['cabang']);
+		if ($data['sekolah']!="all") {
+			$this->db->where('id_sekolah', $data['sekolah']);
 		}
 
 		if ($data['tryout']!="all") {
@@ -103,8 +103,8 @@ class Admincabang_model extends CI_model {
 	}
 
 	function jumlah_cari_report_paket($data,$keySearch){
-		if ($data['cabang']!="all") {
-			$this->db->where('id_cabang', $data['cabang']);
+		if ($data['sekolah']!="all") {
+			$this->db->where('id_sekolah', $data['sekolah']);
 		}
 
 		if ($data['tryout']!="all") {
