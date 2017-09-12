@@ -341,10 +341,21 @@ $('.tryout_select').change(function () {
   }
 
   function load_grafik(data) {
+    nilai =data.jmlh_benar/ data.jumlah_soal * 100;
    var chart = new CanvasJS.Chart("chartContainer", {
      title: {
       text: "Nama Paket : "+data.nm_paket
     },
+    subtitles:[
+    {
+      text: "Nilai : "+nilai.toFixed(2),
+      //Uncomment properties below to see how they behave
+      //fontColor: "red",
+      fontSize: 30
+    }
+    ]
+,
+
     animationEnabled: true,
     theme: "theme1",
     data: [
@@ -358,7 +369,6 @@ $('.tryout_select').change(function () {
       indexLabelLineColor: "darkgrey",
       toolTipContent: "Jumlah : {y} ",
       dataPoints: [
-      { y : data.total_nilai, indexLabel:"Poin {y}"},
       { y: data.jmlh_salah, indexLabel: "Salah {y}" },
       { y: data.jmlh_kosong, indexLabel: "Kosong {y}" },
       { y: data.jmlh_benar, indexLabel: "Benar {y}" },

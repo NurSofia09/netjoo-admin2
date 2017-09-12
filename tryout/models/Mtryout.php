@@ -51,7 +51,7 @@ class Mtryout extends MX_Controller {
         $id_siswa = $datas['id_siswa'];
 
         $query = "
-        SELECT *,p.id_paket,`nm_paket`,mmt.`id`,rp.`id_report` FROM `tb_hakakses-to` ha
+        SELECT *,p.id_paket,`nm_paket`,mmt.`id`,rp.`id_report`,p.jenis_penilaian as jp FROM `tb_hakakses-to` ha
         JOIN tb_siswa s ON s.`id` = ha.`id_siswa`
         JOIN tb_tryout t ON t.`id_tryout` = ha.`id_tryout`
         JOIN `tb_mm-tryoutpaket` mmt ON mmt.`id_tryout` = t.`id_tryout`

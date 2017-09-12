@@ -340,7 +340,13 @@
   }
 
   function load_grafik(data) {
-  nilai =data.jmlh_benar/ data.jumlah_soal * 100;
+    if (data.jenis_penilaian == 'SMBPTN') {
+      nilai =(data.jmlh_benar * 4) + (data.jmlh_salah *(-1)) + (data.jmlh_kosong * 0);
+    }
+  else {
+      nilai =data.jmlh_benar/ data.jumlah_soal * 100;
+    }
+  // nilai =data.jmlh_benar/ data.jumlah_soal * 100;
 
    var chart = new CanvasJS.Chart("chartContainer", {
 
