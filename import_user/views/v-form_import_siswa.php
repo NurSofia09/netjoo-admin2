@@ -56,7 +56,7 @@
 								<thead>
 									<tr>
 										<th>No</th>
-										<th>No Induk neutron</th>
+										<th>NISN</th>
 										<th>Nama Depan</th>
 										<th>Nama Belakang</th>
 										<th>Alamat</th>
@@ -74,7 +74,7 @@
 							<tfoot>
 								<tr>
 										<th>No</th>
-										<th>No Induk neutron</th>
+										<th>NISN</th>
 										<th>Nama Depan</th>
 										<th>Nama Belakang</th>
 										<th>Alamat</th>
@@ -204,7 +204,7 @@ function upload_data_xlsx(){
 			} else {
 				show_tb_preview();
 				 $.each(datImport, function (key, val) {
-        records_tb [i] = [no,val.noIndukNeutron,val.namaDepan,val.namaBelakang,val.alamat,val.tgl_lahir,val.eMail,val.noKontak,val.namaSekolah,val.alamatSekolah,val.noKontakSekolah];
+        records_tb [i] = [no,val.nisn,val.namaDepan,val.namaBelakang,val.alamat,val.tgl_lahir,val.eMail,val.noKontak,val.namaSekolah,val.alamatSekolah,val.noKontakSekolah];
         no++;
          i++;
     		});

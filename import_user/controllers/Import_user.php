@@ -84,9 +84,9 @@
  			$tgl_lahir=date("Y-m-d",$parse_tgl);
  			//data pengguna
  			$uuid=uniqid();
- 			$kataSandi=$key["noIndukNeutron"].$tgl;
+ 			$kataSandi=$key["nisn"].$tgl;
  			$dat_pengguna[]=array(
- 				'namaPengguna'=> $key["noIndukNeutron"],
+ 				'namaPengguna'=> $key["nisn"],
  				'kataSandi'=>md5($kataSandi),
  				'eMail'=> $key["eMail"],
  				'hakAkses'=>'guru',
@@ -100,7 +100,7 @@
  				'namaSekolah'=>$key['namaSekolah'],
  				'alamatSekolah'=>$key['alamatSekolah'],
  				'noKontakSekolah'=>$key['noKontakSekolah'],
-				'noIndukNeutron'=>$key['noIndukNeutron'],
+				'nisn'=>$key['nisn'],
 				'cabangID' => $cabangID,
 				'tingkatID' => $key["tingkatID"],
  				);
@@ -119,7 +119,7 @@
 
  		// simpan data Siswa
  		$this->Import_user_model->myinsert_batch($dat_siswa,"tb_siswa");
- 		echo json_encode("berhasil masuk ke controller");
+ 		echo json_encode("Data siswa berhasil disimpan");
  	}
 
  	public function set_pengguna_batch()
