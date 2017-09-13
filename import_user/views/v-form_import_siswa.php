@@ -110,12 +110,9 @@ $(document).ready(function(){
 	$("#btn-import").click(function(){
 			if (cabangID != '' && cabangID != ' ') {
 			post_import_user();
-				swal("bbb","Siss", "success");
 			}else{
 				swal("Oops","Silahkan Pilih Cabang", "error");
 			}
-		
-		
 	});
 
 	$("select[name=cabangID]").change(function(){
