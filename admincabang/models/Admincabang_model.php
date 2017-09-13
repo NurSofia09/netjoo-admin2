@@ -19,7 +19,7 @@ class Admincabang_model extends CI_model {
 
 	//get report all
 	function get_report_paket($data,$records_per_page='',$page=''){
-		$this->db->order_by('tglpengerjaan','desc');
+		$this->db->order_by('tgl_pengerjaan','desc');
 	
 		if ($data['sekolah']!="all") {
 			$this->db->where('id_sekolah', $data['sekolah']);
