@@ -30,10 +30,10 @@
 <div class="page-title" style="background:#2b3036">
   <div class="grid-row">
     <?php if ($this->session->userdata('HAKAKSES')=='ortu'): ?>
-    <h1>Halo <?=$this->session->userdata['USERNAME']?> , orang tua dari <?=$siswa?>  </h1>
+      <h1>Halo <?=$this->session->userdata['USERNAME']?> , orang tua dari <?=$siswa?>  </h1>
     <?php else: ?>
       <h1>Halo, <?=$this->session->userdata['USERNAME']?> !  </h1>
-  <?php endif ?>
+    <?php endif ?>
 
 
   </div>
@@ -46,47 +46,47 @@
 <!-- video random -->
 <section class="section bgcolor-white"> 
   <div class="container">
-<!-- video random -->
+    <!-- video random -->
 
-<div class="col-md-12">
+    <div class="col-md-12">
 
       <!-- gallery navigation -->
       <h4>Paket Soal yang Sudah Dikerjakan</h4>
       <!-- gallery container -->
       <div class="col-md-12">
         <?php //if($paket_dikerjakan==array()): ?>
-          <!-- <h5>Tidak ada paket soal.</h5> -->
+        <!-- <h5>Tidak ada paket soal.</h5> -->
         <?php //else: ?>
-          <table class="table" style="font-size: 13px">
-            <thead>
-             <tr>
-              <th>ID Paket</th>
-              <th width="30%">Aksi</th>
-              <th>Nama Paket Soal</th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php foreach ($paket_dikerjakan as $paketitem): ?>
-              <tr>
-                <td><?=$paketitem['id'] ?></td>
-                <td>
+        <table class="table" style="font-size: 13px">
+          <thead>
+           <tr>
+            <th>ID Paket</th>
+            <th width="30%">Aksi</th>
+            <th>Nama Paket Soal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php foreach ($paket_dikerjakan as $paketitem): ?>
+            <tr>
+              <td><?=$paketitem['id'] ?></td>
+              <td>
 
-                 <a onclick="detail_paket(<?=$paketitem['id_paket']?>)" 
-                  class="btn btn-primary modal-on<?=$paketitem['id_paket']?>"
-                  data-todo='<?=json_encode($paketitem)?>' title="Lihat Score"><i class="glyphicon glyphicon-list-alt"></i></a>
+               <a onclick="detail_paket(<?=$paketitem['id_paket']?>)" 
+                class="btn btn-primary modal-on<?=$paketitem['id_paket']?>"
+                data-todo='<?=json_encode($paketitem)?>' title="Lihat Score"><i class="glyphicon glyphicon-list-alt"></i></a>
 
-                  <?php //if ($status_to=="done"): ?>
-                    <a onclick="pembahasanto(<?=$paketitem['id_paket']?>)" 
-                      class="btn btn-primary"
-                      data-todo='<?=json_encode($paketitem)?>' title="Pembahasan"><i class="glyphicon glyphicon-book"></i></a>
-                    <?php //endif ?>
-                  </td>
+                <?php //if ($status_to=="done"): ?>
+                <a onclick="pembahasanto(<?=$paketitem['id_paket']?>)" 
+                  class="btn btn-primary"
+                  data-todo='<?=json_encode($paketitem)?>' title="Pembahasan"><i class="glyphicon glyphicon-book"></i></a>
+                  <?php //endif ?>
+                </td>
                 <td><?=$paketitem['nm_paket'] ?></td>
                 
-                </tr>
-              <?php endforeach ?>
-            </tbody>
-          </table>
+              </tr>
+            <?php endforeach ?>
+          </tbody>
+        </table>
         <?php// endif ?>
 
       </div>
@@ -101,53 +101,53 @@
 <!-- video random -->
 <section class="section bgcolor-white"> 
   <div class="container">
-<!-- video random -->
+    <!-- video random -->
 
-<div class="col-md-12">
+    <div class="col-md-12">
 
       <!-- gallery navigation -->
       <h4>Nilai Pembahasan </h4>
       <!-- gallery container -->
       <div class="col-md-12">
         <?php //if($paket_dikerjakan==array()): ?>
-          <!-- <h5>Tidak ada paket soal.</h5> -->
+        <!-- <h5>Tidak ada paket soal.</h5> -->
         <?php //else: ?>
-          <table class="table" style="font-size: 13px">
-            <thead>
-             <tr>
-              <th>No</th>
-              <th>Nama Paket </th>
-              <th>Nama Tryout</th>
-              <th>Nilai Tertinggi</th>
-              <th>Nilai Terendah</th>
-              <th>Rata-rata</th>
-            </tr>
-          </thead>
-          <tbody>
+        <table class="table" style="font-size: 13px">
+          <thead>
+           <tr>
+            <th>No</th>
+            <th>Nama Paket </th>
+            <th>Nama Tryout</th>
+            <th>Nilai Tertinggi</th>
+            <th>Nilai Terendah</th>
+            <th>Rata-rata</th>
+          </tr>
+        </thead>
+        <tbody>
           <?php $no= 1; ?>
-            <?php foreach ($pembahasan_maxmin as $row): ?>
-              <?php $rata = floatval($row['rata']) ?>
-              <tr>
-                <td><?=$no++ ?></td>
-                <td><?=$row['nama_paket'] ?></td>
-                <td><?=$row['nama_try'] ?></td>
-                <td><?=$row['nilai_tertinggi'] ?></td>
-                <td><?=$row['nilai_terendah'] ?></td>
-                <td><?=$rata?></td>
-                
-                </tr>
-              <?php endforeach ?>
-            </tbody>
-          </table>
-        <?php// endif ?>
-
-      </div>
+          <?php foreach ($pembahasan_maxmin as $row): ?>
+            <?php $rata = floatval($row['rata']) ?>
+            <tr>
+              <td><?=$no++ ?></td>
+              <td><?=$row['nama_paket'] ?></td>
+              <td><?=$row['nama_try'] ?></td>
+              <td><?=$row['nilai_tertinggi'] ?></td>
+              <td><?=$row['nilai_terendah'] ?></td>
+              <td><?=$rata?></td>
+              
+            </tr>
+          <?php endforeach ?>
+        </tbody>
+      </table>
+      <?php// endif ?>
 
     </div>
 
   </div>
 
-  <!-- / gallery container -->
+</div>
+
+<!-- / gallery container -->
 </section>
 
 
@@ -280,7 +280,7 @@ $('.tryout_select').change(function () {
     var kelas = ".modal-on"+id_to;
     var data_to = $(kelas).data('todo');
     url = base_url+"index.php/tryout/buatto";
-    console.log(data_to);
+    console.log(data_to.jenis_penilaian);
 
     var datas = {
       id_paket:data_to.id_paket,
@@ -334,15 +334,20 @@ $('.tryout_select').change(function () {
   function detail_paket(id_to){
     var kelas = ".modal-on"+id_to;
     var data_to = $(kelas).data('todo');
-    console.log(data_to);
     $('.modal-title').text('Grafik Paket Soal Tryout');
     $('#myModal').modal('show');
     load_grafik(data_to);
   }
 
   function load_grafik(data) {
-    nilai =data.jmlh_benar/ data.jumlah_soal * 100;
-   var chart = new CanvasJS.Chart("chartContainer", {
+    if (data.jenis_penilaian == 'SBMPTN') {
+      nilai =(data.jmlh_benar * 4) + (data.jmlh_salah *(-1)) + (data.jmlh_kosong * 0);
+    }
+    else {
+      nilai =data.jmlh_benar/ data.jumlah_soal * 100;
+    }
+    console.log(data.jenis_penilaian);
+    var chart = new CanvasJS.Chart("chartContainer", {
      title: {
       text: "Nama Paket : "+data.nm_paket
     },
@@ -354,7 +359,7 @@ $('.tryout_select').change(function () {
       fontSize: 30
     }
     ]
-,
+    ,
 
     animationEnabled: true,
     theme: "theme1",
@@ -376,39 +381,39 @@ $('.tryout_select').change(function () {
     }
     ]
   });
-   chart.render();
- }
+    chart.render();
+  }
 
 
 
- function lihat_grafik(id){
-  var kelas = ".modal-on"+id;
-  var data = $(kelas).data('todo');
-  $('.modal-title').text('Grafik Latihan ');
-  $('#myModal').modal('show');
-  load_grafik(data);
-}
+  function lihat_grafik(id){
+    var kelas = ".modal-on"+id;
+    var data = $(kelas).data('todo');
+    $('.modal-title').text('Grafik Latihan ');
+    $('#myModal').modal('show');
+    load_grafik(data);
+  }
 
 
 
-function show_report(){
-  $('#myModal2').modal('show');
-  $('#myModal2 modal-title').text('Report Latihan');
-}
+  function show_report(){
+    $('#myModal2').modal('show');
+    $('#myModal2 modal-title').text('Report Latihan');
+  }
 
 
 
-$(document).ready(function() {
-  $(".table").dataTable();
-  $("#owl2").owlCarousel();
-});
+  $(document).ready(function() {
+    $(".table").dataTable();
+    $("#owl2").owlCarousel();
+  });
 
-function forbiden(){
-  swal('Maaf, to belum bisa di kerjakan!');
-}
+  function forbiden(){
+    swal('Maaf, to belum bisa di kerjakan!');
+  }
 
-function habis(){
-  swal('Waktu pengerjaan to sudah habis!, anda tidak dapat mengerjakan to.');
-}
+  function habis(){
+    swal('Waktu pengerjaan to sudah habis!, anda tidak dapat mengerjakan to.');
+  }
 </script>
 <script src="<?= base_url('assets/back/plugins/canvasjs.min.js') ?>"></script>

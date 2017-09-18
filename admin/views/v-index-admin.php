@@ -424,105 +424,95 @@ JS aoutocomplate
           <span class="text">Dashboard</span>
         </a>
       </li>
-
-      
       <li>
-        <a href="javascript:void(0);" data-target="#mapel" data-toggle="submenu" data-parent=".topmenu">
-          <span class="figure"><i class="ico-notebook"></i></span>
-          <span class="text">Atribut</span>
-          <span class="arrow"></span>
-        </a>
-
-        <ul id="mapel" class="submenu collapse ">
-          <li class="submenu-header ellipsis">Atribut</li>
-          <li >
-            <a href="<?=base_url('index.php/admin/daftarmatapelajaran')?>">
-              <span class="text">Mata Pelajaran</span>
-            </a>
-          </li>
-          <li >
-            <a href="<?=base_url('index.php/admin/daftartingkatpelajaran')?>">
-              <span class="text">Tingkat</span>
-            </a>
-          </li>
-        </ul>
-      </li>
-
-
-
-
-
-      <li>
-        <a href="javascript:void(0);" data-target="#banksoal" data-toggle="submenu" data-parent=".topmenu">
-          <span class="figure"><i class="ico-clipboard2"></i></span>
-          <span class="text">Bank Soal</span>
-          <span class="arrow"></span>
-        </a>
-
-        <ul id="banksoal" class="submenu collapse ">
-          <li class="submenu-header ellipsis">Bank Soal</li>
-
-          <li >
-            <a href="javascript:void(0);" onclick="add_soal()">
-              <span class="text">Tambahkan Bank Soal</span> 
-            </a>
-          </li>
-          <li >
-            <a href="javascript:void(0);" data-target="#subbanksoal" data-toggle="submenu"  >
-              <span class="text">Daftar Bank Soal</span>
-              <span class="arrow"></span>
-            </a>
-            <ul id="subbanksoal" class="submenu collapse ">
-              <li class="submenu-header ellipsis">Sub Bank Soal</li>
-              <li><a href="<?=base_url('index.php/banksoal/mysoal')?>"><span class="text">Daftar Soal Saya</span>
-              </a></li>
-              <li><a href="<?=base_url('index.php/banksoal/listsoal')?>"><span class="text">Daftar Semua Soal</span>
-              </a></li>
-              <li><a href="<?=base_url('index.php/banksoal/allsoal')?>"><span class="text">Daftar Tabel Soal</span>
-              </a></li>
-              <li><a href="javascript:void(0);" onclick="add_soal()"><span class="text">Filter Bank Soal</span>
-              </a></li>
-
-
-            </ul>
-          </li>
-
-
-
-        </ul>
-      </li>
-
-
-      <li>
-       <a href="javascript:void(0);" data-target="#tryout" data-toggle="submenu" data-parent=".topmenu">
+       <a href="javascript:void(0);" data-target="#mpengawas" data-toggle="submenu" data-parent=".topmenu">
         <span class="figure"><i class="ico-clipboard"></i></span>
-        <span class="text">Try Outs</span>
+        <span class="text">Admin Sekolah </span>
         <span class="arrow"></span>
       </a>
 
-      <ul id="tryout" class="submenu collapse ">
-        <li class="submenu-header ellipsis">Try Out</li>
+      <ul id="mpengawas" class="submenu collapse ">
+        <li class="submenu-header ellipsis">Admin Sekolah</li>
 
         <li >
-         <a href="<?= base_url('index.php/paketsoal/tambahpaketsoal');?>">
-          <span class="text">Paket Soal</span>
+         <a href="<?= base_url('index.php/adminsekolah/formAdminsekolah');?>">
+          <span class="text">Register Admin Sekolah</span>
         </a>
       </li>
 
       <li >
-       <a href="<?= base_url('index.php/toback/listTo');?>">
-        <span class="text">Daftar Try Out</span>
+       <a href="<?= base_url('index.php/adminsekolah/listAdminsekolah');?>" >
+        <span class="text">Daftar Admin Sekolah</span>
+      </a>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <a href="javascript:void(0);" data-target="#mapel" data-toggle="submenu" data-parent=".topmenu">
+    <span class="figure"><i class="ico-notebook"></i></span>
+    <span class="text">Atribut</span>
+    <span class="arrow"></span>
+  </a>
+
+  <ul id="mapel" class="submenu collapse ">
+    <li class="submenu-header ellipsis">Atribut</li>
+    <li >
+      <a href="<?=base_url('index.php/admin/daftarmatapelajaran')?>">
+        <span class="text">Mata Pelajaran</span>
       </a>
     </li>
     <li >
-     <a href="<?= base_url('admincabang/laporanpaket');?>">
-      <span class="text">Laporan Tryout</span>
-    </a>
-  </li>
-
-</ul>
+      <a href="<?=base_url('index.php/admin/daftartingkatpelajaran')?>">
+        <span class="text">Tingkat</span>
+      </a>
+    </li>
+  </ul>
 </li>
 
+
+
+
+
+<li>
+  <a href="javascript:void(0);" data-target="#banksoal" data-toggle="submenu" data-parent=".topmenu">
+    <span class="figure"><i class="ico-clipboard2"></i></span>
+    <span class="text">Bank Soal</span>
+    <span class="arrow"></span>
+  </a>
+
+  <ul id="banksoal" class="submenu collapse ">
+    <li class="submenu-header ellipsis">Bank Soal</li>
+
+    <li >
+      <a href="javascript:void(0);" onclick="add_soal()">
+        <span class="text">Tambahkan Bank Soal</span> 
+      </a>
+    </li>
+    <li >
+      <a href="javascript:void(0);" data-target="#subbanksoal" data-toggle="submenu"  >
+        <span class="text">Daftar Bank Soal</span>
+        <span class="arrow"></span>
+      </a>
+      <ul id="subbanksoal" class="submenu collapse ">
+        <li class="submenu-header ellipsis">Sub Bank Soal</li>
+        <li><a href="<?=base_url('index.php/banksoal/mysoal')?>"><span class="text">Daftar Soal Saya</span>
+        </a></li>
+        <li><a href="<?=base_url('index.php/banksoal/listsoal')?>"><span class="text">Daftar Semua Soal</span>
+        </a></li>
+        <li><a href="<?=base_url('index.php/banksoal/allsoal')?>"><span class="text">Daftar Tabel Soal</span>
+        </a></li>
+        <li><a href="javascript:void(0);" onclick="add_soal()"><span class="text">Filter Bank Soal</span>
+        </a></li>
+
+
+      </ul>
+    </li>
+
+
+
+  </ul>
+</li>
 <li>
   <a href="<?= base_url('index.php/admin/nilai_tryout');?>" data-toggle="submenu" data-parent=".topmenu">
     <span class="figure"><i class="ico-notebook"></i></span>
@@ -533,29 +523,10 @@ JS aoutocomplate
 
 </li>
 
-<li>
- <a href="javascript:void(0);" data-target="#mpengawas" data-toggle="submenu" data-parent=".topmenu">
-  <span class="figure"><i class="ico-clipboard"></i></span>
-  <span class="text">Admin Sekolah </span>
-  <span class="arrow"></span>
-</a>
 
-<ul id="mpengawas" class="submenu collapse ">
-  <li class="submenu-header ellipsis">Admin Sekolah</li>
 
-  <li >
-   <a href="<?= base_url('index.php/adminsekolah/formAdminsekolah');?>">
-    <span class="text">Register Admin Sekolah</span>
-  </a>
-</li>
 
-<li >
- <a href="<?= base_url('index.php/adminsekolah/listAdminsekolah');?>" >
-  <span class="text">Daftar Admin Sekolah</span>
-</a>
-</li>
-</ul>
-</li>
+
 
 <li>
  <a href="javascript:void(0);" data-target="#sekolah_menu" data-toggle="submenu" data-parent=".topmenu">
@@ -602,6 +573,36 @@ JS aoutocomplate
   <span class="text">Daftar Siswa</span>
 </a>
 </li>
+</ul>
+</li>
+
+<li>
+ <a href="javascript:void(0);" data-target="#tryout" data-toggle="submenu" data-parent=".topmenu">
+  <span class="figure"><i class="ico-clipboard"></i></span>
+  <span class="text">Try Outs</span>
+  <span class="arrow"></span>
+</a>
+
+<ul id="tryout" class="submenu collapse ">
+  <li class="submenu-header ellipsis">Try Out</li>
+
+  <li >
+   <a href="<?= base_url('index.php/paketsoal/tambahpaketsoal');?>">
+    <span class="text">Paket Soal</span>
+  </a>
+</li>
+
+<li >
+ <a href="<?= base_url('index.php/toback/listTo');?>">
+  <span class="text">Daftar Try Out</span>
+</a>
+</li>
+<li >
+ <a href="<?= base_url('admincabang/laporanpaket');?>">
+  <span class="text">Laporan Tryout</span>
+</a>
+</li>
+
 </ul>
 </li>
 

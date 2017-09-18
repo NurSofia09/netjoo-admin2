@@ -111,7 +111,10 @@ class Admincabang extends MX_Controller {
 		$data = array();
 		$tb_paket=null;
 		$no=$page+1;
-		foreach ( $all_report as $item ) {
+
+		// all report kalo ada.
+		if (!empty($all_report)) {
+			foreach ( $all_report as $item ) {
 			$sumBenar=$item ['jmlh_benar'];
 			$sumSalah=$item ['jmlh_salah'];
 			$sumKosong=$item ['jmlh_kosong'];
@@ -139,9 +142,14 @@ class Admincabang extends MX_Controller {
 						</tr>';
 
 						$no++;
-		}
+			}
+		}else{
+			$tb_paket =	'<tr><td colspan="11"><span class="text-center text-info"><center><h3>Tidak ada report</h3></center></span></td>
+						</tr>';
 
-	
+		}
+		
+
 		echo json_encode( $tb_paket );
 	}
 	public function pagination_daftar_paket($sekolah="all",$tryout="all",$paket="all",$records_per_page=100,$page=0,$keySearch='')
@@ -605,6 +613,16 @@ class Admincabang extends MX_Controller {
 		$array[] = ['label'=>"Paket Soal Gagal Dikerjakan ".$datas['jumlah_paket_gagal'],  "y"=>(int)$datas['jumlah_paket_gagal']];
 
 		echo json_encode($array);
+	}
+
+
+	function get_to_by_id_sekolah($id_sekolah){
+		$data['to'] = $this->admincabang_model->get_to_bysekolah($id_sekolah);
+		$option_to = "";
+		foreach ($data['to'] as $to_item) {
+			$option_to .=" <option value=".$to_item['id_tryout'].">".$to_item['nm_tryout']."</option>";
+		}
+		echo $option_to;
 	}
 }
 ?>

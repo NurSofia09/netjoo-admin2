@@ -141,7 +141,6 @@ function prevPage() {
         {
           tb_paket = JSON.parse(Data);
           $('#record_daftar_paket').append(tb_paket);
-          // console.log(Data);
         },
         error:function(){
         },
@@ -153,7 +152,6 @@ function prevPage() {
     function set_pagination_tb_paket() {
       url=base_url+"admincabang/pagination_daftar_paket";
       dataPaket={records_per_page:records_per_page,page:pageSelek,sekolah:sekolah,tryout:tryout,paket:paket,keySearch:keySearch};
-      console.log(dataPaket);
       $.ajax({
         url:url,
         data:dataPaket,
@@ -170,6 +168,26 @@ function prevPage() {
         },
       });
     }
+
+    function get_to_by_id_sekolah(id_sekolah){
+      url = base_url+"admincabang/get_to_by_id_sekolah/"+id_sekolah;
+
+      $.ajax({
+      dataType: "text",
+      url: url,
+      success: function(data){
+        if (data=="") {
+          // $('#select_to').prop('disabled', false);
+          $('#select_to').html("<option value='all'>Tidak Ada Tryout</option>");
+
+        }else{
+          $('#select_to').html("<option value='all'>Semua Tryout</option>");
+          $('#select_to').append(data);
+        }
+      }
+    });
+
+    }
     
 
       // even untuk jumlah record per halaman
@@ -184,10 +202,11 @@ function prevPage() {
       sekolah = $('#select_sekolah').val();
       tryout = $('#select_to').val();
       paket = $('#select_paket').val();
-
+      // select to yang ada di sekolah itu.
+      get_to_by_id_sekolah(sekolah);
+      //get to yang ada di sekolah itu.
       selectPagePaket();
       set_pagination_tb_paket();
-
     });
 
     // TO KETIKA DI CHANGE
@@ -332,7 +351,6 @@ function pdf() {
   sekolah = $('#select_sekolah').val();
   tryout = $('#select_to').val();
   paket = $('#select_paket').val();
-  console.log("ini gemes");
   if (sekolah != "all" && tryout != "all" && paket != "all") {
     url = base_url+"admincabang/laporanPDF/"+sekolah+"/"+tryout+"/"+paket;
     window.open(url, '_blank');

@@ -219,11 +219,13 @@ class Tryout extends MX_Controller {
     public function mulaipembahasan() {
             //perubahan
         if (!empty($this->session->userdata['id_mm-tryoutpaketpembahasan'])) {
+            // id mm tryout
             $id = $this->session->userdata['id_mm-tryoutpaketpembahasan'];
+            // parameter id_mm, id_pengguna
             $data = ['id_mm'=>$id, 'id_pengguna'=>$this->session->userdata('id')];
             
-            
             $data['rekap_jawaban'] = json_decode($this->Mtryout->get_report_paket_by_mmid($data)->rekap_hasil_koreksi);
+            // get paket to
             $data['topaket'] = $this->Mtryout->datatopaket($id);
             $jumlah_soal = count($data['rekap_jawaban']);
 
