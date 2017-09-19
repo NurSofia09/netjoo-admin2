@@ -77,11 +77,9 @@
                 class="btn btn-primary modal-on<?=$paketitem['id_paket']?>"
                 data-todo='<?=json_encode($paketitem)?>' title="Lihat Score"><i class="glyphicon glyphicon-list-alt"></i></a>
 
-                <?php //if ($status_to=="done"): ?>
                 <a onclick="pembahasanto(<?=$paketitem['id_paket']?>)" 
                   class="btn btn-primary"
                   data-todo='<?=json_encode($paketitem)?>' title="Pembahasan"><i class="glyphicon glyphicon-book"></i></a>
-                  <?php //endif ?>
                 </td>
                 
               </tr>

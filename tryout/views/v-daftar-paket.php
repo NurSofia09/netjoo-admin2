@@ -325,14 +325,23 @@
 
     $('.modal-title').text('Grafik Paket Soal Tryout');
     $('#myModal').modal('show');
+<<<<<<< HEAD
+=======
+    console.log(data_to);
+    console.log(1);
+>>>>>>> b8e2a65acaf9bafb3c2ec458d6b5ba2373a408b5
     load_grafik(data_to);
   }
 
   function load_grafik(data) {
   // nilai =data.jmlh_benar/ data.jumlah_soal * 100;
   if (data.jenis_penilaian == 'SBMPTN') {
+<<<<<<< HEAD
       nilai =((data.jmlh_benar * 4) + (data.jmlh_salah *(-1)) / ( data.jumlah_soal*4) * 100;
 
+=======
+    nilai =(data.jmlh_benar * 4) + (data.jmlh_salah *(-1)) + (data.jmlh_kosong * 0);
+>>>>>>> b8e2a65acaf9bafb3c2ec458d6b5ba2373a408b5
   }
   else {
     nilai =data.jmlh_benar/ data.jumlah_soal * 100;
