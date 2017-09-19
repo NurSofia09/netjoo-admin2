@@ -54,9 +54,6 @@
       <h4>Paket Soal yang Sudah Dikerjakan</h4>
       <!-- gallery container -->
       <div class="col-md-12">
-        <?php //if($paket_dikerjakan==array()): ?>
-        <!-- <h5>Tidak ada paket soal.</h5> -->
-        <?php //else: ?>
         <table class="table" style="font-size: 13px">
           <thead>
            <tr>
@@ -86,7 +83,6 @@
             <?php endforeach ?>
           </tbody>
         </table>
-        <?php// endif ?>
 
       </div>
 
@@ -108,9 +104,6 @@
       <h4>Nilai Pembahasan </h4>
       <!-- gallery container -->
       <div class="col-md-12">
-        <?php //if($paket_dikerjakan==array()): ?>
-        <!-- <h5>Tidak ada paket soal.</h5> -->
-        <?php //else: ?>
         <table class="table" style="font-size: 13px">
           <thead>
            <tr>
@@ -138,7 +131,6 @@
           <?php endforeach ?>
         </tbody>
       </table>
-      <?php// endif ?>
 
     </div>
 
