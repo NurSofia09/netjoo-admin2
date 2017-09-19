@@ -236,7 +236,7 @@ class Mtryout extends MX_Controller {
     }
 
      public function datatopaket($id) {
-        $this->db->select('try.nm_tryout as namato, p.nm_paket as namapa');
+        $this->db->select('try.nm_tryout as namato, p.nm_paket as namapa, jenis_penilaian');
         $this->db->from('tb_mm-tryoutpaket as tp');
         $this->db->join('tb_tryout as try','tp.id_tryout = try.id_tryout');
         $this->db->join('tb_paket as p','tp.id_paket = p.id_paket');
