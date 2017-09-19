@@ -249,10 +249,10 @@ class Admincabang extends MX_Controller {
 		->set_output( json_encode( $this->admincabang_model->get_paket( $to_id ) ) );
 	}
 
-	public function laporanPDF($cabang="all",$tryout="all",$paket="all")
+	public function laporanPDF($sekolah="all",$tryout="all",$paket="all")
 	{
 		$this->load->library('Pdf');
-		$datas = ['cabang'=>$cabang,'tryout'=>$tryout,'paket'=>$paket];
+		$datas = ['sekolah'=>$sekolah,'tryout'=>$tryout,'paket'=>$paket];
 		$all_report = $this->admincabang_model->get_report_paket_pdf($datas);		
 		$data['all_report'] = array();
 		$no=0;
@@ -269,11 +269,16 @@ class Admincabang extends MX_Controller {
 						// cek jika pembagi 0
 			if ($jumlahSoal != 0) {
 				//hitung nilai
-				$nilai=$sumBenar/$jumlahSoal*100;
+				// cek jenis penilaian
+	            if ($item ['jenis_penilaian']=='SBMPTN') {
+	                $nilai= (($sumBenar * 4) + ($sumSalah * (-1)) + ($sumKosong * 0)) * 100 / ($jumlahSoal * 4);
+	            } else {
+	                $nilai=$sumBenar/$jumlahSoal*100;
+	            }
 			}
 			
 			$paket=$item ['nm_paket'];
-			$cabang=$item ['namaCabang'];
+			$sekolah=$item ['namaSekolah'];
 			$data['all_report'][]=array(
 				'no'=>$no,
 				'jumlah_soal'=>$jumlahSoal,
@@ -308,7 +313,7 @@ class Admincabang extends MX_Controller {
 		$data['minNilai']=number_format($minNilai,2);
 		$data['paket'] = $paket;
 		$data['cabang'] =$cabang;
-		if ($cabang !="all" && $tryout !="all" && $paket !="all") {
+		if ($sekolah !="all" && $tryout !="all" && $paket !="all") {
 			$this->parser->parse('v-laporanPDF-to.php',$data);
 		}else{
 			redirect(site_url('admincabang/laporanpaket'));

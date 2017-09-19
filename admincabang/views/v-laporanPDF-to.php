@@ -100,7 +100,7 @@ $pdf->SetKeywords('TCPDF, PDF, a, test, guide');
 
 // set default header data
 $img=base_url().'/assets/back/img/logo.png';
-$pdf->SetHeaderData('logo.png', '10%', PDF_HEADER_TITLE." Cabang ".$cabang,PDF_HEADER_STRING);
+$pdf->SetHeaderData('logo.png', '10%', PDF_HEADER_TITLE." Sekolah ".$sekolah,PDF_HEADER_STRING);
 
 // set header and footer fonts
 $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
