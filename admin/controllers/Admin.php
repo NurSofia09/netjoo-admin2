@@ -65,12 +65,18 @@ class Admin extends MX_Controller {
         $nilai=0;
             // cek jika pembagi 0
         if ($jumlahSoal != 0) {
-                //hitung nilai
-            $nilai=$sumBenar/$jumlahSoal*100;
+            //hitung nilai
+            // cek jenis penilaian
+            if ($list_item ['jenis_penilaian']=='SBMPTN') {
+                $nilai= (($sumBenar * 4) + ($sumSalah * (-1)) + ($sumKosong * 0)) * 100 / ($jumlahSoal * 4);
+            } else {
+                $nilai=$sumBenar/$jumlahSoal*100;
+            }
         }
         $row[] = $no;
         $row[] = $list_item['namaDepan'];
         $row[] = $list_item['nm_paket'];
+        $row[] = $list_item['jenis_penilaian'];
         //kondisi jika orang tua yang login maka akan ditampikan nama tryout
         $row[] = $list_item['nm_tryout'];
         $row[] = $list_item['jumlah_soal'];

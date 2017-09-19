@@ -14,15 +14,16 @@
                             <thead>
                                 <tr>
                                     <th>no</th>
-            <th>Nama Siswa</th>
-            <th>Nama Paket</th>
-            <th>Nama Tryout</th>
-            <th>Jumlah Soal</th>
-            <th>Benar</th>
-            <th>Salah</th>
-            <th>Kosong</th>
-            <th>Nilai</th>
-            <th>Aksi</th>
+                                    <th>Nama Siswa</th>
+                                    <th>Nama Paket</th>
+                                    <th>Jenis</th>
+                                    <th>Nama Tryout</th>
+                                    <th>Jumlah Soal</th>
+                                    <th>Benar</th>
+                                    <th>Salah</th>
+                                    <th>Kosong</th>
+                                    <th>Nilai</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>

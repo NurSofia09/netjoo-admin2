@@ -125,12 +125,18 @@ class Admincabang extends MX_Controller {
 			// cek jika pembagi 0
 			if ($jumlahSoal != 0) {
 				//hitung nilai
-				$nilai=$sumBenar/$jumlahSoal*100;
+				// cek jenis penilaian
+	            if ($item ['jenis_penilaian']=='SBMPTN') {
+	                $nilai= (($sumBenar * 4) + ($sumSalah * (-1)) + ($sumKosong * 0)) * 100 / ($jumlahSoal * 4);
+	            } else {
+	                $nilai=$sumBenar/$jumlahSoal*100;
+	            }
 			}
 			$tb_paket.=	'<tr>
 							<td>'.$no.'</td>	
 							<td>'.$item ['namaPengguna'].'</td>
 							<td>'.$item ['nm_paket'].'</td>
+							<td>'.$item ['jenis_penilaian'].'</td>
 							<td>'.$item ['namaSekolah'].'</td>
 							<td>'.$nama.'</td>
 							<td>'.$jumlahSoal.'</td>							

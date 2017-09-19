@@ -71,6 +71,7 @@
           <th>No</th>
           <th>Username</th>
           <th>Nama Paket</th>
+          <th>Jenis</th>
           <th>Cabang</th>
           <th>Nama SIswa</th>
           <th>Jumlah Soal</th>

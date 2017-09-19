@@ -72,8 +72,9 @@
           <th>No</th>
           <th>Username</th>
           <th>Nama Paket</th>
+          <th>Jenis</th>
           <th>Sekolah</th>
-          <th>Nama SIswa</th>
+          <th>Nama Siswa</th>
           <th>Jumlah Soal</th>
           <th>Benar</th>
           <th>Salah</th>
