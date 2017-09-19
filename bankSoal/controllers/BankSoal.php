@@ -2128,7 +2128,7 @@ class Banksoal extends MX_Controller {
      public function up_listening($UUID) {
         // echo "masuk listening";
         $configvoice['upload_path'] = './assets/audio/soal/';
-        $configvoice['allowed_types'] = 'mp3';
+        $configvoice['allowed_types'] = 'mp3, wav, ogg, wma, AAC';
                 $configvoice['max_size'] = 30000;
         //random name
         $configvoice['encrypt_name'] = TRUE;

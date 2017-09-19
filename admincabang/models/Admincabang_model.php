@@ -337,4 +337,19 @@ class Admincabang_model extends CI_model {
 		return $this->db->count_all_results();
 	}
 
+	public function get_to_bysekolah($id_sekolah){
+		if($id_sekolah=="all"){
+			$query = "SELECT t.id_tryout, nm_tryout FROM tb_tryout t";
+		}else{
+			$query = "SELECT DISTINCT(t.id_tryout), nm_tryout FROM tb_tryout t
+			JOIN `tb_hakakses-pengawas` th ON th.`id_tryout` = t.id_tryout
+			JOIN  `tb_sekolah_pengguna` sp ON sp.`id` = th.`id_pengawas`
+			JOIN `tb_sekolah` s ON s.`id` = sp.`sekolahID`
+			WHERE s.`id` = $id_sekolah";
+		}
+
+		$result = $this->db->query($query);
+		return $result->result_array();
+	}
+
 }

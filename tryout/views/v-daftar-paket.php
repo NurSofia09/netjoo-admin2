@@ -60,10 +60,6 @@
     <!-- top -->
 
     <div class="col-md-12">
-    <?php if ($this->session->userdata('HAKAKSES')=='ortu'): ?>
-      
-      
-    <?php else: ?>
 
       <h4>Daftar Paket TO yang Belum Dikerjakan</h4>
 
@@ -98,7 +94,6 @@
           <tbody>
             <?php   echo $status_to; ?>
             <?php foreach ($paket as $paketitem):?>
-
               <tr>
 
                 <td><?=$paketitem['id_paket'] ?></td>
@@ -138,7 +133,6 @@
       <?php endif ?>
 
     </div>
-     <?php endif ?>
 
 
 
@@ -151,6 +145,7 @@
   <div class="col-md-12">
 
     <section>
+      <!-- <input type="text" name="id" id="jp" value="<?=$jp ?>" hidden="true"> -->
 
       <!-- gallery navigation -->
 
@@ -171,36 +166,36 @@
           </thead>
           <tbody>
             <?php foreach ($paket_dikerjakan as $paketitem): ?>
-              <tr>
-                <td><?=$paketitem['id'] ?></td>
-                <td>
+              <!-- <tr> -->
+              <td><?=$paketitem['id'] ?></td>
+              <td>
 
-                 <a onclick="detail_paket(<?=$paketitem['id_paket']?>)" 
-                  class="btn btn-primary modal-on<?=$paketitem['id_paket']?>"
-                  data-todo='<?=json_encode($paketitem)?>' title="Lihat Score"><i class="glyphicon glyphicon-list-alt"></i></a>
+               <a onclick="detail_paket(<?=$paketitem['id_paket']?>)" 
+                class="btn btn-primary modal-on<?=$paketitem['id_paket']?>"
+                data-todo='<?=json_encode($paketitem)?>' title="Lihat Score"><i class="glyphicon glyphicon-list-alt"></i></a>
 
-                  <?php if ($status_to=="done"): ?>
-                    <a onclick="pembahasanto(<?=$paketitem['id_paket']?>)" 
-                      class="btn btn-primary"
-                      data-todo='<?=json_encode($paketitem)?>' title="Pembahasan"><i class="glyphicon glyphicon-book"></i></a>
+                <?php if ($status_to=="done"): ?>
+                  <a onclick="pembahasanto(<?=$paketitem['id_paket']?>)" 
+                    class="btn btn-primary"
+                    data-todo='<?=json_encode($paketitem)?>' title="Pembahasan"><i class="glyphicon glyphicon-book"></i></a>
 
-                    <?php endif ?>
-                  </td>
+                  <?php endif ?>
+                </td>
                 <td><?=$paketitem['nm_paket'] ?></td>
                 
-                </tr>
-              <?php endforeach ?>
-            </tbody>
-          </table>
-        <?php endif ?>
-
-      </div>
+              </tr>
+            <?php endforeach ?>
+          </tbody>
+        </table>
+      <?php endif ?>
 
     </div>
 
   </div>
 
-  <!-- / gallery container -->
+</div>
+
+<!-- / gallery container -->
 
 </section>
 
@@ -237,7 +232,6 @@
 <!--/ END Template Main -->
 
 <script type="text/javascript"> 
-
 
 
   function kerjakan(id_to){
@@ -326,44 +320,40 @@
   }
 
   function detail_paket(id_to){
-
     var kelas = ".modal-on"+id_to;
     var data_to = $(kelas).data('todo');
-    console.log(data_to);
 
     $('.modal-title').text('Grafik Paket Soal Tryout');
-
     $('#myModal').modal('show');
-
     load_grafik(data_to);
-
   }
 
   function load_grafik(data) {
-    if (data.jenis_penilaian == 'SMBPTN') {
-      nilai =(data.jmlh_benar * 4) + (data.jmlh_salah *(-1)) + (data.jmlh_kosong * 0);
-    }
-  else {
-      nilai =data.jmlh_benar/ data.jumlah_soal * 100;
-    }
   // nilai =data.jmlh_benar/ data.jumlah_soal * 100;
+  if (data.jenis_penilaian == 'SBMPTN') {
+      nilai =((data.jmlh_benar * 4) + (data.jmlh_salah *(-1)) / ( data.jumlah_soal*4) * 100;
 
-   var chart = new CanvasJS.Chart("chartContainer", {
+  }
+  else {
+    nilai =data.jmlh_benar/ data.jumlah_soal * 100;
+  }
 
-     title: {
-      text: data.nm_paket,
-      fontSize: 30
-      
-    },
-    subtitles:[
-    {
-      text: "Nilai : "+nilai.toFixed(2),
+  var chart = new CanvasJS.Chart("chartContainer", {
+
+   title: {
+    text: data.nm_paket,
+    fontSize: 30
+    
+  },
+  subtitles:[
+  {
+    text: "Nilai : "+nilai.toFixed(2),
       //Uncomment properties below to see how they behave
       //fontColor: "red",
       fontSize: 30
     }
     ]
-,
+    ,
     animationEnabled: true,
 
     theme: "theme1",
@@ -394,13 +384,13 @@
 
   });
 
-   chart.render();
+  chart.render();
 
- }
+}
 
 
 
- function lihat_grafik(id){
+function lihat_grafik(id){
 
   var kelas = ".modal-on"+id;
 
