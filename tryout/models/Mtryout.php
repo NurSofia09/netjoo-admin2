@@ -440,9 +440,13 @@ public function get_laporan_to(){
         $this->db->from('`tb_report-paket` rp');
         $this->db->join('`tb_sekolah_pengguna` sp ',' rp.`id_pengguna` = sp.`penggunaID`'); 
         $this->db->where('`sp`.`penggunaID`',$id);
-
         $query = $this->db->get(); 
-        return $query->result_array()[0]['sekolahID']; 
+         if($query->num_rows()>0){
+            return $query->result_array()[0]['sekolahID']; 
+         }else{
+            return false;
+         }
+        
     }
 
 
