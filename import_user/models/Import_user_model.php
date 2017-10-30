@@ -10,8 +10,8 @@
  {
  	  $this->db->insert_batch($my_table, $datArr);
  }
-
- public function myselect_batch($uuid)
+//get data batch
+ public function get_batch_penggunaID($uuid)
  {
  	$this->db->select('id as penggunaID');
  	$this->db->from("tb_pengguna");
@@ -92,7 +92,7 @@
  	return $this->db->get("tb_pengguna")->num_rows();
 
  }
-
+ // select data excel
  public function select_excel_bup()
  {
  	$this->db->select("id,nama_file,tgl_import,url_file,uuid as uuid_xlsx,keterangan");
@@ -101,24 +101,79 @@
   	$query=$this->db->get();
   	return $query->result();
  }
-
+ // hapus pengguna by import excel
  public function del_by_import_xlsx($uuid_xlsx)
  {
  	$this->db->where("keterangan",$uuid_xlsx);
  	$this->db->delete("tb_pengguna");
 
  }
-
+ 	// hitung jumlah pengguna by import excel
   public function count_row_pengguna_by_xlsx($uuid)
  {
  	$this->db->where("keterangan",$uuid);
  	return $this->db->get("tb_pengguna")->num_rows();
  }
-
+ public function count_row_ortu_by_xlsx($uuid='')
+ {
+ 	 	$this->db->where("keterangan",$uuid);
+ 	 	$this->db->where("hakAkses","ortu");
+ 	return $this->db->get("tb_pengguna")->num_rows();
+ }
+ public function count_row_token_by_xlsx($uuid_excel)
+ {
+ 	$this->db->where("p.keterangan",$uuid_excel);
+ 	$this->db->join("tb_siswa s","s.penggunaID=p.id");
+ 	$this->db->join("tb_token t","t.siswaID=s.id");
+ 	return $this->db->get("tb_pengguna p")->num_rows();
+ }
+//hapus data excel
  public function del_excel($id)
  {
  	$this->db->where("id",$id);
  	$this->db->delete("tb_bup_import_excel");
  }
 
+ public function get_siswa_by_excel($uuid_excel,$my_select)
+ {
+ 	$this->db->select($my_select);
+ 	$this->db->from("tb_pengguna p");
+ 	$this->db->join("tb_siswa s","s.penggunaID=p.id");
+ 	$this->db->where("p.keterangan",$uuid_excel);
+ 	$query=$this->db->get();
+ 	return $query->result();
+ }
+ //hapus data token
+ public function del_token_by_excel($uuid_excel)
+ {
+ 	$this->db->where( "keterangan", $uuid_excel );
+	$this->db->delete('tb_token');
+	if ($this->db->affected_rows()==0) {
+		return "false";
+	} else {
+		return "true";
+	}
+ }
+
+ // public function get_dat_Siswa($value='')
+ // {
+ // 	$this->db->select("s.id as siswaID");
+ // 	$this->db->from();
+ // 	$this->db->join();
+ // }
+// pengguna.namaPengguna
+ public function get_token_xlsx($uuid_xlsx)
+ {
+ 	$this->db->select("cabang.namaCabang,siswa.noIndukNeutron,siswa.namaDepan,siswa.tgl_lahir,tingkat.aliasTingkat,token.nomorToken");
+ 	$this->db->from("tb_pengguna pengguna");
+ 	$this->db->join("tb_siswa siswa","siswa.penggunaID=pengguna.id");
+ 	$this->db->join("tb_token token","token.siswaID=siswa.id");
+ 	$this->db->join("tb_cabang cabang","cabang.id=siswa.cabangID");
+ 	$this->db->join("tb_tingkat tingkat",'tingkat.id=siswa.tingkatID');
+ 	$this->db->order_by("cabang.namaCabang","asc");
+ 	$this->db->where("pengguna.keterangan",$uuid_xlsx);
+ 	// $this->db->limit(10);
+ 	$query=$this->db->get();
+ 	return $query->result_array();
+ }
  } ?>

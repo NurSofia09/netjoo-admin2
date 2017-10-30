@@ -1,6 +1,6 @@
 <section class="main">
-	<div class="row">
-		<div class="col-md-5">
+  <div class="row">
+    <div class="col-md-5">
       <!-- panel -->
       <div class="panel panel-danger">
         <!-- panel heading -->
@@ -136,6 +136,7 @@ function konfirmasi_rollback(format_tgl_mulai,format_tgl_akhir) {
      type:"post",
      dataType:"text",
      success:function(Data){
+      console.log(Data);
       var ob_data=JSON.parse(Data);
       if (ob_data.msg==="true") {
        swal("Success","rollback berhasil","success");
@@ -171,6 +172,7 @@ function konfirmasi_rollback(format_tgl_mulai,format_tgl_akhir) {
     $("#op_cabang").append(sc);
       },
       error:function(){
+        console.log("ada kesalahan");
       }
     });
 }
@@ -286,5 +288,5 @@ dateFormat.i18n = {
 Date.prototype.format = function (mask, utc) {
   return dateFormat(this, mask, utc);
 };
-	// formmat date
+  // formmat date
 </script>

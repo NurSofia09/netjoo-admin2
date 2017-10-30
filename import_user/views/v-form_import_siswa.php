@@ -8,7 +8,7 @@
 					<h3 class="panel-title">Export Data Excel Siswa</h3>
 					<div class="panel-toolbar text-right">
 						<div class="btn-group">
-							<a  class="btn btn-sm btn-default" href="<?=base_url()?>assets/excel/template/template_siswa.xlsx" rel="nofollow">Template Excel Siswa</a>
+							<a  class="btn btn-sm btn-default" href="<?=base_url()?>assets/excel/template/template_siswa_soc.xlsx" rel="nofollow">Template Excel Siswa</a>
 						</div>
 					</div>
 				</div>
@@ -48,12 +48,10 @@
 							<thead>
 								<tr>
 									<th>No</th>
-									<th>No Induk neutron</th>
-									<th>Nama Depan</th>
-									<th>Nama Belakang</th>
+									<th>NISN </th>
+									<th>Nama</th>
 									<th>Alamat</th>
 									<th>Tanggal Lahr</th>
-									<th>Email</th>
 									<th>No Kontak</th>
 									<th>Nama Sekolah</th>
 									<th>Alamat Sekolah</th>
@@ -66,12 +64,10 @@
 							<tfoot>
 								<tr>
 									<th>No</th>
-									<th>No Induk neutron</th>
-									<th>Nama Depan</th>
-									<th>Nama Belakang</th>
+									<th>NISN</th>
+									<th>Nama</th>
 									<th>Alamat</th>
 									<th>Tanggal Lahr</th>
-									<th>Email</th>
 									<th>No Kontak</th>
 									<th>Nama Sekolah</th>
 									<th>Alamat Sekolah</th>
@@ -177,7 +173,7 @@ function upload_data_xlsx(){
 			} else {
 				show_tb_preview();
 				 $.each(datImport, function (key, val) {
-        records_tb [i] = [no,val.nisn,val.namaDepan,val.namaBelakang,val.alamat,val.tgl_lahir,val.eMail,val.noKontak,val.namaSekolah,val.alamatSekolah,val.noKontakSekolah];
+        records_tb [i] = [no,val.nisn,val.nama,val.alamat,val.tgl_lahir,val.noKontak,val.namaSekolah,val.alamatSekolah,val.noKontakSekolah];
         no++;
          i++;
     		});
@@ -199,12 +195,13 @@ function upload_data_xlsx(){
 			type:"post",
 			dataType:"text",
 			success:function(Data){
+				console.log(Data);
 				var ob_data=JSON.parse(Data);
-				reset_form_xlsx();
+				// reset_form_xlsx();
 				swal("berhasil!",ob_data, "success");
 			},
 			error:function(){
-	
+					swal("error!","sss", "error");
 			}
 		});
 	}
