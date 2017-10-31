@@ -108,7 +108,7 @@ public function set_siswa_batch()
  			$tgl_lahir=date("Y-m-d",$parse_tgl);
  			//data pengguna
  			$uuid=uniqid();
- 			$kataSandi=$key["nisn"].$tgl;
+ 			$kataSandi=$tgl_lahir;
  			$dat_pengguna[]=array(
  				'namaPengguna'=> $key["nisn"],
  				'kataSandi'=>md5($kataSandi),
@@ -126,6 +126,9 @@ public function set_siswa_batch()
 				'nisn'=>$key['nisn'],
 				'tingkatID' => $key["tingkatID"],
  				);
+ 			$dat_sekolahID[]=array(
+ 				"sekolahID"=>$key["id_sekolah_pengawas"],
+ 				);
  			$uuid_arr[]=array(
  				'uuid_user'=>$uuid);
  		}
@@ -134,12 +137,17 @@ public function set_siswa_batch()
  		//get id pengguna yg baru di insert
  		 $dat_pengguna_ID=$this->Import_user_model->get_batch_penggunaID($uuid_arr);
  		 $length_dat_pengguna_ID=count($dat_pengguna_ID);
- 			 //merge array dat_siswa_excel dengan array dat_pengguna_ID
+ 
  		 for ($i=0; $i < $length_dat_pengguna_ID ; $i++) { 
+ 		 	//merge array dat_siswa_excel dengan array dat_pengguna_ID
  		 	$dat_siswa[]=array_merge_recursive($dat_siswa_excel[$i],$dat_pengguna_ID[$i]);
+ 		 	$dat_sekolah_pengguna[]=array_merge_recursive($dat_sekolahID[$i],$dat_pengguna_ID[$i]);
  		 }
+ 		 var_dump($dat_sekolah_pengguna);
  		// simpan data Siswa
  		$this->Import_user_model->myinsert_batch($dat_siswa,"tb_siswa");
+ 		// simpan data sekolah pengguna
+ 		$this->Import_user_model->myinsert_batch($dat_sekolah_pengguna,"tb_sekolah_pengguna");
  		
  		 // var_dump($dat_pengguna);
  		 // var_dump($dat_pengguna_ID);
