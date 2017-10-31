@@ -143,7 +143,7 @@ public function set_siswa_batch()
  		 	$dat_siswa[]=array_merge_recursive($dat_siswa_excel[$i],$dat_pengguna_ID[$i]);
  		 	$dat_sekolah_pengguna[]=array_merge_recursive($dat_sekolahID[$i],$dat_pengguna_ID[$i]);
  		 }
- 		 var_dump($dat_sekolah_pengguna);
+ 		
  		// simpan data Siswa
  		$this->Import_user_model->myinsert_batch($dat_siswa,"tb_siswa");
  		// simpan data sekolah pengguna
@@ -288,22 +288,10 @@ public function set_siswa_batch()
  			$param_uuid="'".$key->uuid_xlsx."'";
  			$param_remove_token="'".$key->uuid_xlsx."','".$nama_file ."'";
  			$pengguna=$key->keterangan;
- 			$button_file='<div class="btn-group" style="margin-bottom:5px;">
- 			<button type="button" class="btn btn-sm btn-success dropdown-toggle" data-toggle="dropdown">File_<span class="caret"></span></button>
- 			<ul class="dropdown-menu" role="menu">
-
- 			<li><a href="javascript:void(0);" onClick="pdf_token('.$param_uuid.')">PDF Token</a></li>
- 			<li><a href="javascript:void(0);" onClick="csv_token('.$param_uuid.')">excel Token</a></li>
- 			</ul>
- 			</div>';
+ 			
  			$button_aksi='<div class="btn-group" style="margin-bottom:5px;">
  			<button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown">Aksi_<span class="caret"></span></button>
  			<ul class="dropdown-menu" role="menu">
- 			<li><a href="javascript:void(0);" onClick=" set_token('.$param_uuid.')">Set Token</a></li>
- 			<li><a href="javascript:void(0);" onClick=" set_ortu('.$param_uuid.')">Set Ortu</a></li>
- 			<li class="divider"></li>
- 			<li><a href="javascript:void(0);" class="text-warning"  onClick="confirm_remove_token('.$param_remove_token.')">Hapus Token</a></li>
- 			<li class="divider"></li>
  			<li><a href="javascript:void(0);" class="text-danger" onClick="rollback('.$param_rolback.')">Rollback</a></li>
  			<li><a href="javascript:void(0);" class="text-danger" onClick="del_excel('.$param_del.')">Delete Excel</a></li>
  			</ul>
@@ -314,7 +302,6 @@ public function set_siswa_batch()
  			$row[]= $nama_file;
  			$row[]= $url_file;
  			$row[]= $pengguna;
- 			$row[]= $button_file;
  			$row[]=$button_aksi;
  			$data[] = $row;
  			$no++;

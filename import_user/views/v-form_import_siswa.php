@@ -197,7 +197,7 @@ function upload_data_xlsx(){
 			success:function(Data){
 				console.log(Data);
 				var ob_data=JSON.parse(Data);
-				// reset_form_xlsx();
+				reset_form_xlsx();
 				swal("berhasil!",ob_data, "success");
 			},
 			error:function(){

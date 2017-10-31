@@ -22,7 +22,6 @@
 										<th width="10%">Nama File</th>
 										<th width="25%">url file</th>
 										<th width="10%">Ketrangan</th>
-										<th width="10%">File</th>
 										<th width="10%"></th>
 									</tr>
 								</thead>
