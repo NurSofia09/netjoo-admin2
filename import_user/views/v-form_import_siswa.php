@@ -188,14 +188,14 @@ function upload_data_xlsx(){
 	function post_import_user(){
 		var url=base_url+"import_user/set_siswa_batch";
 		var uuid_excel=datExcel.uuid_excel;
-		var datas={datImport:datImport,uuid_excel:uuid_excel};
+		var parse_datPost=JSON.stringify(datImport);
+		var datas={datImport:parse_datPost,uuid_excel:uuid_excel};
 		$.ajax({
 			url:url,
 			data:datas,
 			type:"post",
 			dataType:"text",
 			success:function(Data){
-				console.log(Data);
 				var ob_data=JSON.parse(Data);
 				reset_form_xlsx();
 				swal("berhasil!",ob_data, "success");

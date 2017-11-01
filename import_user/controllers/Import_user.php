@@ -97,37 +97,38 @@
 public function set_siswa_batch()
  	{
  		$post=$this->input->post();
- 		$datArr=$post["datImport"];
+ 		 		$datImport=$post["datImport"];
+ 		$datArr=json_decode($datImport);
  		$uuid_excel=$post["uuid_excel"];
  		$dat_siswa=array();
  		$dat_pengguna=array();
  		$dat_siswa=array();
  		foreach ($datArr as $key ) {
- 			$parse_tgl=strtotime($key['tgl_lahir']);
+ 			$parse_tgl=strtotime($key->tgl_lahir);
  			$tgl=date("d",$parse_tgl);
  			$tgl_lahir=date("Y-m-d",$parse_tgl);
  			//data pengguna
  			$uuid=uniqid();
  			$kataSandi=$tgl_lahir;
  			$dat_pengguna[]=array(
- 				'namaPengguna'=> $key["nisn"],
+ 				'namaPengguna'=> $key->nisn,
  				'kataSandi'=>md5($kataSandi),
  				// 'eMail'=> $key["eMail"],
  				'hakAkses'=>'siswa',
  				'uuid_user'=>$uuid,
  				'keterangan'=>"excel_".$uuid_excel);
  			$dat_siswa_excel[]=array(
- 				'namaDepan'=>$key['nama'],
+ 				'namaDepan'=>$key->nama,
  				'tgl_lahir' => $tgl_lahir,
- 				'alamat'=>$key['alamat'],
- 				'namaSekolah'=>$key['namaSekolah'],
- 				'alamatSekolah'=>$key['alamatSekolah'],
- 				'noKontakSekolah'=>$key['noKontakSekolah'],
-				'nisn'=>$key['nisn'],
-				'tingkatID' => $key["tingkatID"],
+ 				'alamat'=>$key->alamat,
+ 				'namaSekolah'=>$key->namaSekolah,
+ 				'alamatSekolah'=>$key->alamatSekolah,
+ 				'noKontakSekolah'=>$key->noKontakSekolah,
+				'nisn'=>$key->nisn,
+				'tingkatID' => $key->tingkatID,
  				);
  			$dat_sekolahID[]=array(
- 				"sekolahID"=>$key["id_sekolah_pengawas"],
+ 				"sekolahID"=>$key->id_sekolah_pengawas,
  				);
  			$uuid_arr[]=array(
  				'uuid_user'=>$uuid);
